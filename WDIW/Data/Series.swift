@@ -1,5 +1,5 @@
 //
-//  Book.swift
+//  Series.swift
 //  WDIW
 //
 //  Created by Nicolas von Trott on 20.02.24.
@@ -9,18 +9,22 @@ import Foundation
 import SwiftData
 
 @Model
-class Book: Content {
-    @Attribute(.unique) var id: UUID
+class Series: Content {
+    var id: UUID
+    
     var name: String
+    
     var watchDate: Date
-    var author: String
+    
     @Attribute(.externalStorage, .allowsCloudEncryption) var image: Data?
 
-    init(id: UUID, name: String, watchDate: Date, author: String, image: Data? = nil) {
+    var rating: Double
+
+    init(id: UUID, name: String, watchDate: Date, image: Data? = nil, rating: Double) {
         self.id = id
         self.name = name
         self.watchDate = watchDate
-        self.author = author
         self.image = image
+        self.rating = rating
     }
 }
