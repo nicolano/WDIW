@@ -12,6 +12,7 @@
 		F6B2F30F2B849B9300A981C2 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F30E2B849B9300A981C2 /* Item.swift */; };
 		F6B2F3112B849B9400A981C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6B2F3102B849B9400A981C2 /* Assets.xcassets */; };
 		F6B2F3142B849B9400A981C2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6B2F3132B849B9400A981C2 /* Preview Assets.xcassets */; };
+		F6B2F31E2B84A1F000A981C2 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F31D2B84A1F000A981C2 /* Book.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		F6B2F30E2B849B9300A981C2 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		F6B2F3102B849B9400A981C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F6B2F3132B849B9400A981C2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F6B2F31D2B84A1F000A981C2 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,9 @@
 		F6B2F3092B849B9300A981C2 /* WDIW */ = {
 			isa = PBXGroup;
 			children = (
+				F6B2F31C2B849BD300A981C2 /* Data */,
+				F6B2F31B2B849BC600A981C2 /* View */,
+				F6B2F31A2B849BBE00A981C2 /* ViewModel */,
 				F6B2F30A2B849B9300A981C2 /* WDIWApp.swift */,
 				F6B2F30C2B849B9300A981C2 /* ContentView.swift */,
 				F6B2F30E2B849B9300A981C2 /* Item.swift */,
@@ -68,6 +73,28 @@
 				F6B2F3132B849B9400A981C2 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F6B2F31A2B849BBE00A981C2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F6B2F31B2B849BC600A981C2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F6B2F31C2B849BD300A981C2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F6B2F31D2B84A1F000A981C2 /* Book.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6B2F31E2B84A1F000A981C2 /* Book.swift in Sources */,
 				F6B2F30D2B849B9300A981C2 /* ContentView.swift in Sources */,
 				F6B2F30F2B849B9300A981C2 /* Item.swift in Sources */,
 				F6B2F30B2B849B9300A981C2 /* WDIWApp.swift in Sources */,
