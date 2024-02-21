@@ -18,7 +18,7 @@ struct ContentView: View {
             ScrollViewReader { scrollViewReader in
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 0) {
-                        BooksScreen()
+                        BooksScreen(offset: scrollPosition)
                             .id(ContentCategories.books)
                             .environmentObject(contentVM)
                         
@@ -65,7 +65,6 @@ struct ContentView: View {
                         ()
                     }
                 }
-                
                 
                 Spacer()
             }

@@ -38,7 +38,7 @@ class NavigationViewModel: ObservableObject {
             return 
         }
         
-        if offset.x > 100.0 {
+        if offset.x > .offsetNavToSettings {
             navigateToSettings()
         } else if offset == .zero {
             navigateToContentCategory(category: .books)
@@ -47,6 +47,7 @@ class NavigationViewModel: ObservableObject {
         } else if offset == CGPoint(x: -(2 * UIScreen.main.bounds.width), y: 0.0) {
             navigateToContentCategory(category: .series)
         }
+        
     }
     
     func navigateToContentCategory(category: ContentCategories) {

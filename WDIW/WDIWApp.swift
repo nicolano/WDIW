@@ -26,6 +26,8 @@ struct WDIWApp: App {
     @ObservedObject private var navigationVM = NavigationViewModel()
     @ObservedObject private var contentVM = ContentViewModel()
 
+    @State private var isMovingToSettings: Bool = false
+    
     var body: some Scene {
         WindowGroup {
             ZStack {
@@ -42,11 +44,18 @@ struct WDIWApp: App {
                         .zIndex(10)
                 }
             }
+            // Sensory Feedback when moving to settings screen
+            .sensoryFeedback(.success, trigger: isMovingToSettings)
+            .onChange(of: navigationVM.activeScreen, { oldValue, newValue in
+                if oldValue == .books && newValue == .settings {
+                    isMovingToSettings.toggle()
+                }
+            })
             .animation(.default, value: self.navigationVM.activeScreen)
             .background {
                 VStack {
                     Rectangle().fill(Color.Custom.surface).ignoresSafeArea(edges: .top)
-                        .frame(height: 95)
+                        .frame(height: 70)
                     
                     Spacer()
                 }
