@@ -13,9 +13,9 @@ enum ContentCategories {
     func getName() -> String {
         switch self {
         case .books:
-            "Bücher"
+            "Books"
         case .movies:
-            "Filme"
+            "Movies"
         case .series:
             "Serien"
         }

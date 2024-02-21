@@ -25,6 +25,8 @@
 		F6B2F3362B84B2C400A981C2 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F3352B84B2C400A981C2 /* Color.swift */; };
 		F6B2F33B2B84B42900A981C2 /* ContentScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F33A2B84B42900A981C2 /* ContentScreen.swift */; };
 		F6B2F33D2B84B97B00A981C2 /* ContentCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F33C2B84B97B00A981C2 /* ContentCategories.swift */; };
+		F6B2F33F2B84BB6C00A981C2 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F33E2B84BB6C00A981C2 /* ContentViewModel.swift */; };
+		F6B2F3432B85F93A00A981C2 /* NavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F3422B85F93A00A981C2 /* NavigationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		F6B2F3352B84B2C400A981C2 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		F6B2F33A2B84B42900A981C2 /* ContentScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentScreen.swift; sourceTree = "<group>"; };
 		F6B2F33C2B84B97B00A981C2 /* ContentCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCategories.swift; sourceTree = "<group>"; };
+		F6B2F33E2B84BB6C00A981C2 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		F6B2F3422B85F93A00A981C2 /* NavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 			isa = PBXGroup;
 			children = (
 				F6B2F33C2B84B97B00A981C2 /* ContentCategories.swift */,
+				F6B2F33E2B84BB6C00A981C2 /* ContentViewModel.swift */,
+				F6B2F3422B85F93A00A981C2 /* NavigationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -243,6 +249,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6B2F3432B85F93A00A981C2 /* NavigationViewModel.swift in Sources */,
 				F6B2F33B2B84B42900A981C2 /* ContentScreen.swift in Sources */,
 				F6B2F3262B84AB7A00A981C2 /* MoviesScreen.swift in Sources */,
 				F6B2F31E2B84A1F000A981C2 /* Book.swift in Sources */,
@@ -255,6 +262,7 @@
 				F6B2F30B2B849B9300A981C2 /* WDIWApp.swift in Sources */,
 				F6B2F3202B84A40500A981C2 /* Movie.swift in Sources */,
 				F6B2F3362B84B2C400A981C2 /* Color.swift in Sources */,
+				F6B2F33F2B84BB6C00A981C2 /* ContentViewModel.swift in Sources */,
 				F6B2F3322B84ACBB00A981C2 /* CGFloat.swift in Sources */,
 				F6B2F32C2B84ABEE00A981C2 /* TabBar.swift in Sources */,
 				F6B2F3222B84A43500A981C2 /* Content.swift in Sources */,

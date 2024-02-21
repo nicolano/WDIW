@@ -9,7 +9,9 @@ import SwiftUI
 
 struct MoviesScreen: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ContentScreen(contentCategory: .movies, content: []) { book in
+            
+        }
     }
 }
 

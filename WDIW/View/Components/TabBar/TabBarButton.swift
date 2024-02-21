@@ -17,6 +17,8 @@ struct TabBarButton: View {
             onTap()
         } label: {
             HStack(spacing: 0) {
+                Spacer(minLength: 0)
+                
                 Image(
                     systemName: contentCategory.getIconName(
                         isActive: isActive
@@ -25,18 +27,23 @@ struct TabBarButton: View {
                 .padding(.trailing, .Spacing.s)
                 
                 Text(contentCategory.getName())
+
+                Spacer(minLength: 0)
             }
+            .font(.footnote)
         }
-        .buttonStyle(TabBarButtonstyle())
+        .buttonStyle(TabBarButtonstyle(isActive: isActive))
     }
 }
 
 struct TabBarButtonstyle: ButtonStyle {
+    let isActive: Bool
+    
     func makeBody(configuration: Configuration) -> some View {
-        if configuration.isPressed {
+        if configuration.isPressed || isActive {
             configuration.label
                 .padding()
-                .background(.thinMaterial)
+                .background(.ultraThickMaterial)
                 .foregroundStyle(Color.Custom.primary)
                 .clipShape(Capsule())
         } else {
@@ -49,8 +56,14 @@ struct TabBarButtonstyle: ButtonStyle {
 }
 
 #Preview {
-    TabBarButton(contentCategory: .books, isActive: true) {
+    VStack {
+        TabBarButton(contentCategory: .books, isActive: false) {
+            
+        }
         
+        TabBarButton(contentCategory: .books, isActive: true) {
+            
+        }
     }
     .padding(100)
     .background(Color.green)

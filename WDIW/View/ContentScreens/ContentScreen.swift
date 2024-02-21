@@ -15,11 +15,18 @@ struct ContentScreen: View {
     var body: some View {
         VStack(alignment: .leading) {
             headerSection
+                .padding(.horizontal, .Spacing.l)
                 .padding(.top, .Spacing.l)
+                .padding(.bottom, .Spacing.m)
+                .background {
+                    Rectangle()
+                        .fill(Color.Custom.surface)
+                        .ignoresSafeArea()
+                }
             
             Spacer()
         }
-        .padding(.horizontal, .Spacing.l)
+        .frame(width: UIScreen.main.bounds.width)
     }
 }
 
@@ -31,6 +38,16 @@ extension ContentScreen {
                 .fontWeight(.black)
             
             Spacer()
+            
+            Button {
+                onAddItemTap(contentCategory)
+            } label: {
+                Image(systemName: "magnifyingglass")
+                    .foregroundStyle(Color.Custom.primary)
+                    .bold()
+                    .padding(.Spacing.s)
+                    .clipShape(Circle())
+            }
             
             Button {
                 onAddItemTap(contentCategory)

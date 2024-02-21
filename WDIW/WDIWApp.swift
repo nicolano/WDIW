@@ -22,10 +22,13 @@ struct WDIWApp: App {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
+    
+    @ObservedObject private var navigationVM = NavigationViewModel()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(navigationVM)
         }
         .modelContainer(sharedModelContainer)
     }
