@@ -26,5 +26,11 @@ struct SeriesScreen: View {
 #Preview {
     SeriesScreen()
         .environmentObject(NavigationViewModel())
-        .environmentObject(ContentViewModel())
+        .environmentObject(
+            ContentViewModel(
+                modelContext: SharedModelContainer(
+                    isInMemory: true
+                ).modelContainer.mainContext
+            )
+        )
 }

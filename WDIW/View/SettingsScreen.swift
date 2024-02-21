@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingsScreen: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             Header(title: "Settings") {
                 
             } primaryButton: {
@@ -19,6 +19,22 @@ struct SettingsScreen: View {
                 } label: {
                     Text("Back")
                         .bold()
+                }
+            }
+            
+            List {
+                Section("Backup") {
+                    Button {
+                    
+                    } label: {
+                        Text("Create Backup")
+                    }
+                    
+                    Button {
+                        
+                    } label: {
+                        Text("Load from Backup")
+                    }
                 }
             }
             

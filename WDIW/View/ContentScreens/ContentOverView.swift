@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ContentOverView: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
     @EnvironmentObject private var contentVM: ContentViewModel
 
@@ -18,7 +18,7 @@ struct ContentView: View {
             ScrollViewReader { scrollViewReader in
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 0) {
-                        BooksScreen()
+                        BooksScreen(offset: scrollPosition)
                             .id(ContentCategories.books)
                             .environmentObject(contentVM)
                         
@@ -66,7 +66,6 @@ struct ContentView: View {
                     }
                 }
                 
-                
                 Spacer()
             }
         }
@@ -95,7 +94,7 @@ struct ScrollOffsetPreferenceKey: PreferenceKey {
     }
 }
 
-extension ContentView {
+extension ContentOverView {
     private var tabBar: some View {
         VStack {
             Spacer()
@@ -108,6 +107,6 @@ extension ContentView {
 }
 
 #Preview {
-    ContentView()
+    ContentOverView()
         .environmentObject(NavigationViewModel())
 }

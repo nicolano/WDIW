@@ -26,5 +26,11 @@ struct MoviesScreen: View {
 #Preview {
     MoviesScreen()
         .environmentObject(NavigationViewModel())
-        .environmentObject(ContentViewModel())
+        .environmentObject(
+            ContentViewModel(
+                modelContext: SharedModelContainer(
+                    isInMemory: true
+                ).modelContainer.mainContext
+            )
+        )
 }

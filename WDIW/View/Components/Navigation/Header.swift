@@ -25,9 +25,9 @@ struct Header<Content1: View, Content2: View>: View {
             primaryButton
         }
         .padding(.horizontal, .Spacing.l)
-        .padding(.top, .Spacing.l)
+        .padding(.top, .Spacing.m)
         .padding(.bottom, .Spacing.m)
-        .frame(height: 95)
+        .frame(height: 70)
     }
 }
 

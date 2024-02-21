@@ -30,7 +30,7 @@ struct TabBarButton: View {
 
                 Spacer(minLength: 0)
             }
-            .font(.footnote)
+            .font(.caption)
         }
         .buttonStyle(
             TabBarButtonstyle(
