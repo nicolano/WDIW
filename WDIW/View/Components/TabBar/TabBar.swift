@@ -72,6 +72,8 @@ struct TabBar: View {
                 activeCategory = .movies
             case .series:
                 activeCategory = .series
+            default:
+                ()
             }
         }
     }

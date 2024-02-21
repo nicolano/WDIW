@@ -27,6 +27,7 @@
 		F6B2F33D2B84B97B00A981C2 /* ContentCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F33C2B84B97B00A981C2 /* ContentCategories.swift */; };
 		F6B2F33F2B84BB6C00A981C2 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F33E2B84BB6C00A981C2 /* ContentViewModel.swift */; };
 		F6B2F3432B85F93A00A981C2 /* NavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F3422B85F93A00A981C2 /* NavigationViewModel.swift */; };
+		F6B2F3452B860B1900A981C2 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F3442B860B1900A981C2 /* SettingsScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		F6B2F33C2B84B97B00A981C2 /* ContentCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCategories.swift; sourceTree = "<group>"; };
 		F6B2F33E2B84BB6C00A981C2 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		F6B2F3422B85F93A00A981C2 /* NavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewModel.swift; sourceTree = "<group>"; };
+		F6B2F3442B860B1900A981C2 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				F6B2F30C2B849B9300A981C2 /* ContentView.swift */,
+				F6B2F3442B860B1900A981C2 /* SettingsScreen.swift */,
 				F6B2F3392B84B41700A981C2 /* ContentScreens */,
 				F6B2F32D2B84AC0300A981C2 /* Components */,
 			);
@@ -260,6 +263,7 @@
 				F6B2F32F2B84AC1400A981C2 /* TabBarButton.swift in Sources */,
 				F6B2F30F2B849B9300A981C2 /* Item.swift in Sources */,
 				F6B2F30B2B849B9300A981C2 /* WDIWApp.swift in Sources */,
+				F6B2F3452B860B1900A981C2 /* SettingsScreen.swift in Sources */,
 				F6B2F3202B84A40500A981C2 /* Movie.swift in Sources */,
 				F6B2F3362B84B2C400A981C2 /* Color.swift in Sources */,
 				F6B2F33F2B84BB6C00A981C2 /* ContentViewModel.swift in Sources */,

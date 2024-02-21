@@ -35,6 +35,7 @@ struct ContentView: View {
                     })
                     .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
                         self.scrollPosition = value
+                        print(value)
                         navigationVM.navigateFromOffset(offset: value)
                     }
                 }
@@ -54,6 +55,8 @@ struct ContentView: View {
                         withAnimation {
                             scrollViewReader.scrollTo(ContentCategories.series)
                         }
+                    default:
+                        ()
                     }
                 }
                 

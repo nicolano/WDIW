@@ -27,8 +27,17 @@ struct WDIWApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(navigationVM)
+            switch navigationVM.activeScreen {
+            case .settings:
+                SettingsScreen()
+                    .environmentObject(navigationVM)
+                    .transition(.move(edge: .leading))
+            default:
+                ContentView()
+                    .environmentObject(navigationVM)
+                    .transition(.move(edge: .trailing))
+            }
+            
         }
         .modelContainer(sharedModelContainer)
     }

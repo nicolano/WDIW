@@ -11,13 +11,23 @@ import Combine
 
 class NavigationViewModel: ObservableObject {
     enum Screens {
-        case books, movies, series
+        case settings, books, movies, series
     }
     
     @Published var activeScreen: Screens = .books    
     
+    func navigateToSettings() {
+        activeScreen = .settings
+    }
+    
+    func navigateToContents() {
+        activeScreen = .books
+    }
+    
     func navigateFromOffset(offset: CGPoint) {
-        if offset == .zero {
+        if offset == CGPoint(x: 100.0, y: 0.0) {
+            navigateToSettings()
+        } else if offset == .zero {
             navigateToContentCategory(category: .books)
         } else if offset == CGPoint(x: -UIScreen.main.bounds.width, y: 0.0) {
             navigateToContentCategory(category: .movies)
