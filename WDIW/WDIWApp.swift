@@ -24,20 +24,33 @@ struct WDIWApp: App {
     }()
     
     @ObservedObject private var navigationVM = NavigationViewModel()
+    @ObservedObject private var contentVM = ContentViewModel()
 
     var body: some Scene {
         WindowGroup {
-            switch navigationVM.activeScreen {
-            case .settings:
-                SettingsScreen()
-                    .environmentObject(navigationVM)
-                    .transition(.move(edge: .leading))
-            default:
-                ContentView()
-                    .environmentObject(navigationVM)
-                    .transition(.move(edge: .trailing))
+            ZStack {
+                switch navigationVM.activeScreen {
+                case .settings:
+                    SettingsScreen()
+                        .environmentObject(navigationVM)
+                        .transition(.move(edge: .leading))
+                default:
+                    ContentView()
+                        .environmentObject(navigationVM)
+                        .environmentObject(contentVM)
+                        .transition(.move(edge: .trailing))
+                        .zIndex(10)
+                }
             }
-            
+            .animation(.default, value: self.navigationVM.activeScreen)
+            .background {
+                VStack {
+                    Rectangle().fill(Color.Custom.surface).ignoresSafeArea(edges: .top)
+                        .frame(height: 95)
+                    
+                    Spacer()
+                }
+            }
         }
         .modelContainer(sharedModelContainer)
     }

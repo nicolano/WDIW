@@ -10,10 +10,19 @@ import SwiftUI
 struct SettingsScreen: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
     var body: some View {
-        Button {
-            navigationVM.navigateToContents()
-        } label: {
-            Text("Back")
+        VStack {
+            Header(title: "Settings") {
+                
+            } primaryButton: {
+                Button {
+                    navigationVM.navigateToContents()
+                } label: {
+                    Text("Back")
+                        .bold()
+                }
+            }
+            
+            Spacer()
         }
     }
 }

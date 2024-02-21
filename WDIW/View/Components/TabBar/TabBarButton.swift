@@ -32,18 +32,24 @@ struct TabBarButton: View {
             }
             .font(.footnote)
         }
-        .buttonStyle(TabBarButtonstyle(isActive: isActive))
+        .buttonStyle(
+            TabBarButtonstyle(
+                isActive: isActive
+            )
+        )
     }
 }
 
 struct TabBarButtonstyle: ButtonStyle {
     let isActive: Bool
-    
+
     func makeBody(configuration: Configuration) -> some View {
         if configuration.isPressed || isActive {
             configuration.label
                 .padding()
-                .background(.ultraThickMaterial)
+                .background(
+                    .ultraThickMaterial
+                )
                 .foregroundStyle(Color.Custom.primary)
                 .clipShape(Capsule())
         } else {
@@ -57,11 +63,17 @@ struct TabBarButtonstyle: ButtonStyle {
 
 #Preview {
     VStack {
-        TabBarButton(contentCategory: .books, isActive: false) {
+        TabBarButton(
+            contentCategory: .books,
+            isActive: false
+        ) {
             
         }
         
-        TabBarButton(contentCategory: .books, isActive: true) {
+        TabBarButton(
+            contentCategory: .books,
+            isActive: true
+        ) {
             
         }
     }

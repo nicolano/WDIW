@@ -24,43 +24,33 @@ struct TabBar: View {
                     Spacer()
                     
                     HStack(spacing: 0) {
-                        TabBarButton(
-                            contentCategory: .books,
-                            isActive: activeCategory == .books
-                        ) {
-                            navigationVM.navigateToContentCategory(category: .books)
-                        }
-                        .frame(width: getTabBarButtonWidth(tabBarWidth: geo.size.width))
+                        booksButton
+                            .frame(
+                                width: getTabBarButtonWidth(
+                                    tabBarWidth: geo.size.width
+                                )
+                            )
                         
                         Spacer(minLength: 0)
                         
-                        TabBarButton(
-                            contentCategory: .movies,
-                            isActive: activeCategory == .movies
-                        ) {
-                            navigationVM.navigateToContentCategory(category: .movies)
-                        }
-                        .frame(width: getTabBarButtonWidth(tabBarWidth: geo.size.width))
+                        moviesButton
+                            .frame(
+                                width: getTabBarButtonWidth(
+                                    tabBarWidth: geo.size.width
+                                )
+                            )
 
                         Spacer(minLength: 0)
 
-                        TabBarButton(
-                            contentCategory: .series,
-                            isActive: activeCategory == .series
-                        ) {
-                            navigationVM.navigateToContentCategory(category: .series)
-                        }
-                        .frame(width: getTabBarButtonWidth(tabBarWidth: geo.size.width))
+                        seriesButton
+                            .frame(
+                                width: getTabBarButtonWidth(
+                                    tabBarWidth: geo.size.width
+                                )
+                            )
                     }
                     .padding(.Spacing.xs)
-                    .background {
-                        Rectangle()
-                            .fill(Color.Custom.surface)
-                            .background {
-                                Color.gray.opacity(0.3)
-                            }
-                            .clipShape(Capsule())
-                    }
+                    .background(background)
                 }
             }
         }
@@ -74,6 +64,56 @@ struct TabBar: View {
                 activeCategory = .series
             default:
                 ()
+            }
+        }
+    }
+}
+
+extension TabBar {
+    private var background: some View {
+        Rectangle()
+            .fill(Color.Custom.surface)
+            .background {
+                Color.gray.opacity(0.3)
+            }
+            .clipShape(Capsule())
+    }
+    
+    private var booksButton: some View {
+        TabBarButton(
+            contentCategory: .books,
+            isActive: activeCategory == .books
+        ) {
+            withAnimation {
+                navigationVM.navigateToContentCategory(
+                    category: .books
+                )
+            }
+        }
+    }
+    
+    private var moviesButton: some View {
+        TabBarButton(
+            contentCategory: .movies,
+            isActive: activeCategory == .movies
+        ) {
+            withAnimation {
+                navigationVM.navigateToContentCategory(
+                    category: .movies
+                )
+            }
+        }
+    }
+    
+    private var seriesButton: some View {
+        TabBarButton(
+            contentCategory: .series,
+            isActive: activeCategory == .series
+        ) {
+            withAnimation {
+                navigationVM.navigateToContentCategory(
+                    category: .series
+                )
             }
         }
     }

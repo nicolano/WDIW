@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class Series: Content {
+class Series: MediaContent {
     var id: UUID
     
     var name: String

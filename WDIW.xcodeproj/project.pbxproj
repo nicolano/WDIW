@@ -14,7 +14,7 @@
 		F6B2F3142B849B9400A981C2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6B2F3132B849B9400A981C2 /* Preview Assets.xcassets */; };
 		F6B2F31E2B84A1F000A981C2 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F31D2B84A1F000A981C2 /* Book.swift */; };
 		F6B2F3202B84A40500A981C2 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F31F2B84A40500A981C2 /* Movie.swift */; };
-		F6B2F3222B84A43500A981C2 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F3212B84A43500A981C2 /* Content.swift */; };
+		F6B2F3222B84A43500A981C2 /* MediaContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F3212B84A43500A981C2 /* MediaContent.swift */; };
 		F6B2F3242B84A61C00A981C2 /* Series.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F3232B84A61C00A981C2 /* Series.swift */; };
 		F6B2F3262B84AB7A00A981C2 /* MoviesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F3252B84AB7A00A981C2 /* MoviesScreen.swift */; };
 		F6B2F3282B84AB8500A981C2 /* BooksScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F3272B84AB8500A981C2 /* BooksScreen.swift */; };
@@ -28,6 +28,9 @@
 		F6B2F33F2B84BB6C00A981C2 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F33E2B84BB6C00A981C2 /* ContentViewModel.swift */; };
 		F6B2F3432B85F93A00A981C2 /* NavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F3422B85F93A00A981C2 /* NavigationViewModel.swift */; };
 		F6B2F3452B860B1900A981C2 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F3442B860B1900A981C2 /* SettingsScreen.swift */; };
+		F6B2F3482B861A7000A981C2 /* AddContentSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F3472B861A7000A981C2 /* AddContentSheet.swift */; };
+		F6B2F34A2B86286A00A981C2 /* NoContentSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F3492B86286A00A981C2 /* NoContentSection.swift */; };
+		F6B2F34D2B862CB200A981C2 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F34C2B862CB200A981C2 /* Header.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +42,7 @@
 		F6B2F3132B849B9400A981C2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F6B2F31D2B84A1F000A981C2 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		F6B2F31F2B84A40500A981C2 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
-		F6B2F3212B84A43500A981C2 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		F6B2F3212B84A43500A981C2 /* MediaContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaContent.swift; sourceTree = "<group>"; };
 		F6B2F3232B84A61C00A981C2 /* Series.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Series.swift; sourceTree = "<group>"; };
 		F6B2F3252B84AB7A00A981C2 /* MoviesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesScreen.swift; sourceTree = "<group>"; };
 		F6B2F3272B84AB8500A981C2 /* BooksScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksScreen.swift; sourceTree = "<group>"; };
@@ -53,6 +56,9 @@
 		F6B2F33E2B84BB6C00A981C2 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		F6B2F3422B85F93A00A981C2 /* NavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewModel.swift; sourceTree = "<group>"; };
 		F6B2F3442B860B1900A981C2 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		F6B2F3472B861A7000A981C2 /* AddContentSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContentSheet.swift; sourceTree = "<group>"; };
+		F6B2F3492B86286A00A981C2 /* NoContentSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoContentSection.swift; sourceTree = "<group>"; };
+		F6B2F34C2B862CB200A981C2 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +97,6 @@
 				F6B2F31B2B849BC600A981C2 /* View */,
 				F6B2F30A2B849B9300A981C2 /* WDIWApp.swift */,
 				F6B2F30E2B849B9300A981C2 /* Item.swift */,
-				F6B2F3102B849B9400A981C2 /* Assets.xcassets */,
 				F6B2F3122B849B9400A981C2 /* Preview Content */,
 			);
 			path = WDIW;
@@ -131,7 +136,7 @@
 			children = (
 				F6B2F31D2B84A1F000A981C2 /* Book.swift */,
 				F6B2F31F2B84A40500A981C2 /* Movie.swift */,
-				F6B2F3212B84A43500A981C2 /* Content.swift */,
+				F6B2F3212B84A43500A981C2 /* MediaContent.swift */,
 				F6B2F3232B84A61C00A981C2 /* Series.swift */,
 			);
 			path = Data;
@@ -140,6 +145,7 @@
 		F6B2F32D2B84AC0300A981C2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				F6B2F34B2B862C8800A981C2 /* Navigation */,
 				F6B2F3302B84AC1700A981C2 /* TabBar */,
 			);
 			path = Components;
@@ -157,6 +163,7 @@
 		F6B2F3332B84B28B00A981C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F6B2F3102B849B9400A981C2 /* Assets.xcassets */,
 				F6B2F3342B84B2B500A981C2 /* Extensions */,
 			);
 			path = Resources;
@@ -174,12 +181,30 @@
 		F6B2F3392B84B41700A981C2 /* ContentScreens */ = {
 			isa = PBXGroup;
 			children = (
+				F6B2F3462B861A5500A981C2 /* AddContentSheet */,
 				F6B2F33A2B84B42900A981C2 /* ContentScreen.swift */,
 				F6B2F3252B84AB7A00A981C2 /* MoviesScreen.swift */,
 				F6B2F3272B84AB8500A981C2 /* BooksScreen.swift */,
 				F6B2F3292B84AB9600A981C2 /* SeriesScreen.swift */,
+				F6B2F3492B86286A00A981C2 /* NoContentSection.swift */,
 			);
 			path = ContentScreens;
+			sourceTree = "<group>";
+		};
+		F6B2F3462B861A5500A981C2 /* AddContentSheet */ = {
+			isa = PBXGroup;
+			children = (
+				F6B2F3472B861A7000A981C2 /* AddContentSheet.swift */,
+			);
+			path = AddContentSheet;
+			sourceTree = "<group>";
+		};
+		F6B2F34B2B862C8800A981C2 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				F6B2F34C2B862CB200A981C2 /* Header.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,10 +278,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6B2F3432B85F93A00A981C2 /* NavigationViewModel.swift in Sources */,
+				F6B2F34A2B86286A00A981C2 /* NoContentSection.swift in Sources */,
 				F6B2F33B2B84B42900A981C2 /* ContentScreen.swift in Sources */,
 				F6B2F3262B84AB7A00A981C2 /* MoviesScreen.swift in Sources */,
 				F6B2F31E2B84A1F000A981C2 /* Book.swift in Sources */,
 				F6B2F33D2B84B97B00A981C2 /* ContentCategories.swift in Sources */,
+				F6B2F3482B861A7000A981C2 /* AddContentSheet.swift in Sources */,
 				F6B2F3282B84AB8500A981C2 /* BooksScreen.swift in Sources */,
 				F6B2F30D2B849B9300A981C2 /* ContentView.swift in Sources */,
 				F6B2F32A2B84AB9600A981C2 /* SeriesScreen.swift in Sources */,
@@ -266,10 +293,11 @@
 				F6B2F3452B860B1900A981C2 /* SettingsScreen.swift in Sources */,
 				F6B2F3202B84A40500A981C2 /* Movie.swift in Sources */,
 				F6B2F3362B84B2C400A981C2 /* Color.swift in Sources */,
+				F6B2F34D2B862CB200A981C2 /* Header.swift in Sources */,
 				F6B2F33F2B84BB6C00A981C2 /* ContentViewModel.swift in Sources */,
 				F6B2F3322B84ACBB00A981C2 /* CGFloat.swift in Sources */,
 				F6B2F32C2B84ABEE00A981C2 /* TabBar.swift in Sources */,
-				F6B2F3222B84A43500A981C2 /* Content.swift in Sources */,
+				F6B2F3222B84A43500A981C2 /* MediaContent.swift in Sources */,
 				F6B2F3242B84A61C00A981C2 /* Series.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

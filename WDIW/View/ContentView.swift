@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
+    @EnvironmentObject private var contentVM: ContentViewModel
+
     @State private var scrollPosition: CGPoint = .zero
 
     var body: some View {
@@ -18,12 +20,16 @@ struct ContentView: View {
                     HStack(spacing: 0) {
                         BooksScreen()
                             .id(ContentCategories.books)
-
+                            .environmentObject(contentVM)
+                        
                         MoviesScreen()
                             .id(ContentCategories.movies)
+                            .environmentObject(contentVM)
                         
                         SeriesScreen()
                             .id(ContentCategories.series)
+                            .environmentObject(contentVM)
+                        
                     }
                     .scrollTargetLayout()
                     .background(GeometryReader { geometry in
@@ -64,8 +70,21 @@ struct ContentView: View {
                 Spacer()
             }
         }
-        .background(background)
         .overlay(tabBar)
+        .sheet(
+            isPresented: Binding(get: {
+                navigationVM.activeAddContentSheet != nil
+            }, set: { isOpen in
+                if !isOpen {
+                    navigationVM.closeAddContentSheet()
+                }
+            })
+        ) {
+            if let category = navigationVM.activeAddContentSheet {
+                AddContentSheet(contentCategory: category)
+            }
+            
+        }
     }
 }
 
@@ -77,19 +96,6 @@ struct ScrollOffsetPreferenceKey: PreferenceKey {
 }
 
 extension ContentView {
-    private var background: some View {
-        GeometryReader { proxy in
-            VStack {
-                Rectangle()
-                    .fill(Color.Custom.surface)
-                    .frame(height: proxy.safeAreaInsets.top)
-                    .ignoresSafeArea()
-                
-                Spacer()
-            }
-        }
-    }
-    
     private var tabBar: some View {
         VStack {
             Spacer()

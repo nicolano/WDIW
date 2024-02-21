@@ -8,13 +8,23 @@
 import SwiftUI
 
 struct MoviesScreen: View {
+    @EnvironmentObject private var navigationVM: NavigationViewModel
+    @EnvironmentObject private var contentVM: ContentViewModel
+    
     var body: some View {
-        ContentScreen(contentCategory: .movies, content: []) { book in
-            
+        ContentScreen(contentCategory: .movies, content: []) {
+            if contentVM.books.isEmpty {
+                NoContentSection(contentCategory: .movies)
+            } else {
+                
+            }
         }
+        .environmentObject(navigationVM)
     }
 }
 
 #Preview {
     MoviesScreen()
+        .environmentObject(NavigationViewModel())
+        .environmentObject(ContentViewModel())
 }

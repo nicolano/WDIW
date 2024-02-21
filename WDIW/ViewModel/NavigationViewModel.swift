@@ -15,6 +15,15 @@ class NavigationViewModel: ObservableObject {
     }
     
     @Published var activeScreen: Screens = .books    
+    @Published var activeAddContentSheet: ContentCategories? = nil
+    
+    func openAddContentSheet(contentCategory: ContentCategories) {
+        activeAddContentSheet = contentCategory
+    }
+    
+    func closeAddContentSheet() {
+        activeAddContentSheet = nil
+    }
     
     func navigateToSettings() {
         activeScreen = .settings
@@ -25,7 +34,11 @@ class NavigationViewModel: ObservableObject {
     }
     
     func navigateFromOffset(offset: CGPoint) {
-        if offset == CGPoint(x: 100.0, y: 0.0) {
+        if self.activeScreen == .settings {
+            return 
+        }
+        
+        if offset.x > 100.0 {
             navigateToSettings()
         } else if offset == .zero {
             navigateToContentCategory(category: .books)

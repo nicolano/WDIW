@@ -7,7 +7,7 @@
 import Foundation
 import SwiftData
 
-protocol Content {
+protocol MediaContent {
     var id: UUID { get }
     var name: String { get }
     var watchDate: Date { get }

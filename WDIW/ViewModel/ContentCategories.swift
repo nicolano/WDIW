@@ -17,7 +17,18 @@ enum ContentCategories {
         case .movies:
             "Movies"
         case .series:
-            "Serien"
+            "Series"
+        }
+    }
+    
+    func getSingularName() -> String {
+        switch self {
+        case .books:
+            "Book"
+        case .movies:
+            "Movie"
+        case .series:
+            "Series"
         }
     }
     

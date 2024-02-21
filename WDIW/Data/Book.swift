@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class Book: Content {
+class Book: MediaContent {
     @Attribute(.unique) var id: UUID
     var name: String
     var watchDate: Date

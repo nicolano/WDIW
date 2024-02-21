@@ -8,11 +8,11 @@
 import Foundation
 import SwiftData
 
-class ContentViewModel {
+class ContentViewModel: ObservableObject {
 //    @Environment(\.modelContext) private var modelContext
-//    @Query private var books: [Book] = []
-//    @Query private var movies: [Movie] = []
-//    @Query private var series: [Series] = []
+    @Published var books: [Book] = []
+    @Published var movies: [Movie] = []
+    @Published var series: [Series] = []
 //
 //    
 //    private func addContent(_ content: Content) {

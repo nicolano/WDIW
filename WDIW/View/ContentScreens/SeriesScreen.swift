@@ -8,13 +8,23 @@
 import SwiftUI
 
 struct SeriesScreen: View {
+    @EnvironmentObject private var navigationVM: NavigationViewModel
+    @EnvironmentObject private var contentVM: ContentViewModel
+
     var body: some View {
-        ContentScreen(contentCategory: .series, content: []) { series in
-            
+        ContentScreen(contentCategory: .series, content: []) {
+            if contentVM.series.isEmpty {
+                NoContentSection(contentCategory: .series)
+            } else {
+                
+            }
         }
+        .environmentObject(navigationVM)
     }
 }
 
 #Preview {
     SeriesScreen()
+        .environmentObject(NavigationViewModel())
+        .environmentObject(ContentViewModel())
 }

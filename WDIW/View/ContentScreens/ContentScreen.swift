@@ -7,22 +7,18 @@
 
 import SwiftUI
 
-struct ContentScreen: View {
+struct ContentScreen<Content: View>: View {
+    @EnvironmentObject private var navigationVM: NavigationViewModel
+    
     let contentCategory: ContentCategories
-    let content: [Content]
-    let onAddItemTap: (ContentCategories) -> Void
+    let content: [MediaContent]
+    @ViewBuilder let contentView: Content
     
     var body: some View {
         VStack(alignment: .leading) {
             headerSection
-                .padding(.horizontal, .Spacing.l)
-                .padding(.top, .Spacing.l)
-                .padding(.bottom, .Spacing.m)
-                .background {
-                    Rectangle()
-                        .fill(Color.Custom.surface)
-                        .ignoresSafeArea()
-                }
+            
+            contentView
             
             Spacer()
         }
@@ -32,15 +28,9 @@ struct ContentScreen: View {
 
 extension ContentScreen {
     private var headerSection: some View {
-        HStack {
-            Text(contentCategory.getName())
-                .font(.largeTitle)
-                .fontWeight(.black)
-            
-            Spacer()
-            
+        Header(title: contentCategory.getName()) {
             Button {
-                onAddItemTap(contentCategory)
+                
             } label: {
                 Image(systemName: "magnifyingglass")
                     .foregroundStyle(Color.Custom.primary)
@@ -48,13 +38,14 @@ extension ContentScreen {
                     .padding(.Spacing.s)
                     .clipShape(Circle())
             }
-            
+        } primaryButton: {
             Button {
-                onAddItemTap(contentCategory)
+                navigationVM.openAddContentSheet(
+                    contentCategory: contentCategory
+                )
             } label: {
                 Image(systemName: "plus")
                     .foregroundStyle(Color.Custom.onPrimary)
-                    .bold()
                     .padding(.Spacing.s)
                     .background(Color.Custom.primary)
                     .clipShape(Circle())
@@ -63,9 +54,9 @@ extension ContentScreen {
     }
 }
 
-#Preview {
-    ContentScreen(
-        contentCategory: ContentCategories.books,
-        content: []
-    ) { _ in }
-}
+//#Preview {
+//    ContentScreen(
+//        contentCategory: ContentCategories.books,
+//        content: []
+//    ) {  }
+//}
