@@ -20,7 +20,7 @@ struct BooksScreen: View {
             if contentVM.movies.isEmpty {
                 NoContentSection(contentCategory: .books)
             } else {
-                
+                Rectangle()
             }
         }
         .overlay {
