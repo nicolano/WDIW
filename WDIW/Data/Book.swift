@@ -15,14 +15,16 @@ class Book: MediaContent {
     var watchDate: Date
     var entryDate: Date
     var author: String
-    @Attribute(.externalStorage, .allowsCloudEncryption) var image: Data?
+    var rating: Double
+    var url: Double
 
-    init(id: UUID, name: String, watchDate: Date, entryDate: Date, author: String, image: Data? = nil) {
+    init(id: UUID, name: String, watchDate: Date, entryDate: Date, author: String, rating: Double, url: Double) {
         self.id = id
         self.name = name
         self.watchDate = watchDate
         self.entryDate = entryDate
         self.author = author
-        self.image = image
+        self.rating = rating
+        self.url = url
     }
 }
