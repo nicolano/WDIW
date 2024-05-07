@@ -17,7 +17,7 @@ struct ContentOverView: View {
         VStack(spacing: 0) {
             ScrollViewReader { scrollViewReader in
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 0) {
+                    HStack {
                         BooksScreen(offset: scrollPosition)
                             .id(ContentCategories.books)
                             .environmentObject(contentVM)

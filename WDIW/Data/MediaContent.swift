@@ -12,5 +12,6 @@ protocol MediaContent {
     var name: String { get }
     var watchDate: Date { get }
     var entryDate: Date { get }
-    var image: Data? { get }
+    var rating: Double { get }
+    var url: Double { get }
 }
