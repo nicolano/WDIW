@@ -10,6 +10,7 @@ import SwiftData
 
 class ContentViewModel: ObservableObject {
     var modelContext: ModelContext
+    @Published var mediaContents = [MediaContent]()
     @Published var movies = [Movie]()
     @Published var books = [Book]()
     @Published var series = [Series]()
@@ -24,13 +25,14 @@ class ContentViewModel: ObservableObject {
         fetchMoviesData()
         fetchSeriesData()
     }
-    
+        
     func fetchMoviesData() {
         do {
             let descriptor = FetchDescriptor<Movie>(
                 sortBy: [SortDescriptor(\.watchDate)]
             )
             movies = try modelContext.fetch(descriptor)
+            mediaContents.append(contentsOf: movies)
         } catch {
             print("Fetch for movies failed.")
         }
@@ -39,9 +41,10 @@ class ContentViewModel: ObservableObject {
     func fetchBooksData() {
         do {
             let descriptor = FetchDescriptor<Book>(
-                sortBy: [SortDescriptor(\.watchDate)]
+                sortBy: [SortDescriptor(\.entryDate)]
             )
             books = try modelContext.fetch(descriptor)
+            mediaContents.append(contentsOf: movies)
         } catch {
             print("Fetch for books failed.")
         }
@@ -53,6 +56,7 @@ class ContentViewModel: ObservableObject {
                 sortBy: [SortDescriptor(\.watchDate)]
             )
             series = try modelContext.fetch(descriptor)
+            mediaContents.append(contentsOf: movies)
         } catch {
             print("Fetch for series failed.")
         }
@@ -62,10 +66,13 @@ class ContentViewModel: ObservableObject {
         switch content {
         case is Book:
             modelContext.insert(content as! Book)
+            fetchBooksData()
         case is Movie:
             modelContext.insert(content as! Movie)
+            fetchMoviesData()
         case is Series:
             modelContext.insert(content as! Series)
+            fetchSeriesData()
         default:
             print("Content type could not be inferred.")
         }
@@ -75,10 +82,13 @@ class ContentViewModel: ObservableObject {
         switch content {
         case is Book:
             modelContext.delete(content as! Book)
+            fetchBooksData()
         case is Movie:
             modelContext.delete(content as! Movie)
+            fetchMoviesData()
         case is Series:
             modelContext.delete(content as! Series)
+            fetchSeriesData()
         default:
             print("Content type could not be inferred.")
         }

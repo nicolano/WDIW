@@ -9,6 +9,21 @@ import SwiftUI
 
 struct SettingsScreen: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
+    @EnvironmentObject private var contentVM: ContentViewModel
+
+    private let backupManager = BackupManager()
+    
+    private func generateCSV() -> URL? {
+//        do {
+//            return try backupManager.generateCSVFileFromContents(
+//                contents: contentVM.mediaContents
+//            )
+//        } catch {
+//            return nil
+//        }
+        return nil
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             Header(title: "Settings") {
@@ -17,18 +32,21 @@ struct SettingsScreen: View {
                 Button {
                     navigationVM.navigateToContents()
                 } label: {
-                    Text("Back")
-                        .bold()
+                    Text("Back").padding(.horizontal)
                 }
             }
             
             List {
                 Section("Backup") {
-                    Button {
+//                    ShareLink(
+//                        item: generateCSV()!
+//                    ) {
+//                        Label(
+//                            "Export to CSV",
+//                            systemImage: "list.bullet.rectangle.portrait"
+//                        )
+//                    }
                     
-                    } label: {
-                        Text("Create Backup")
-                    }
                     
                     Button {
                         
@@ -39,6 +57,25 @@ struct SettingsScreen: View {
             }
             
             Spacer()
+        }
+        .overlay {
+            VStack {
+                Spacer()
+                
+                HStack {
+                    Spacer()
+                    
+                    if backupManager.isLoading {
+                        ProgressView()
+                            .padding(.Spacing.l)
+                            .background(Color.gray)
+                    }
+                    
+                    Spacer()
+                }
+                
+                Spacer()
+            }
         }
     }
 }
