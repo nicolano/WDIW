@@ -33,6 +33,29 @@ struct EditContentSheet: View {
                 EditSeriesContent(series)
             }
             
+            Button {
+                contentVM.deleteContent(content: content)
+                dismiss()
+            } label: {
+                HStack {
+                    Spacer()
+                    
+                    Label(
+                        title: { Text("Delete") },
+                        icon: { Image(systemName: "trash.fill") }
+                    )
+                    .foregroundStyle(Color.red)
+                    .padding(.AllM)
+                    .background {
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(Color.red.opacity(0.3))
+                    }
+                }
+                
+            }
+            .padding(.TopL)
+            .padding(.HorizontalM)
+            
             Spacer()
         }
     }

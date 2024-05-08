@@ -24,6 +24,8 @@ struct SettingsScreen: View {
         return nil
     }
     
+    @State private var showingDeleteAllDataAlert = false
+    
     var body: some View {
         VStack(spacing: 0) {
             Header(title: "Settings") {
@@ -53,6 +55,30 @@ struct SettingsScreen: View {
                         
                     } label: {
                         Text("Load from Backup")
+                    }
+                }
+                
+                Section("Reset") {
+                    Button {
+                        showingDeleteAllDataAlert = true
+                    } label: {
+                        Label(
+                            title: { Text("Delete all data") },
+                            icon: { Image(systemName: "trash.fill") }
+                        )
+                        .foregroundStyle(Color.red)
+                    }
+                    .alert(
+                        "Are you sure you want to delete all data?",
+                        isPresented: $showingDeleteAllDataAlert
+                    ) {
+                        Button("No", role: .cancel) {
+                            showingDeleteAllDataAlert = false
+                        }
+                        
+                        Button("Yes", role: .destructive) {
+                            contentVM.deleteAllData()
+                        }
                     }
                 }
             }
