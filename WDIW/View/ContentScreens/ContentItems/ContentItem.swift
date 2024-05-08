@@ -27,11 +27,11 @@ struct ContentItem: View {
                         onTap()
                     }
                 case .movies:
-                    BookItem(content as! Book) {
+                    MovieItem(content as! Movie) {
                         onTap()
                     }
                 case .series:
-                    BookItem(content as! Book) {
+                    SeriesItem(content as! Series) {
                         onTap()
                     }
                 }

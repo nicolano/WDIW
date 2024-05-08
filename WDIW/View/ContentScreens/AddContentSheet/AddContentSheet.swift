@@ -14,18 +14,20 @@ struct AddContentSheet: View {
     let contentCategory: ContentCategories
     
     @State var book = Book.empty
-    
+    @State var movie = Movie.empty
+    @State var series = Series.empty
+
     var body: some View {
         VStack(spacing: 0) {
             header
             
             switch contentCategory {
             case .books:
-                AddBookContent($book)
+                EditBookContent($book)
             case .movies:
-                AddBookContent($book)
+                EditMovieContent($movie)
             case .series:
-                AddBookContent($book)
+                EditSeriesContent($series)
             }
             
             Spacer()
@@ -58,9 +60,9 @@ extension AddContentSheet {
                 case .books:
                     contentVM.addContent(content: book)
                 case .movies:
-                    contentVM.addContent(content: book)
+                    contentVM.addContent(content: movie)
                 case .series:
-                    contentVM.addContent(content: book)
+                    contentVM.addContent(content: series)
                 }
                 
                 dismiss()
@@ -79,11 +81,11 @@ extension AddContentSheet {
     private var canSaveContent: Bool {
         switch contentCategory {
         case .books:
-            return book.isFilledCompletly
+            return book.isValid
         case .movies:
-            return book == Book.empty
+            return movie.isValid
         case .series:
-            return book == Book.empty
+            return series.isValid
         }
     }
 }

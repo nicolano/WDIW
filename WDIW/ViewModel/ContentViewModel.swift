@@ -15,6 +15,8 @@ class ContentViewModel: ObservableObject {
     @Published var books = [Book]()
     @Published var series = [Series]()
 
+    @Published var contentToEdit: MediaContent? = nil
+    
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
         self.fetchData()
@@ -53,7 +55,7 @@ class ContentViewModel: ObservableObject {
     func fetchSeriesData() {
         do {
             let descriptor = FetchDescriptor<Series>(
-                sortBy: [SortDescriptor(\.watchDate)]
+                sortBy: [SortDescriptor(\.entryDate)]
             )
             series = try modelContext.fetch(descriptor)
             mediaContents.append(contentsOf: movies)

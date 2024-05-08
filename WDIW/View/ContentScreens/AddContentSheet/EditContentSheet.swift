@@ -23,22 +23,22 @@ struct EditContentSheet: View {
             
             switch contentCategory {
             case .books:
-                AddBookContent(Binding(get: {
+                EditBookContent(Binding(get: {
                     mediaContent as! Book
-                }, set: { book in
-                    mediaContent = book
+                }, set: { content in
+                    mediaContent = content
                 }))
             case .movies:
-                AddBookContent(Binding(get: {
-                    mediaContent as! Book
-                }, set: { book in
-                    mediaContent = book
+                EditMovieContent(Binding(get: {
+                    mediaContent as! Movie
+                }, set: { content in
+                    mediaContent = content
                 }))
             case .series:
-                AddBookContent(Binding(get: {
-                    mediaContent as! Book
-                }, set: { book in
-                    mediaContent = book
+                EditSeriesContent(Binding(get: {
+                    mediaContent as! Series
+                }, set: { content in
+                    mediaContent = content
                 }))
             }
             
@@ -68,36 +68,15 @@ extension EditContentSheet {
             Spacer()
             
             Button {
-                switch contentCategory {
-                case .books:
-                    contentVM.addContent(content: mediaContent as! Book)
-                case .movies:
-                    contentVM.addContent(content: mediaContent as! Book)
-                case .series:
-                    contentVM.addContent(content: mediaContent as! Book)
-                }
-                
+                contentVM.addContent(content: mediaContent)
                 dismiss()
             } label: {
                 Text("Save")
                     .bold()
             }
-            .disabled(!canSaveContent)
+            .disabled(!mediaContent.isValid)
         }
         .padding(.Spacing.m)
         .background(Color.Custom.surface)
-    }
-}
-
-extension EditContentSheet {
-    private var canSaveContent: Bool {
-        switch contentCategory {
-        case .books:
-            return (mediaContent as! Book).isFilledCompletly
-        case .movies:
-            return (mediaContent as! Book) == Book.empty
-        case .series:
-            return (mediaContent as! Book) == Book.empty
-        }
     }
 }

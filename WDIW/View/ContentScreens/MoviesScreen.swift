@@ -16,7 +16,15 @@ struct MoviesScreen: View {
             if contentVM.movies.isEmpty {
                 NoContentSection(contentCategory: .movies)
             } else {
-                
+                ScrollView {
+                    ForEach(contentVM.movies, id: \.self) { movies in
+                        ContentItem(movies) {
+                            contentVM.contentToEdit = movies
+                        }
+                        .padding(.HorizontalM)
+                        .padding(.TopM)
+                    }
+                }
             }
         }
         .environmentObject(navigationVM)

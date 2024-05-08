@@ -12,4 +12,6 @@ protocol MediaContent {
     var name: String { get }
     var entryDate: Date { get }
     var url: String { get }
+    
+    var isValid: Bool { get }
 }

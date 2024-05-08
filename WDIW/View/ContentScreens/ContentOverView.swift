@@ -12,7 +12,7 @@ struct ContentOverView: View {
     @EnvironmentObject private var contentVM: ContentViewModel
 
     @State private var scrollPosition: CGPoint = .zero
-
+    
     var body: some View {
         VStack(spacing: 0) {
             ScrollViewReader { scrollViewReader in
@@ -85,6 +85,17 @@ struct ContentOverView: View {
             }
             
         }
+        .sheet(isPresented: Binding(get: {
+            contentVM.contentToEdit != nil
+        }, set: { dismiss in
+            if !dismiss {
+                contentVM.contentToEdit = nil
+            }
+        }), content: {
+            if let it = contentVM.contentToEdit {
+                EditContentSheet(mediaContent: it)
+            }
+        })
     }
 }
 

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddBookContent: View {
+struct EditBookContent: View {
     internal init(_ book: Binding<Book>) {
         self._book = book
     }
@@ -32,5 +32,5 @@ struct AddBookContent: View {
 }
 
 #Preview {
-    AddBookContent(.constant(Book.empty))
+    EditBookContent(.constant(Book.empty))
 }

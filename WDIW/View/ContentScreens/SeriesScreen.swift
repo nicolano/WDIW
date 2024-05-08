@@ -16,7 +16,15 @@ struct SeriesScreen: View {
             if contentVM.series.isEmpty {
                 NoContentSection(contentCategory: .series)
             } else {
-                
+                ScrollView {
+                    ForEach(contentVM.series, id: \.self) { series in
+                        ContentItem(series) {
+                            contentVM.contentToEdit = series
+                        }
+                        .padding(.HorizontalM)
+                        .padding(.TopM)
+                    }
+                }
             }
         }
         .environmentObject(navigationVM)

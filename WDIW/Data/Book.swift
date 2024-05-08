@@ -40,7 +40,7 @@ class Book: MediaContent {
     }
     
     /// Returns true if the `name` and `author` field of the book has an non empty value.
-    var isFilledCompletly: Bool {
+    var isValid: Bool {
         if name == "" {
             return false
         }
