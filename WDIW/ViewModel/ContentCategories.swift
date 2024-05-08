@@ -42,4 +42,20 @@ enum ContentCategories {
             isActive ? "film.stack.fill" : "film.stack"
         }
     }
+    
+    static func getCategoryFor(mediaContent: MediaContent) -> ContentCategories {
+        if mediaContent is Book {
+            return .books
+        }
+        
+        if mediaContent is Movie {
+            return .movies
+        }
+        
+        if mediaContent is Series {
+            return .series
+        }
+        
+        fatalError("Could not determine category of media content")
+    }
 }

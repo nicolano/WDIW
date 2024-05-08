@@ -17,10 +17,18 @@ struct BooksScreen: View {
     
     var body: some View {
         ContentScreen(contentCategory: .books, content: []) {
-            if contentVM.movies.isEmpty {
+            if contentVM.books.isEmpty {
                 NoContentSection(contentCategory: .books)
             } else {
-                Rectangle()
+                ScrollView {
+                    ForEach(contentVM.books, id: \.self) { book in
+                        ContentItem(book) {
+                            
+                        }
+                        .padding(.HorizontalM)
+                        .padding(.TopM)
+                    }
+                }
             }
         }
         .overlay {

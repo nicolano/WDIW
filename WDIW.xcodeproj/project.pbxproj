@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F6457A952B9129270059C38C /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6457A942B9129270059C38C /* Text.swift */; };
+		F6457A952B9129270059C38C /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6457A942B9129270059C38C /* Spacing.swift */; };
+		F653B1542BEB875D00913973 /* AddBookContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F653B1532BEB875D00913973 /* AddBookContent.swift */; };
+		F653B1572BEB8AC700913973 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F653B1562BEB8AC700913973 /* CustomTextField.swift */; };
+		F653B1592BEB900B00913973 /* CustomDateField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F653B1582BEB900B00913973 /* CustomDateField.swift */; };
+		F653B15B2BEBA82D00913973 /* IsFavoriteToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F653B15A2BEBA82D00913973 /* IsFavoriteToggle.swift */; };
+		F653B15E2BEBAC1700913973 /* BookItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F653B15D2BEBAC1700913973 /* BookItem.swift */; };
+		F653B1602BEBB06C00913973 /* ContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F653B15F2BEBB06C00913973 /* ContentItem.swift */; };
+		F653B1622BEBB65B00913973 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = F653B1612BEBB65B00913973 /* Text.swift */; };
 		F66F55402B8A068F00C29AB0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66F553F2B8A068F00C29AB0 /* MainView.swift */; };
 		F66F55422B8A074200C29AB0 /* SharedModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66F55412B8A074200C29AB0 /* SharedModelContainer.swift */; };
 		F66F55442B8A1DE400C29AB0 /* BackupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66F55432B8A1DE400C29AB0 /* BackupManager.swift */; };
@@ -39,7 +46,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F6457A942B9129270059C38C /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		F6457A942B9129270059C38C /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
+		F653B1532BEB875D00913973 /* AddBookContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookContent.swift; sourceTree = "<group>"; };
+		F653B1562BEB8AC700913973 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		F653B1582BEB900B00913973 /* CustomDateField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateField.swift; sourceTree = "<group>"; };
+		F653B15A2BEBA82D00913973 /* IsFavoriteToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsFavoriteToggle.swift; sourceTree = "<group>"; };
+		F653B15D2BEBAC1700913973 /* BookItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookItem.swift; sourceTree = "<group>"; };
+		F653B15F2BEBB06C00913973 /* ContentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentItem.swift; sourceTree = "<group>"; };
+		F653B1612BEBB65B00913973 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		F66F553F2B8A068F00C29AB0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F66F55412B8A074200C29AB0 /* SharedModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedModelContainer.swift; sourceTree = "<group>"; };
 		F66F55432B8A1DE400C29AB0 /* BackupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupManager.swift; sourceTree = "<group>"; };
@@ -82,6 +96,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F653B1552BEB8AB600913973 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				F653B1562BEB8AC700913973 /* CustomTextField.swift */,
+				F653B1582BEB900B00913973 /* CustomDateField.swift */,
+				F653B15A2BEBA82D00913973 /* IsFavoriteToggle.swift */,
+			);
+			path = Editor;
+			sourceTree = "<group>";
+		};
+		F653B15C2BEBAC0700913973 /* ContentItems */ = {
+			isa = PBXGroup;
+			children = (
+				F653B15D2BEBAC1700913973 /* BookItem.swift */,
+				F653B15F2BEBB06C00913973 /* ContentItem.swift */,
+			);
+			path = ContentItems;
+			sourceTree = "<group>";
+		};
 		F6B2F2FE2B849B9300A981C2 = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +190,7 @@
 		F6B2F32D2B84AC0300A981C2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				F653B1552BEB8AB600913973 /* Editor */,
 				F6B2F34B2B862C8800A981C2 /* Navigation */,
 				F6B2F3302B84AC1700A981C2 /* TabBar */,
 			);
@@ -187,7 +221,8 @@
 				F6B2F3312B84ACBB00A981C2 /* CGFloat.swift */,
 				F6B2F3352B84B2C400A981C2 /* Color.swift */,
 				F66F55452B8A36A100C29AB0 /* Date.swift */,
-				F6457A942B9129270059C38C /* Text.swift */,
+				F6457A942B9129270059C38C /* Spacing.swift */,
+				F653B1612BEBB65B00913973 /* Text.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -195,6 +230,7 @@
 		F6B2F3392B84B41700A981C2 /* ContentScreens */ = {
 			isa = PBXGroup;
 			children = (
+				F653B15C2BEBAC0700913973 /* ContentItems */,
 				F6B2F30C2B849B9300A981C2 /* ContentOverView.swift */,
 				F6B2F3462B861A5500A981C2 /* AddContentSheet */,
 				F6B2F33A2B84B42900A981C2 /* ContentScreen.swift */,
@@ -210,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				F6B2F3472B861A7000A981C2 /* AddContentSheet.swift */,
+				F653B1532BEB875D00913973 /* AddBookContent.swift */,
 			);
 			path = AddContentSheet;
 			sourceTree = "<group>";
@@ -295,8 +332,10 @@
 				F6B2F3432B85F93A00A981C2 /* NavigationViewModel.swift in Sources */,
 				F6B2F34A2B86286A00A981C2 /* NoContentSection.swift in Sources */,
 				F6B2F33B2B84B42900A981C2 /* ContentScreen.swift in Sources */,
+				F653B15E2BEBAC1700913973 /* BookItem.swift in Sources */,
 				F66F55442B8A1DE400C29AB0 /* BackupManager.swift in Sources */,
 				F6B2F3262B84AB7A00A981C2 /* MoviesScreen.swift in Sources */,
+				F653B1572BEB8AC700913973 /* CustomTextField.swift in Sources */,
 				F6B2F31E2B84A1F000A981C2 /* Book.swift in Sources */,
 				F6B2F33D2B84B97B00A981C2 /* ContentCategories.swift in Sources */,
 				F6B2F3482B861A7000A981C2 /* AddContentSheet.swift in Sources */,
@@ -308,13 +347,18 @@
 				F6B2F32F2B84AC1400A981C2 /* TabBarButton.swift in Sources */,
 				F6B2F30F2B849B9300A981C2 /* Item.swift in Sources */,
 				F6B2F30B2B849B9300A981C2 /* WDIWApp.swift in Sources */,
+				F653B1542BEB875D00913973 /* AddBookContent.swift in Sources */,
 				F6B2F3452B860B1900A981C2 /* SettingsScreen.swift in Sources */,
+				F653B1592BEB900B00913973 /* CustomDateField.swift in Sources */,
+				F653B1602BEBB06C00913973 /* ContentItem.swift in Sources */,
 				F6B2F3202B84A40500A981C2 /* Movie.swift in Sources */,
 				F6B2F3362B84B2C400A981C2 /* Color.swift in Sources */,
+				F653B15B2BEBA82D00913973 /* IsFavoriteToggle.swift in Sources */,
 				F6B2F34D2B862CB200A981C2 /* Header.swift in Sources */,
 				F6B2F33F2B84BB6C00A981C2 /* ContentViewModel.swift in Sources */,
 				F6B2F3322B84ACBB00A981C2 /* CGFloat.swift in Sources */,
-				F6457A952B9129270059C38C /* Text.swift in Sources */,
+				F653B1622BEBB65B00913973 /* Text.swift in Sources */,
+				F6457A952B9129270059C38C /* Spacing.swift in Sources */,
 				F66F55402B8A068F00C29AB0 /* MainView.swift in Sources */,
 				F6B2F32C2B84ABEE00A981C2 /* TabBar.swift in Sources */,
 				F6B2F3222B84A43500A981C2 /* MediaContent.swift in Sources */,
