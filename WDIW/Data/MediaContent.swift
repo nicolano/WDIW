@@ -10,8 +10,6 @@ import SwiftData
 protocol MediaContent {
     var id: UUID { get }
     var name: String { get }
-    var watchDate: Date { get }
     var entryDate: Date { get }
-    var rating: Double { get }
-    var url: Double { get }
+    var url: String { get }
 }

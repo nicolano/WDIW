@@ -15,7 +15,7 @@ struct ContentScreen<Content: View>: View {
     @ViewBuilder let contentView: Content
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack.zeroSpacing(alignment: .leading) {
             headerSection
             
             contentView

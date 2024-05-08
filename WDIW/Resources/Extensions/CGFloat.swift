@@ -18,5 +18,10 @@ extension CGFloat {
         public static var xl: CGFloat = 64
     }
     
+    public struct CornerRadius {
+        public static var textField: CGFloat = 8
+        public static var contentItem: CGFloat = 10
+    }
+    
     static var offsetNavToSettings: CGFloat = 80.0
 }

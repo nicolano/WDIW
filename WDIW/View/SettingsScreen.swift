@@ -14,13 +14,14 @@ struct SettingsScreen: View {
     private let backupManager = BackupManager()
     
     private func generateCSV() -> URL? {
-        do {
-            return try backupManager.generateCSVFileFromContents(
-                contents: contentVM.mediaContents
-            )
-        } catch {
-            return nil
-        }
+//        do {
+//            return try backupManager.generateCSVFileFromContents(
+//                contents: contentVM.mediaContents
+//            )
+//        } catch {
+//            return nil
+//        }
+        return nil
     }
     
     var body: some View {
@@ -37,14 +38,15 @@ struct SettingsScreen: View {
             
             List {
                 Section("Backup") {
-                    ShareLink(
-                        item: generateCSV()!
-                    ) {
-                        Label(
-                            "Export to CSV",
-                            systemImage: "list.bullet.rectangle.portrait"
-                        )
-                    }
+//                    ShareLink(
+//                        item: generateCSV()!
+//                    ) {
+//                        Label(
+//                            "Export to CSV",
+//                            systemImage: "list.bullet.rectangle.portrait"
+//                        )
+//                    }
+                    
                     
                     
                     Button {

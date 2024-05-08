@@ -15,9 +15,9 @@ class Series: MediaContent {
     var watchDate: Date
     var entryDate: Date
     var rating: Double
-    var url: Double
+    var url: String
 
-    init(id: UUID, name: String, watchDate: Date, entryDate: Date, rating: Double, url: Double) {
+    init(id: UUID, name: String, watchDate: Date, entryDate: Date, rating: Double, url: String) {
         self.id = id
         self.name = name
         self.watchDate = watchDate

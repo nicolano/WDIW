@@ -13,7 +13,7 @@ struct MoviesScreen: View {
     
     var body: some View {
         ContentScreen(contentCategory: .movies, content: []) {
-            if contentVM.books.isEmpty {
+            if contentVM.movies.isEmpty {
                 NoContentSection(contentCategory: .movies)
             } else {
                 

@@ -81,6 +81,7 @@ struct ContentOverView: View {
         ) {
             if let category = navigationVM.activeAddContentSheet {
                 AddContentSheet(contentCategory: category)
+                    .environmentObject(contentVM)
             }
             
         }
