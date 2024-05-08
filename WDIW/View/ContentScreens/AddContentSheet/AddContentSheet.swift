@@ -34,7 +34,7 @@ struct AddContentSheet: View {
 }
 
 extension AddContentSheet {
-    private var header: some View {
+    var header: some View {
         HStack {
             Button {
                 dismiss()

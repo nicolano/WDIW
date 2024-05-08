@@ -14,6 +14,7 @@ struct BooksScreen: View {
     let offset: CGPoint
     
     @State private var hideOpacity = 1.0
+    @State private var bookToEdit: Book? = nil
     
     var body: some View {
         ContentScreen(contentCategory: .books, content: []) {
@@ -23,7 +24,7 @@ struct BooksScreen: View {
                 ScrollView {
                     ForEach(contentVM.books, id: \.self) { book in
                         ContentItem(book) {
-                            
+                            bookToEdit = book
                         }
                         .padding(.HorizontalM)
                         .padding(.TopM)
@@ -31,6 +32,17 @@ struct BooksScreen: View {
                 }
             }
         }
+        .sheet(isPresented: Binding(get: {
+            bookToEdit != nil
+        }, set: { dismiss in
+            if !dismiss {
+                bookToEdit = nil
+            }
+        }), content: {
+            if let it = bookToEdit {
+                EditContentSheet(mediaContent: it)
+            }
+        })
         .overlay {
             VStack {
                 HStack {
