@@ -20,21 +20,12 @@ struct ContentItem: View {
         Button {
             onTap()
         } label: {
-            Group {
-                switch ContentCategories.getCategoryFor(mediaContent: content) {
-                case .books:
-                    BookItem(content as! Book) {
-                        onTap()
-                    }
-                case .movies:
-                    MovieItem(content as! Movie) {
-                        onTap()
-                    }
-                case .series:
-                    SeriesItem(content as! Series) {
-                        onTap()
-                    }
-                }
+            ContentSwitch(content: .constant(content)) { book in
+                BookItem(book.wrappedValue) { onTap() }
+            } movieContent: { movie in
+                MovieItem(movie.wrappedValue) { onTap() }
+            } seriesContent: { series in
+                SeriesItem(series.wrappedValue) { onTap() }
             }
         }
         .buttonStyle(ContentItemButtonStyle())

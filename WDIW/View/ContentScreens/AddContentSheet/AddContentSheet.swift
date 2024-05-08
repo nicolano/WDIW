@@ -16,10 +16,25 @@ struct AddContentSheet: View {
     @State var book = Book.empty
     @State var movie = Movie.empty
     @State var series = Series.empty
+    
+    private func getCurrentContent() -> MediaContent {
+        switch contentCategory {
+        case .books:
+            return book
+        case .movies:
+            return movie
+        case .series:
+            return series
+        }
+    }
 
     var body: some View {
         VStack(spacing: 0) {
-            header
+            ContentSheetHeader(title: "Add", content: getCurrentContent()) {
+                dismiss()
+            } onSave: {                    
+                contentVM.addContent(content: getCurrentContent())
+            }
             
             switch contentCategory {
             case .books:
@@ -33,68 +48,4 @@ struct AddContentSheet: View {
             Spacer()
         }
     }
-}
-
-extension AddContentSheet {
-    var header: some View {
-        HStack {
-            Button {
-                dismiss()
-            } label: {
-                Text("Back")
-            }
-            
-            Spacer()
-            
-            Group {
-                Text("Add ")
-                +
-                Text(contentCategory.getSingularName())
-            }
-            .bold()
-
-            Spacer()
-            
-            Button {
-                switch contentCategory {
-                case .books:
-                    contentVM.addContent(content: book)
-                case .movies:
-                    contentVM.addContent(content: movie)
-                case .series:
-                    contentVM.addContent(content: series)
-                }
-                
-                dismiss()
-            } label: {
-                Text("Save")
-                    .bold()
-            }
-            .disabled(!canSaveContent)
-        }
-        .padding(.Spacing.m)
-        .background(Color.Custom.surface)
-    }
-}
-
-extension AddContentSheet {
-    private var canSaveContent: Bool {
-        switch contentCategory {
-        case .books:
-            return book.isValid
-        case .movies:
-            return movie.isValid
-        case .series:
-            return series.isValid
-        }
-    }
-}
-
-#Preview {
-    Rectangle()
-        .sheet(isPresented: .constant(true)) {
-            AddContentSheet(
-                contentCategory: ContentCategories.books
-            ) 
-        }
 }

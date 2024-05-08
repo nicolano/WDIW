@@ -53,10 +53,3 @@ extension ContentScreen {
         }
     }
 }
-
-//#Preview {
-//    ContentScreen(
-//        contentCategory: ContentCategories.books,
-//        content: []
-//    ) {  }
-//}

@@ -93,7 +93,7 @@ struct ContentOverView: View {
             }
         }), content: {
             if let it = contentVM.contentToEdit {
-                EditContentSheet(mediaContent: it)
+                EditContentSheet(content: it)
             }
         })
     }
