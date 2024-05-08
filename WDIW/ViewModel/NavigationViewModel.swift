@@ -15,14 +15,24 @@ class NavigationViewModel: ObservableObject {
     }
     
     @Published var activeScreen: Screens = .books    
-    @Published var activeAddContentSheet: ContentCategories? = nil
     
+    @Published var activeAddContentSheet: ContentCategories? = nil
+    @Published var activeEditContentSheet: MediaContent? = nil
+
     func openAddContentSheet(contentCategory: ContentCategories) {
         activeAddContentSheet = contentCategory
     }
     
+    func openEditContentSheet(content: MediaContent) {
+        activeEditContentSheet = content
+    }
+    
     func closeAddContentSheet() {
         activeAddContentSheet = nil
+    }
+    
+    func closeEditContentSheet() {
+        activeEditContentSheet = nil
     }
     
     func navigateToSettings() {

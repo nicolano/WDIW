@@ -27,9 +27,7 @@
 		F6B2F3202B84A40500A981C2 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F31F2B84A40500A981C2 /* Movie.swift */; };
 		F6B2F3222B84A43500A981C2 /* MediaContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F3212B84A43500A981C2 /* MediaContent.swift */; };
 		F6B2F3242B84A61C00A981C2 /* Series.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F3232B84A61C00A981C2 /* Series.swift */; };
-		F6B2F3262B84AB7A00A981C2 /* MoviesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F3252B84AB7A00A981C2 /* MoviesScreen.swift */; };
 		F6B2F3282B84AB8500A981C2 /* BooksScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F3272B84AB8500A981C2 /* BooksScreen.swift */; };
-		F6B2F32A2B84AB9600A981C2 /* SeriesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F3292B84AB9600A981C2 /* SeriesScreen.swift */; };
 		F6B2F32C2B84ABEE00A981C2 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F32B2B84ABEE00A981C2 /* TabBar.swift */; };
 		F6B2F32F2B84AC1400A981C2 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F32E2B84AC1400A981C2 /* TabBarButton.swift */; };
 		F6B2F3322B84ACBB00A981C2 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F3312B84ACBB00A981C2 /* CGFloat.swift */; };
@@ -50,6 +48,8 @@
 		F6B693EB2BEBD0070085A1E3 /* EditSeriesContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B693EA2BEBD0070085A1E3 /* EditSeriesContent.swift */; };
 		F6B693ED2BEBD5530085A1E3 /* ContentSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B693EC2BEBD5530085A1E3 /* ContentSwitch.swift */; };
 		F6B693EF2BEBD88F0085A1E3 /* ContentSheetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B693EE2BEBD88F0085A1E3 /* ContentSheetHeader.swift */; };
+		F6B693F12BEBF4E20085A1E3 /* MainScrollViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B693F02BEBF4E20085A1E3 /* MainScrollViewModifier.swift */; };
+		F6B693F32BEBF6EB0085A1E3 /* TabBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B693F22BEBF6EB0085A1E3 /* TabBarModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,9 +74,7 @@
 		F6B2F31F2B84A40500A981C2 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		F6B2F3212B84A43500A981C2 /* MediaContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaContent.swift; sourceTree = "<group>"; };
 		F6B2F3232B84A61C00A981C2 /* Series.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Series.swift; sourceTree = "<group>"; };
-		F6B2F3252B84AB7A00A981C2 /* MoviesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesScreen.swift; sourceTree = "<group>"; };
 		F6B2F3272B84AB8500A981C2 /* BooksScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksScreen.swift; sourceTree = "<group>"; };
-		F6B2F3292B84AB9600A981C2 /* SeriesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesScreen.swift; sourceTree = "<group>"; };
 		F6B2F32B2B84ABEE00A981C2 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		F6B2F32E2B84AC1400A981C2 /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
 		F6B2F3312B84ACBB00A981C2 /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
@@ -97,6 +95,8 @@
 		F6B693EA2BEBD0070085A1E3 /* EditSeriesContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSeriesContent.swift; sourceTree = "<group>"; };
 		F6B693EC2BEBD5530085A1E3 /* ContentSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSwitch.swift; sourceTree = "<group>"; };
 		F6B693EE2BEBD88F0085A1E3 /* ContentSheetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSheetHeader.swift; sourceTree = "<group>"; };
+		F6B693F02BEBF4E20085A1E3 /* MainScrollViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScrollViewModifier.swift; sourceTree = "<group>"; };
+		F6B693F22BEBF6EB0085A1E3 /* TabBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +219,7 @@
 			children = (
 				F6B2F32B2B84ABEE00A981C2 /* TabBar.swift */,
 				F6B2F32E2B84AC1400A981C2 /* TabBarButton.swift */,
+				F6B693F22BEBF6EB0085A1E3 /* TabBarModifier.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -248,11 +249,9 @@
 			children = (
 				F653B15C2BEBAC0700913973 /* ContentItems */,
 				F6B2F3462B861A5500A981C2 /* AddContentSheet */,
-				F6B2F33A2B84B42900A981C2 /* ContentScreen.swift */,
 				F6B2F30C2B849B9300A981C2 /* ContentOverView.swift */,
-				F6B2F3252B84AB7A00A981C2 /* MoviesScreen.swift */,
+				F6B2F33A2B84B42900A981C2 /* ContentScreen.swift */,
 				F6B2F3272B84AB8500A981C2 /* BooksScreen.swift */,
-				F6B2F3292B84AB9600A981C2 /* SeriesScreen.swift */,
 				F6B2F3492B86286A00A981C2 /* NoContentSection.swift */,
 			);
 			path = ContentScreens;
@@ -276,6 +275,7 @@
 			children = (
 				F6B2F34C2B862CB200A981C2 /* Header.swift */,
 				F6B693EC2BEBD5530085A1E3 /* ContentSwitch.swift */,
+				F6B693F02BEBF4E20085A1E3 /* MainScrollViewModifier.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -355,7 +355,6 @@
 				F6B2F33B2B84B42900A981C2 /* ContentScreen.swift in Sources */,
 				F653B15E2BEBAC1700913973 /* BookItem.swift in Sources */,
 				F66F55442B8A1DE400C29AB0 /* BackupManager.swift in Sources */,
-				F6B2F3262B84AB7A00A981C2 /* MoviesScreen.swift in Sources */,
 				F653B1572BEB8AC700913973 /* CustomTextField.swift in Sources */,
 				F6B2F31E2B84A1F000A981C2 /* Book.swift in Sources */,
 				F6B2F33D2B84B97B00A981C2 /* ContentCategories.swift in Sources */,
@@ -368,11 +367,11 @@
 				F6B693E52BEBCCC80085A1E3 /* SeriesItem.swift in Sources */,
 				F6B693EB2BEBD0070085A1E3 /* EditSeriesContent.swift in Sources */,
 				F66F55462B8A36A100C29AB0 /* Date.swift in Sources */,
-				F6B2F32A2B84AB9600A981C2 /* SeriesScreen.swift in Sources */,
 				F6B2F32F2B84AC1400A981C2 /* TabBarButton.swift in Sources */,
 				F6B2F30F2B849B9300A981C2 /* Item.swift in Sources */,
 				F6B2F30B2B849B9300A981C2 /* WDIWApp.swift in Sources */,
 				F653B1542BEB875D00913973 /* EditBookContent.swift in Sources */,
+				F6B693F12BEBF4E20085A1E3 /* MainScrollViewModifier.swift in Sources */,
 				F6B2F3452B860B1900A981C2 /* SettingsScreen.swift in Sources */,
 				F653B1592BEB900B00913973 /* CustomDateField.swift in Sources */,
 				F653B1602BEBB06C00913973 /* ContentItem.swift in Sources */,
@@ -382,6 +381,7 @@
 				F6B2F34D2B862CB200A981C2 /* Header.swift in Sources */,
 				F6B2F33F2B84BB6C00A981C2 /* ContentViewModel.swift in Sources */,
 				F6B693EF2BEBD88F0085A1E3 /* ContentSheetHeader.swift in Sources */,
+				F6B693F32BEBF6EB0085A1E3 /* TabBarModifier.swift in Sources */,
 				F6B2F3322B84ACBB00A981C2 /* CGFloat.swift in Sources */,
 				F6B693E32BEBCBED0085A1E3 /* MovieItem.swift in Sources */,
 				F6457A952B9129270059C38C /* Spacing.swift in Sources */,

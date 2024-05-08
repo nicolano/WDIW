@@ -49,3 +49,31 @@ struct AddContentSheet: View {
         }
     }
 }
+
+struct AddContentSheetViewModifier: ViewModifier {
+    @EnvironmentObject private var contentVM: ContentViewModel
+    @EnvironmentObject private var navigationVM: NavigationViewModel
+
+    func body(content: Content) -> some View {
+        ZStack {
+            content
+                .sheet(isPresented: Binding(get: {
+                    navigationVM.activeAddContentSheet != nil
+                }, set: { dismiss in
+                    if !dismiss {
+                        navigationVM.closeAddContentSheet()
+                    }
+                }), content: {
+                    if let it = navigationVM.activeAddContentSheet {
+                        AddContentSheet(contentCategory: it)
+                    }
+                })
+        }
+    }
+}
+
+extension View {
+    func addContentSheet() -> some View {
+        modifier(AddContentSheetViewModifier())
+    }
+}

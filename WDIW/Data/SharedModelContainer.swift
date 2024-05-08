@@ -15,10 +15,11 @@ class SharedModelContainer {
     
     let modelConfiguration: ModelConfiguration
     let modelContainer: ModelContainer
-    
+        
     init(isInMemory: Bool) {
         do {
             modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: isInMemory)
+//            try FileManager.default.removeItem(at: modelConfiguration.url)
             modelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
             fatalError("Could not create ModelContainer: \(error)")

@@ -7,18 +7,58 @@
 
 import SwiftUI
 
-struct ContentScreen<Content: View>: View {
+struct ContentScreen: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
-    
+    @EnvironmentObject private var contentVM: ContentViewModel
+
     let contentCategory: ContentCategories
-    let content: [MediaContent]
-    @ViewBuilder let contentView: Content
+    var contents: [MediaContent] {
+        switch contentCategory {
+        case .books:
+            return contentVM.books
+        case .movies:
+            return contentVM.movies
+        case .series:
+            return contentVM.series
+        }
+    }
+    
+    private func contentView(_ content: MediaContent) -> some View {
+        ContentItem(content) {
+            navigationVM.openEditContentSheet(content: content)
+        }
+        .padding(.HorizontalM)
+        .padding(.TopS)
+    }
     
     var body: some View {
         VStack.zeroSpacing(alignment: .leading) {
             headerSection
             
-            contentView
+            if contents.isEmpty {
+                NoContentSection(contentCategory: .movies)
+            } else {
+                ScrollView {
+                    switch contentCategory {
+                    case .books:
+                        ForEach(contents as! [Book], id: \.self) { content in
+                            contentView(content)
+                        }
+                        .padding(.TopS)
+                    case .movies:
+                        ForEach(contents as! [Movie], id: \.self) { content in
+                            contentView(content)
+                        }
+                        .padding(.TopS)
+                    case .series:
+                        ForEach(contents as! [Series], id: \.self) { content in
+                            contentView(content)
+                        }
+                        .padding(.TopS)
+                    }
+                    
+                }
+            }
             
             Spacer()
         }
@@ -40,9 +80,7 @@ extension ContentScreen {
             }
         } primaryButton: {
             Button {
-                navigationVM.openAddContentSheet(
-                    contentCategory: contentCategory
-                )
+                navigationVM.openAddContentSheet(contentCategory: contentCategory)
             } label: {
                 Image(systemName: "plus")
                     .foregroundStyle(Color.Custom.onPrimary)
@@ -53,3 +91,4 @@ extension ContentScreen {
         }
     }
 }
+

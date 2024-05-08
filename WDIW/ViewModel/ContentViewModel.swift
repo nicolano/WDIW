@@ -14,8 +14,6 @@ class ContentViewModel: ObservableObject {
     @Published var movies = [Movie]()
     @Published var books = [Book]()
     @Published var series = [Series]()
-
-    @Published var contentToEdit: MediaContent? = nil
     
     init(modelContext: ModelContext) {
         self.modelContext = modelContext

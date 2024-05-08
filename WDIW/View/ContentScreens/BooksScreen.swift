@@ -16,21 +16,7 @@ struct BooksScreen: View {
     @State private var hideOpacity = 1.0
     
     var body: some View {
-        ContentScreen(contentCategory: .books, content: []) {
-            if contentVM.books.isEmpty {
-                NoContentSection(contentCategory: .books)
-            } else {
-                ScrollView {
-                    ForEach(contentVM.books, id: \.self) { book in
-                        ContentItem(book) {
-                            contentVM.contentToEdit = book
-                        }
-                        .padding(.HorizontalM)
-                        .padding(.TopM)
-                    }
-                }
-            }
-        }
+        ContentScreen(contentCategory: .books)
         .overlay {
             VStack {
                 HStack {

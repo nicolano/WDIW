@@ -37,3 +37,31 @@ struct EditContentSheet: View {
         }
     }
 }
+
+struct EditContentSheetViewModifier: ViewModifier {
+    @EnvironmentObject private var contentVM: ContentViewModel
+    @EnvironmentObject private var navigationVM: NavigationViewModel
+
+    func body(content: Content) -> some View {
+        ZStack {
+            content
+                .sheet(isPresented: Binding(get: {
+                    navigationVM.activeEditContentSheet != nil
+                }, set: { dismiss in
+                    if !dismiss {
+                        navigationVM.closeEditContentSheet()
+                    }
+                }), content: {
+                    if let it = navigationVM.activeEditContentSheet {
+                        EditContentSheet(content: it)
+                    }
+                })
+        }
+    }
+}
+
+extension View {
+    func editContentSheet() -> some View {
+        modifier(EditContentSheetViewModifier())
+    }
+}
