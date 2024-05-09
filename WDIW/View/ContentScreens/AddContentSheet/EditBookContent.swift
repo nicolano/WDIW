@@ -19,13 +19,10 @@ struct EditBookContent: View {
             CustomTextField(value: $book.name, title: "Name")
             
             CustomTextField(value: $book.author, title: "Author")
+                        
+            CustomDateField(value: $book.entryDate, title: "Date")
             
-            HStack.spacingM {
-                CustomDateField(value: $book.entryDate, title: "Date")
-
-                IsFavoriteToggle(value: $book.isFavorite, title: "Favorite")
-            }
-            .padding(.TopS)
+            IsFavoriteToggle(value: $book.isFavorite, title: "Favorite")
         }
         .padding(.AllM)
     }

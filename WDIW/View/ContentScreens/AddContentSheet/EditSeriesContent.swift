@@ -18,7 +18,7 @@ struct EditSeriesContent: View {
         VStack.spacingM {
             CustomTextField(value: $series.name, title: "Name")
             
-            CustomTextField(value: $series.additionalInfos, title: "Additional Infos eg. which seasons etc.")
+            CustomTextField(value: $series.additionalInfos, title: "Additional Informations")
             
             RatingEditor(value: $series.rating, title: "Rating")
             

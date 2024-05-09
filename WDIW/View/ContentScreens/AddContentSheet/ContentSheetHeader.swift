@@ -26,6 +26,8 @@ struct ContentSheetHeader: View {
             Group {
                 Text(title)
                 +
+                Text(" ")
+                +
                 Text(ContentCategories.getCategoryFor(mediaContent: content).getSingularName())
             }
             .bold()

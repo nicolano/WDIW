@@ -50,6 +50,9 @@
 		F6B693EF2BEBD88F0085A1E3 /* ContentSheetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B693EE2BEBD88F0085A1E3 /* ContentSheetHeader.swift */; };
 		F6B693F12BEBF4E20085A1E3 /* MainScrollViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B693F02BEBF4E20085A1E3 /* MainScrollViewModifier.swift */; };
 		F6B693F32BEBF6EB0085A1E3 /* TabBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B693F22BEBF6EB0085A1E3 /* TabBarModifier.swift */; };
+		F6C1A6C12BECBE380008F236 /* DeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C1A6C02BECBE380008F236 /* DeleteButton.swift */; };
+		F6C1A6C42BECC07D0008F236 /* ResetSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C1A6C32BECC07D0008F236 /* ResetSection.swift */; };
+		F6C1A6C62BECC4620008F236 /* FavButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C1A6C52BECC4620008F236 /* FavButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +100,9 @@
 		F6B693EE2BEBD88F0085A1E3 /* ContentSheetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSheetHeader.swift; sourceTree = "<group>"; };
 		F6B693F02BEBF4E20085A1E3 /* MainScrollViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScrollViewModifier.swift; sourceTree = "<group>"; };
 		F6B693F22BEBF6EB0085A1E3 /* TabBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModifier.swift; sourceTree = "<group>"; };
+		F6C1A6C02BECBE380008F236 /* DeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButton.swift; sourceTree = "<group>"; };
+		F6C1A6C32BECC07D0008F236 /* ResetSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetSection.swift; sourceTree = "<group>"; };
+		F6C1A6C52BECC4620008F236 /* FavButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,8 +189,8 @@
 		F6B2F31B2B849BC600A981C2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F6C1A6C22BECC0240008F236 /* SettingsScreen */,
 				F66F553F2B8A068F00C29AB0 /* MainView.swift */,
-				F6B2F3442B860B1900A981C2 /* SettingsScreen.swift */,
 				F6B2F3392B84B41700A981C2 /* ContentScreens */,
 				F6B2F32D2B84AC0300A981C2 /* Components */,
 			);
@@ -207,6 +213,7 @@
 		F6B2F32D2B84AC0300A981C2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				F6C1A6BF2BECBE280008F236 /* Button */,
 				F653B1552BEB8AB600913973 /* Editor */,
 				F6B2F34B2B862C8800A981C2 /* Navigation */,
 				F6B2F3302B84AC1700A981C2 /* TabBar */,
@@ -278,6 +285,24 @@
 				F6B693F02BEBF4E20085A1E3 /* MainScrollViewModifier.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		F6C1A6BF2BECBE280008F236 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				F6C1A6C02BECBE380008F236 /* DeleteButton.swift */,
+				F6C1A6C52BECC4620008F236 /* FavButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		F6C1A6C22BECC0240008F236 /* SettingsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F6B2F3442B860B1900A981C2 /* SettingsScreen.swift */,
+				F6C1A6C32BECC07D0008F236 /* ResetSection.swift */,
+			);
+			path = SettingsScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,6 +382,7 @@
 				F66F55442B8A1DE400C29AB0 /* BackupManager.swift in Sources */,
 				F653B1572BEB8AC700913973 /* CustomTextField.swift in Sources */,
 				F6B2F31E2B84A1F000A981C2 /* Book.swift in Sources */,
+				F6C1A6C62BECC4620008F236 /* FavButton.swift in Sources */,
 				F6B2F33D2B84B97B00A981C2 /* ContentCategories.swift in Sources */,
 				F6B2F3482B861A7000A981C2 /* AddContentSheet.swift in Sources */,
 				F6B2F3282B84AB8500A981C2 /* BooksScreen.swift in Sources */,
@@ -372,6 +398,7 @@
 				F6B2F30B2B849B9300A981C2 /* WDIWApp.swift in Sources */,
 				F653B1542BEB875D00913973 /* EditBookContent.swift in Sources */,
 				F6B693F12BEBF4E20085A1E3 /* MainScrollViewModifier.swift in Sources */,
+				F6C1A6C42BECC07D0008F236 /* ResetSection.swift in Sources */,
 				F6B2F3452B860B1900A981C2 /* SettingsScreen.swift in Sources */,
 				F653B1592BEB900B00913973 /* CustomDateField.swift in Sources */,
 				F653B1602BEBB06C00913973 /* ContentItem.swift in Sources */,
@@ -382,6 +409,7 @@
 				F6B2F33F2B84BB6C00A981C2 /* ContentViewModel.swift in Sources */,
 				F6B693EF2BEBD88F0085A1E3 /* ContentSheetHeader.swift in Sources */,
 				F6B693F32BEBF6EB0085A1E3 /* TabBarModifier.swift in Sources */,
+				F6C1A6C12BECBE380008F236 /* DeleteButton.swift in Sources */,
 				F6B2F3322B84ACBB00A981C2 /* CGFloat.swift in Sources */,
 				F6B693E32BEBCBED0085A1E3 /* MovieItem.swift in Sources */,
 				F6457A952B9129270059C38C /* Spacing.swift in Sources */,

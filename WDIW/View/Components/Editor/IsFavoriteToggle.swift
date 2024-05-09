@@ -16,8 +16,6 @@ struct IsFavoriteToggle: View {
     @Binding var value: Bool
     private let title: String?
     
-    @State private var animateScale: Double = 1
-    
     var body: some View {
         HStack {
             if let title = title {
@@ -27,22 +25,8 @@ struct IsFavoriteToggle: View {
             
             Spacer()
             
-            Button {
+            FavButton(isActive: value) {
                 value.toggle()
-            } label: {
-                Image(systemName: value ? "star.fill" : "star")
-                    .foregroundStyle(Color.yellow)
-                    .scaleEffect(animateScale)
-            }
-        }
-        .sensoryFeedback(.selection, trigger: value)
-        .onChange(of: value) { oldValue, newValue in
-            withAnimation {
-                animateScale = 1.4
-            } completion: {
-                withAnimation {
-                    animateScale = 1.0
-                }
             }
         }
     }

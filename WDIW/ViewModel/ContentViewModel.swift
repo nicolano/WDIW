@@ -94,8 +94,27 @@ class ContentViewModel: ObservableObject {
         }
     }
     
-    func deleteAllData() {
-        modelContext.container.deleteAllData()
+    func deleteAllMediaContent() {
+        deleteAllContentForCategory(contentCategory: .books)
+        deleteAllContentForCategory(contentCategory: .movies)
+        deleteAllContentForCategory(contentCategory: .series)
+    }
+    
+    func deleteAllContentForCategory(contentCategory: ContentCategories) {
+        switch contentCategory {
+        case .books:
+            for book in books {
+                deleteContent(content: book)
+            }
+        case .movies:
+            for movie in movies {
+                deleteContent(content: movie)
+            }
+        case .series:
+            for serie in series {
+                deleteContent(content: serie)
+            }
+        }
     }
 
     func writeToFile() {

@@ -30,18 +30,16 @@ struct RatingEditor: View {
             
             HStack.zeroSpacing {
                 ForEach(1..<11, id: \.self) { number in
-                    Button {
-                        value = Double(number)
-                    } label: {
-                        HStack {
-                            Spacer(minLength: 0)
-                            
-                            Image(systemName: value >= Double(number) ? "star.fill" : "star")
-                                .foregroundStyle(Color.yellow)
-                            
-                            Spacer(minLength: 0)
-                        }
+                    HStack {
+                        Spacer(minLength: 0)
 
+                        FavButton(isActive: value >= Double(number)) {
+                            withAnimation {
+                                value = Double(number)
+                            }
+                        }
+                        
+                        Spacer(minLength: 0)
                     }
                 }
             }
