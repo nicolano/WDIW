@@ -9,8 +9,12 @@ import SwiftUI
 
 struct BackupSection: View {
     @EnvironmentObject private var contentVM: ContentViewModel
+    @EnvironmentObject private var navigationVM: NavigationViewModel
+    
+    @StateObject private var backupManager = BackupManager()
+    @State private var isShare = false
 
-    private let backupManager = BackupManager()
+    @State private var exportUrl: URL? = nil
     
     private func generateCSV() -> URL? {
         do {
@@ -27,44 +31,34 @@ struct BackupSection: View {
             header: Text("Import and Export Data"),
             footer: Text("")
         ) {
-            ShareLink(
-                item: generateCSV()!
-            ) {
+            Button {
+                backupManager.testIsLoading()
+            } label: {
                 Label(
-                    "Export to CSV File",
-                    systemImage: "list.bullet.rectangle.portrait"
+                    "Import from CSV File",
+                    systemImage: "square.and.arrow.down"
                 )
             }
             
-            Button {
-                
-            } label: {
-                Text("Import from CSV File")
-            }
-        }
-        .headerProminence(.increased)
-        .overlay {
-            VStack {
-                Spacer()
-                
-                HStack {
-                    Spacer()
-                    
-                    if backupManager.isLoading {
-                        ProgressView()
-                            .padding(.Spacing.l)
-                            .background(Color.gray)
-                    }
-                    
-                    Spacer()
+            if let exportUrl = exportUrl {
+                ShareLink(
+                    item: exportUrl
+                ) {
+                    Label(
+                        "Export to CSV File",
+                        systemImage: "list.bullet.rectangle.portrait"
+                    )
                 }
-                
-                Spacer()
+            } else {
+                ProgressView()
             }
         }
+        .onAppear(perform: {
+            exportUrl = generateCSV()
+        })
+        .headerProminence(.increased)
+        .onReceive(backupManager.$isLoading, perform: { _ in
+            navigationVM.triggerLoadingDialog(isLoading: backupManager.isLoading)
+        })
     }
-}
-
-#Preview {
-    BackupSection()
 }

@@ -54,6 +54,7 @@
 		F6C1A6C42BECC07D0008F236 /* ResetSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C1A6C32BECC07D0008F236 /* ResetSection.swift */; };
 		F6C1A6C62BECC4620008F236 /* FavButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C1A6C52BECC4620008F236 /* FavButton.swift */; };
 		F6C1A6C82BECD5510008F236 /* BackupSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C1A6C72BECD5510008F236 /* BackupSection.swift */; };
+		F6C1A6CD2BECD9B00008F236 /* LoadingDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C1A6CC2BECD9B00008F236 /* LoadingDialog.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +106,7 @@
 		F6C1A6C32BECC07D0008F236 /* ResetSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetSection.swift; sourceTree = "<group>"; };
 		F6C1A6C52BECC4620008F236 /* FavButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavButton.swift; sourceTree = "<group>"; };
 		F6C1A6C72BECD5510008F236 /* BackupSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupSection.swift; sourceTree = "<group>"; };
+		F6C1A6CC2BECD9B00008F236 /* LoadingDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDialog.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +217,7 @@
 		F6B2F32D2B84AC0300A981C2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				F6C1A6CB2BECD9A00008F236 /* Dialogs */,
 				F6C1A6BF2BECBE280008F236 /* Button */,
 				F653B1552BEB8AB600913973 /* Editor */,
 				F6B2F34B2B862C8800A981C2 /* Navigation */,
@@ -306,6 +309,14 @@
 				F6C1A6C72BECD5510008F236 /* BackupSection.swift */,
 			);
 			path = SettingsScreen;
+			sourceTree = "<group>";
+		};
+		F6C1A6CB2BECD9A00008F236 /* Dialogs */ = {
+			isa = PBXGroup;
+			children = (
+				F6C1A6CC2BECD9B00008F236 /* LoadingDialog.swift */,
+			);
+			path = Dialogs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,6 +431,7 @@
 				F66F55402B8A068F00C29AB0 /* MainView.swift in Sources */,
 				F6B693ED2BEBD5530085A1E3 /* ContentSwitch.swift in Sources */,
 				F6B2F32C2B84ABEE00A981C2 /* TabBar.swift in Sources */,
+				F6C1A6CD2BECD9B00008F236 /* LoadingDialog.swift in Sources */,
 				F6B2F3222B84A43500A981C2 /* MediaContent.swift in Sources */,
 				F6B2F3242B84A61C00A981C2 /* Series.swift in Sources */,
 				F6B693E12BEBC8DF0085A1E3 /* EditContentSheet.swift in Sources */,

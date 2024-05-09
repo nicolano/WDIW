@@ -27,6 +27,7 @@ struct WDIWApp: App {
             MainView()
                 .environmentObject(navigationVM)
                 .environmentObject(contentVM)
+                .loadingDialog(navigationVM.showLoadingDialog)
         }
         .modelContainer(sharedModelContainer.modelContainer)
     }

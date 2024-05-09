@@ -24,7 +24,7 @@ struct SettingsScreen: View {
             }
             
             List {
-                BackupSection()
+                BackupSection()                
                 ResetSection()
             }.listStyle(.sidebar)
             

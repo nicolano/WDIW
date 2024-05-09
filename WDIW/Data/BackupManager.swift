@@ -6,11 +6,20 @@
 //
 
 import Foundation
+import SwiftUI
 
+ 
 class BackupManager: ObservableObject {
-    @Published var isLoading = false
+    @Published var isLoading: Bool = false
     
     let fileManager = FileManager.default
+    
+    func testIsLoading() {
+        self.isLoading = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 7.5) {
+            self.isLoading = false
+        }
+    }
     
     func generateCSVFileFromContents(contents: [MediaContent]) throws -> URL {
         self.isLoading = true

@@ -14,11 +14,19 @@ class NavigationViewModel: ObservableObject {
         case settings, books, movies, series
     }
     
-    @Published var activeScreen: Screens = .books    
-    
+    @Published var showLoadingDialog: Bool = false
+    @Published var activeScreen: Screens = .books
     @Published var activeAddContentSheet: ContentCategories? = nil
     @Published var activeEditContentSheet: MediaContent? = nil
-
+    
+    func triggerLoadingDialog(isLoading: Bool) {
+        if isLoading {
+            self.showLoadingDialog = true
+        } else {
+            self.showLoadingDialog = false
+        }
+    }
+    
     func openAddContentSheet(contentCategory: ContentCategories) {
         activeAddContentSheet = contentCategory
     }

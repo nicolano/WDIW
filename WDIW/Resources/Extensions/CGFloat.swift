@@ -21,6 +21,7 @@ extension CGFloat {
     public struct CornerRadius {
         public static var textField: CGFloat = 8
         public static var contentItem: CGFloat = 10
+        public static var dialog: CGFloat = 20
     }
     
     static var offsetNavToSettings: CGFloat = 80.0
