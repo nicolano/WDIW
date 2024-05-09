@@ -29,7 +29,7 @@ class ContentViewModel: ObservableObject {
     func fetchMoviesData() {
         do {
             let descriptor = FetchDescriptor<Movie>(
-                sortBy: [SortDescriptor(\.watchDate)]
+                sortBy: [SortDescriptor(\.date)]
             )
             movies = try modelContext.fetch(descriptor)
             mediaContents.append(contentsOf: movies)
@@ -41,7 +41,7 @@ class ContentViewModel: ObservableObject {
     func fetchBooksData() {
         do {
             let descriptor = FetchDescriptor<Book>(
-                sortBy: [SortDescriptor(\.entryDate)]
+                sortBy: [SortDescriptor(\.date)]
             )
             books = try modelContext.fetch(descriptor)
             mediaContents.append(contentsOf: movies)
@@ -53,7 +53,7 @@ class ContentViewModel: ObservableObject {
     func fetchSeriesData() {
         do {
             let descriptor = FetchDescriptor<Series>(
-                sortBy: [SortDescriptor(\.entryDate)]
+                sortBy: [SortDescriptor(\.date)]
             )
             series = try modelContext.fetch(descriptor)
             mediaContents.append(contentsOf: movies)

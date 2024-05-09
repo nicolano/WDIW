@@ -20,7 +20,7 @@ struct EditMovieContent: View {
             
             RatingEditor(value: $movie.rating, title: "Rating")
 
-            CustomDateField(value: $movie.watchDate, title: "Date")
+            CustomDateField(value: $movie.date, title: "Date")
                 .padding(.TopS)
         }
         .padding(.AllM)

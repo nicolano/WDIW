@@ -22,7 +22,7 @@ struct SeriesItem: View {
                 Text(series.name)
                     .bold()
                 
-                Text(series.additionalInfos)
+                Text(series.additionalInfo)
             }
             .multilineTextAlignment(.leading)
             .foregroundStyle(Color.primary)

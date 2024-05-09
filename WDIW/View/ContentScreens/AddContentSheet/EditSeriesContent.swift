@@ -18,11 +18,11 @@ struct EditSeriesContent: View {
         VStack.spacingM {
             CustomTextField(value: $series.name, title: "Name")
             
-            CustomTextField(value: $series.additionalInfos, title: "Additional Informations")
+            CustomTextField(value: $series.additionalInfo, title: "Additional Informations")
             
             RatingEditor(value: $series.rating, title: "Rating")
             
-            CustomDateField(value: $series.entryDate, title: "Date")
+            CustomDateField(value: $series.date, title: "Date")
                 .padding(.TopS)
         }
         .padding(.AllM)

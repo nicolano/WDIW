@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct RatingEditor: View {
-    init(value: Binding<Double>, title: String? = nil) {
+    init(value: Binding<Int>, title: String? = nil) {
         self._value = value
         self.title = title
     }
     
-    @Binding var value: Double
+    @Binding var value: Int
     private let title: String?
     
     var body: some View {
@@ -33,9 +33,9 @@ struct RatingEditor: View {
                     HStack {
                         Spacer(minLength: 0)
 
-                        FavButton(isActive: value >= Double(number)) {
+                        FavButton(isActive: value >= number) {
                             withAnimation {
-                                value = Double(number)
+                                value = number
                             }
                         }
                         

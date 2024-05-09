@@ -200,9 +200,9 @@
 		F6B2F31C2B849BD300A981C2 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				F6B2F3212B84A43500A981C2 /* MediaContent.swift */,
 				F6B2F31D2B84A1F000A981C2 /* Book.swift */,
 				F6B2F31F2B84A40500A981C2 /* Movie.swift */,
-				F6B2F3212B84A43500A981C2 /* MediaContent.swift */,
 				F6B2F3232B84A61C00A981C2 /* Series.swift */,
 				F66F55412B8A074200C29AB0 /* SharedModelContainer.swift */,
 				F66F55432B8A1DE400C29AB0 /* BackupManager.swift */,

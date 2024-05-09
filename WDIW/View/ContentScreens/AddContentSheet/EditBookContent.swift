@@ -20,7 +20,7 @@ struct EditBookContent: View {
             
             CustomTextField(value: $book.author, title: "Author")
                         
-            CustomDateField(value: $book.entryDate, title: "Date")
+            CustomDateField(value: $book.date, title: "Date")
             
             IsFavoriteToggle(value: $book.isFavorite, title: "Favorite")
         }

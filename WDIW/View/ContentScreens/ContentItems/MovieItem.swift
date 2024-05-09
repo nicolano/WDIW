@@ -22,7 +22,7 @@ struct MovieItem: View {
                 Text(movie.name)
                     .bold()
                 
-                Text(movie.watchDate, style: .date)
+                Text(movie.date, style: .date)
             }
             .multilineTextAlignment(.leading)
             .foregroundStyle(Color.primary)
