@@ -59,10 +59,9 @@ extension ResetSection {
             showingDeleteAllBooksAlert = true
         } label: {
             Label(
-                title: { Text("Delete all books") },
-                icon: { Image(systemName: ContentCategories.books.getIconName(isActive: false)) }
+                "Delete all books",
+                systemImage: ContentCategories.books.getIconName(isActive: false)
             )
-            .foregroundStyle(Color.accentColor)
         }
         .alert(
             "Are you sure you want to delete all books?",
@@ -83,10 +82,9 @@ extension ResetSection {
             showingDeleteAllMoviesAlert = true
         } label: {
             Label(
-                title: { Text("Delete all movies") },
-                icon: { Image(systemName: ContentCategories.movies.getIconName(isActive: false)) }
+                "Delete all movies",
+                systemImage: ContentCategories.movies.getIconName(isActive: false)
             )
-            .foregroundStyle(Color.accentColor)
         }
         .alert(
             "Are you sure you want to delete all movies?",
@@ -107,10 +105,9 @@ extension ResetSection {
             showingDeleteAllSeriesAlert = true
         } label: {
             Label(
-                title: { Text("Delete all series") },
-                icon: { Image(systemName: ContentCategories.series.getIconName(isActive: false)) }
+                "Delete all series",
+                systemImage: ContentCategories.series.getIconName(isActive: false)
             )
-            .foregroundStyle(Color.accentColor)
         }
         .alert(
             "Are you sure you want to delete all series?",

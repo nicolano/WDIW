@@ -11,20 +11,6 @@ struct SettingsScreen: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
     @EnvironmentObject private var contentVM: ContentViewModel
 
-    private let backupManager = BackupManager()
-    
-    private func generateCSV() -> URL? {
-//        do {
-//            return try backupManager.generateCSVFileFromContents(
-//                contents: contentVM.mediaContents
-//            )
-//        } catch {
-//            return nil
-//        }
-        return nil
-    }
-    
-    
     var body: some View {
         VStack(spacing: 0) {
             Header(title: "Settings") {
@@ -38,49 +24,11 @@ struct SettingsScreen: View {
             }
             
             List {
-                Section("Backup") {
-//                    ShareLink(
-//                        item: generateCSV()!
-//                    ) {
-//                        Label(
-//                            "Export to CSV",
-//                            systemImage: "list.bullet.rectangle.portrait"
-//                        )
-//                    }
-                    
-                    
-                    
-                    Button {
-                        
-                    } label: {
-                        Text("Load from Backup")
-                    }
-                }
-                
+                BackupSection()
                 ResetSection()
             }.listStyle(.sidebar)
             
             Spacer()
-        }
-
-        .overlay {
-            VStack {
-                Spacer()
-                
-                HStack {
-                    Spacer()
-                    
-                    if backupManager.isLoading {
-                        ProgressView()
-                            .padding(.Spacing.l)
-                            .background(Color.gray)
-                    }
-                    
-                    Spacer()
-                }
-                
-                Spacer()
-            }
         }
     }
 }

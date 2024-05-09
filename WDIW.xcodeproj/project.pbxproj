@@ -53,6 +53,7 @@
 		F6C1A6C12BECBE380008F236 /* DeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C1A6C02BECBE380008F236 /* DeleteButton.swift */; };
 		F6C1A6C42BECC07D0008F236 /* ResetSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C1A6C32BECC07D0008F236 /* ResetSection.swift */; };
 		F6C1A6C62BECC4620008F236 /* FavButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C1A6C52BECC4620008F236 /* FavButton.swift */; };
+		F6C1A6C82BECD5510008F236 /* BackupSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C1A6C72BECD5510008F236 /* BackupSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +104,7 @@
 		F6C1A6C02BECBE380008F236 /* DeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButton.swift; sourceTree = "<group>"; };
 		F6C1A6C32BECC07D0008F236 /* ResetSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetSection.swift; sourceTree = "<group>"; };
 		F6C1A6C52BECC4620008F236 /* FavButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavButton.swift; sourceTree = "<group>"; };
+		F6C1A6C72BECD5510008F236 /* BackupSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupSection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +303,7 @@
 			children = (
 				F6B2F3442B860B1900A981C2 /* SettingsScreen.swift */,
 				F6C1A6C32BECC07D0008F236 /* ResetSection.swift */,
+				F6C1A6C72BECD5510008F236 /* BackupSection.swift */,
 			);
 			path = SettingsScreen;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				F6C1A6C62BECC4620008F236 /* FavButton.swift in Sources */,
 				F6B2F33D2B84B97B00A981C2 /* ContentCategories.swift in Sources */,
 				F6B2F3482B861A7000A981C2 /* AddContentSheet.swift in Sources */,
+				F6C1A6C82BECD5510008F236 /* BackupSection.swift in Sources */,
 				F6B2F3282B84AB8500A981C2 /* BooksScreen.swift in Sources */,
 				F66F55422B8A074200C29AB0 /* SharedModelContainer.swift in Sources */,
 				F6B693E72BEBCE340085A1E3 /* EditMovieContent.swift in Sources */,

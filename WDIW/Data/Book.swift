@@ -19,8 +19,8 @@ import SwiftData
 @Model class Book: MediaContent {
     @Attribute(.unique) var id: UUID
     var name: String
-    var date: Date
     var additionalInfo: String
+    var date: Date
     var rating: Int
     var url: String
 

@@ -12,33 +12,20 @@ class BackupManager: ObservableObject {
     
     let fileManager = FileManager.default
     
-//    func createBackupFromContent(contents: [MediaContent], pathToFile: String) {
-//        var fileString = ""
-//        for content in contents {
-//            
-//        }
-//        
-//        
-//    }
-//    
     func generateCSVFileFromContents(contents: [MediaContent]) throws -> URL {
         self.isLoading = true
-        
-        let heading = "Category, Name, Watch Date, Entry Date, Author, Rating, Url\n"
+
+        let heading = "Category, Id, Name, Date, Additional Info, Rating, Url\n"
         let rows = contents.map {
-            switch $0 {
-            case is Book:
-                let book = $0 as! Book
-                return "\(ContentCategories.books.getName()),\(book.date.ISO8601Format()), \(book.author),\(book.url)\n"
-            case is Movie:
-                let book = $0 as! Movie
-                return "\(ContentCategories.movies.getName()),\(book.date.ISO8601Format()), nil,\(book.rating),\(book.url)\n"
-            case is Series:
-                let book = $0 as! Series
-                return "\(ContentCategories.series.getName()),\(book.date.ISO8601Format()), nil,\(book.rating),\(book.url)\n"
-            default:
-                return ""
-            }
+            let category = ContentCategories.getCategoryFor(mediaContent: $0).getName()
+            let id = $0.id
+            let name = $0.name
+            let date = $0.date.ISO8601Format()
+            let additionalInfo = $0.additionalInfo
+            let rating = String($0.rating)
+            let url = $0.url
+            
+            return " \(category), \(id), \(name), \(date), \(additionalInfo), \(rating), \(url)\n"
         }
         
         let stringData = heading + rows.joined(separator: "\n")
@@ -62,18 +49,18 @@ class BackupManager: ObservableObject {
         }
     }
 
-//    func writeToFile(data: Data, filePath: String) {
-//        let success = fileManager.createFile(atPath: filePath, contents: data)
-//        if success {
-//            print("File created and data written successfully.")
-//        } else {
-//            print("Failed to create file.")
-//        }
-//    }
-//    
-//    func readFromFile(filePath: String) throws -> Data {
-//        return fileManager.contents(atPath: filePath)!
-//    }
+    func writeToFile(data: Data, filePath: String) {
+        let success = fileManager.createFile(atPath: filePath, contents: data)
+        if success {
+            print("File created and data written successfully.")
+        } else {
+            print("Failed to create file.")
+        }
+    }
+    
+    func readFromFile(filePath: String) throws -> Data {
+        return fileManager.contents(atPath: filePath)!
+    }
 }
 
 
