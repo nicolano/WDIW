@@ -27,6 +27,7 @@ struct ContentSheet: View {
     
     let type: ContentSheetType
     @State var content: MediaContent
+    @State var showDeleteContentAlert: Bool = false
     
     var title: String {
         switch type {
@@ -54,12 +55,24 @@ struct ContentSheet: View {
             }
                         
             if type == .EDIT {
-                DeleteButton {
-                    contentVM.deleteContent(content: content)
-                    dismiss()
+                DeleteButton {                        
+                    showDeleteContentAlert = true
                 }
                 .padding(.TopL)
                 .padding(.HorizontalM)
+                .alert(
+                    "Are you sure you want to delete \"\(content.name)\"?",
+                    isPresented: $showDeleteContentAlert
+                ) {
+                    Button("No", role: .cancel) {
+                        showDeleteContentAlert = false
+                    }
+                    
+                    Button("Yes", role: .destructive) {
+                        contentVM.deleteContent(content: content)
+                        dismiss()
+                    }
+                }
             }
             
             Spacer()
