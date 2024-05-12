@@ -76,7 +76,7 @@ extension BackupSection {
                 navigationVM.openSheet(type: .csvInfo)
             } label: {
                 Group {
-                    Text("You can import and export data from and to a CSV file. For more information on how to format the CSV file, click here. ")
+                    Text("You can import and export data from and to a CSV file. For more information about CSV files, click here. ")
                     +
                     Text(Image(systemName: "info.circle"))
                 }
