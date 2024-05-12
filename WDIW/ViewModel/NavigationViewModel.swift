@@ -35,12 +35,16 @@ class NavigationViewModel: ObservableObject {
         activeEditContentSheet = content
     }
     
-    func closeAddContentSheet() {
-        activeAddContentSheet = nil
+    func closeAddContentSheet(_ isOpen: Bool) {
+        if !isOpen {
+            activeAddContentSheet = nil
+        }
     }
     
-    func closeEditContentSheet() {
-        activeEditContentSheet = nil
+    func closeEditContentSheet(_ isOpen: Bool) {
+        if !isOpen {
+            activeEditContentSheet = nil
+        }
     }
     
     func navigateToSettings() {

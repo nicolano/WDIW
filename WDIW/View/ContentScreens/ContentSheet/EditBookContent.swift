@@ -8,10 +8,6 @@
 import SwiftUI
 
 struct EditBookContent: View {
-    internal init(_ book: Binding<Book>) {
-        self._book = book
-    }
-    
     @Binding var book: Book
 
     var body: some View {
@@ -26,8 +22,4 @@ struct EditBookContent: View {
         }
         .padding(.AllM)
     }
-}
-
-#Preview {
-    EditBookContent(.constant(Book.empty))
 }

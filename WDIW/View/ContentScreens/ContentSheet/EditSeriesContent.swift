@@ -8,10 +8,6 @@
 import SwiftUI
 
 struct EditSeriesContent: View {
-    internal init(_ series: Binding<Series>) {
-        self._series = series
-    }
-    
     @Binding var series: Series
     
     var body: some View {
