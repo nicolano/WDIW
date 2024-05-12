@@ -18,22 +18,15 @@ struct BooksScreen: View {
     var body: some View {
         ContentScreen(contentCategory: .books)
         .overlay {
-            VStack {
-                HStack {
-                    Image(systemName: "gear")
-                        .opacity(offset.x / .offsetNavToSettings)
-                        .scaleEffect(offset.x / .offsetNavToSettings)
-                        .font(.largeTitle)
-                        .opacity(hideOpacity)
-                    
-                    Spacer()
-                }
+            Image(systemName: "gear")
+                .opacity(offset.x / .offsetNavToSettings)
+                .scaleEffect(offset.x / .offsetNavToSettings)
+                .font(.largeTitle)
+                .opacity(hideOpacity)
                 .padding(.top, 12)
                 .foregroundStyle(Color.Custom.primary)
-                
-                Spacer()
-            }
-            .offset(x: -40)
+                .align(.topLeading)
+                .offset(x: -40)
         }
         .environmentObject(navigationVM)
         .onChange(of: offset) { oldValue, newValue in

@@ -9,21 +9,32 @@ import Foundation
 import SwiftUI
 import Combine
 
+@MainActor
 class NavigationViewModel: ObservableObject {
     enum Screens {
         case settings, books, movies, series
     }
     
-    @Published var showLoadingDialog: Bool = false
+    enum Sheets {
+        case csvInfo
+    }
+    
     @Published var activeScreen: Screens = .books
     @Published var activeAddContentSheet: ContentCategories? = nil
     @Published var activeEditContentSheet: MediaContent? = nil
+    @Published var showCSVInfoSheet: Bool = false
     
-    func triggerLoadingDialog(isLoading: Bool) {
-        if isLoading {
-            self.showLoadingDialog = true
-        } else {
-            self.showLoadingDialog = false
+    func openSheet(type: Sheets) {
+        switch type {
+        case .csvInfo:
+            showCSVInfoSheet = true
+        }
+    }
+    
+    func closeSheet(type: Sheets) {
+        switch type {
+        case .csvInfo:
+            showCSVInfoSheet = false
         }
     }
     

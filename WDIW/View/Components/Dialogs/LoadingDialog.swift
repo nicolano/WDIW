@@ -8,38 +8,27 @@
 import SwiftUI
 
 struct LoadingDialogViewModifier: ViewModifier {
-    let isShown: Bool
+    @State private var isShown: Bool = false
     
     func body(content: Content) -> some View {
-        content
-            .blur(radius: isShown ? 5 : 0)
-            .overlay {
-                VStack {
-                    Spacer()
-                    
-                    HStack {
-                        Spacer()
-                        
-                        if isShown {
-                            ProgressView()
-                                .padding(.AllXL)
-                                .background(Color.Custom.surface)
-                                .cornerRadius(.CornerRadius.dialog)
-                        }
-                        
-                        
-                        Spacer()
-                    }
-                    
-                    Spacer()
+        Dialog(isShown: isShown) {
+            content
+        } dialogContent: {
+            ProgressView()                                    
+                .padding(.AllL)
+        }
+        .onPreferenceChange(LoadingPreferenceKey.self) { isLoading in
+            if let isLoading = isLoading {
+                withAnimation {
+                    isShown = isLoading
                 }
             }
-        
+        }
     }
 }
 
 extension View {
-    func loadingDialog(_ isShown: Bool) -> some View {
-        modifier(LoadingDialogViewModifier(isShown: isShown))
+    func loadingDialog() -> some View {
+        modifier(LoadingDialogViewModifier())
     }
 }

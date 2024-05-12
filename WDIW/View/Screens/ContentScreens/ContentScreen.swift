@@ -23,14 +23,6 @@ struct ContentScreen: View {
         }
     }
     
-    private func contentView(_ content: MediaContent) -> some View {
-        ContentItem(content) {
-            navigationVM.openEditContentSheet(content: content)
-        }
-        .padding(.HorizontalM)
-        .padding(.TopS)
-    }
-    
     var body: some View {
         VStack.zeroSpacing(alignment: .leading) {
             headerSection
@@ -39,24 +31,14 @@ struct ContentScreen: View {
                 NoContentSection(contentCategory: .movies)
             } else {
                 ScrollView {
-                    switch contentCategory {
-                    case .books:
-                        ForEach(contents as! [Book], id: \.self) { content in
-                            contentView(content)
+                    ForEach(contents.indices, id: \.self) { index in
+                        ContentItem(contents[index]) {
+                            navigationVM.openEditContentSheet(content: contents[index])
                         }
-                        .padding(.TopS)
-                    case .movies:
-                        ForEach(contents as! [Movie], id: \.self) { content in
-                            contentView(content)
-                        }
-                        .padding(.TopS)
-                    case .series:
-                        ForEach(contents as! [Series], id: \.self) { content in
-                            contentView(content)
-                        }
+                        .padding(.HorizontalM)
                         .padding(.TopS)
                     }
-                    
+                    .padding(.TopS)
                 }
             }
             

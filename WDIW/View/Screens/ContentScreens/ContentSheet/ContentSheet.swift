@@ -73,23 +73,27 @@ struct ContentSheetViewModifier: ViewModifier {
     let type: ContentSheetType
     
     func body(content: Content) -> some View {
-        ZStack {
-            content
-                .sheet(isPresented: Binding(get: {
-                    switch type {
-                    case .ADD:
-                        navigationVM.activeAddContentSheet != nil
-                    case .EDIT:
-                        navigationVM.activeEditContentSheet != nil
+        content
+            .sheet(
+                isPresented: Binding(
+                    get: {
+                        switch type {
+                        case .ADD:
+                            navigationVM.activeAddContentSheet != nil
+                        case .EDIT:
+                            navigationVM.activeEditContentSheet != nil
+                        }
+                    }, 
+                    set: { dismiss in
+                        switch type {
+                        case .ADD:
+                            navigationVM.closeAddContentSheet(dismiss)
+                        case .EDIT:
+                            navigationVM.closeEditContentSheet(dismiss)
+                        }
                     }
-                }, set: { dismiss in
-                    switch type {
-                    case .ADD:
-                        navigationVM.closeAddContentSheet(dismiss)
-                    case .EDIT:
-                        navigationVM.closeEditContentSheet(dismiss)
-                    }
-                }), content: {
+                ),
+                content: {
                     switch type {
                     case .ADD:
                         if let it = navigationVM.activeAddContentSheet {
@@ -100,8 +104,8 @@ struct ContentSheetViewModifier: ViewModifier {
                             ContentSheet(content: it)
                         }
                     }
-                })
-        }
+                }
+            )
     }
 }
 

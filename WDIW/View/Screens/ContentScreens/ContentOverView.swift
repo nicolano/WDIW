@@ -26,8 +26,6 @@ struct ContentOverView: View {
         }
         .mainHorizontalScroll($scrollPosition)
         .tabBarOverlay()
-        .contentSheet(type: .ADD)
-        .contentSheet(type: .EDIT)
         .environmentObject(navigationVM)
         .environmentObject(contentVM)
     }

@@ -24,10 +24,12 @@ struct WDIWApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainScreen()
+                .sheets()
                 .environmentObject(navigationVM)
                 .environmentObject(contentVM)
-                .loadingDialog(navigationVM.showLoadingDialog)
+                .loadingDialog()
+                .errorDialog()
         }
         .modelContainer(sharedModelContainer.modelContainer)
     }

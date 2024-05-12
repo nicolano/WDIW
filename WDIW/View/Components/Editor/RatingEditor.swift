@@ -19,13 +19,10 @@ struct RatingEditor: View {
     var body: some View {
         VStack.spacingXS {
             if let title = title {
-                HStack {
-                    Text(title)
-                        .bold()
-                    
-                    Spacer()
-                }
-                .padding(.BottomXS)
+                Text(title)
+                    .bold()
+                    .align(.leading)
+                    .padding(.BottomXS)
             }
             
             HStack.zeroSpacing {

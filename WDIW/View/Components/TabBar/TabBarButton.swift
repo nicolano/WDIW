@@ -19,12 +19,8 @@ struct TabBarButton: View {
             HStack(spacing: 0) {
                 Spacer(minLength: 0)
                 
-                Image(
-                    systemName: contentCategory.getIconName(
-                        isActive: isActive
-                    )
-                )
-                .padding(.trailing, .Spacing.s)
+                Image(systemName: contentCategory.getIconName(isActive: isActive))
+                    .padding(.trailing, .Spacing.s)
                 
                 Text(contentCategory.getName())
 
@@ -59,24 +55,4 @@ struct TabBarButtonstyle: ButtonStyle {
                 .clipShape(Capsule())
         }
     }
-}
-
-#Preview {
-    VStack {
-        TabBarButton(
-            contentCategory: .books,
-            isActive: false
-        ) {
-            
-        }
-        
-        TabBarButton(
-            contentCategory: .books,
-            isActive: true
-        ) {
-            
-        }
-    }
-    .padding(100)
-    .background(Color.green)
 }

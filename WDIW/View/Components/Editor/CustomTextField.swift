@@ -21,13 +21,10 @@ struct CustomTextField: View {
     var body: some View {
         VStack.zeroSpacing {
             if let title = title {
-                HStack {
-                    Text(title)
-                        .bold()
-                    
-                    Spacer()
-                }
-                .padding(.BottomXS)
+                Text(title)
+                    .bold()
+                    .align(.leading)
+                    .padding(.BottomXS)
             }
             
             TextField(text: $value) {

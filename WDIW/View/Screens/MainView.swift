@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct MainScreen: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
     @EnvironmentObject private var contentVM: ContentViewModel
 
@@ -18,12 +18,9 @@ struct MainView: View {
             switch navigationVM.activeScreen {
             case .settings:
                 SettingsScreen()
-                    .environmentObject(navigationVM)
                     .transition(.move(edge: .leading))
             default:
                 ContentOverView()
-                    .environmentObject(navigationVM)
-                    .environmentObject(contentVM)
                     .transition(.move(edge: .trailing))
                     .zIndex(10)
             }
@@ -47,16 +44,4 @@ struct MainView: View {
             }
         }
     }
-}
-
-#Preview {
-    MainView()
-        .environmentObject(NavigationViewModel())
-        .environmentObject(
-            ContentViewModel(
-                modelContext: SharedModelContainer(
-                    isInMemory: true
-                ).modelContainer.mainContext
-            )
-        )
 }
