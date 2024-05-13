@@ -26,10 +26,11 @@ struct SettingsScreen: View {
             List {
                 BackupSection()                
                 ResetSection()
-            }.listStyle(.sidebar)
-            
+            }
+            .listStyle(.sidebar)
             Spacer()
         }
+        .ignoresSafeArea(.all, edges: .bottom)
     }
 }
 

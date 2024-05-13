@@ -36,7 +36,7 @@ class BackupManager: ObservableObject {
             // Add delay so loading animation looks nice
             try? await Task.sleep(nanoseconds: 1_000_000_000)
             
-            let heading = "Category,Id,Name,Date,Additional Info,Rating,Url\n"
+            let heading = "Category;Id;Name;Date;Additional Info;Rating;Url\n"
             let rows = contents.map {
                 let category = ContentCategories.getCategoryFor(mediaContent: $0).getName()
                 let id = $0.id
@@ -99,7 +99,7 @@ class BackupManager: ObservableObject {
             let content = try String(contentsOf: url)
             var parsedCSV: [[String]] = content
                 .components(separatedBy: "\n")
-                .map { return $0.components(separatedBy: ",") }
+                .map { return $0.components(separatedBy: ";") }
             // Remove first line
             parsedCSV.remove(at: 0)
             
@@ -123,7 +123,16 @@ class BackupManager: ObservableObject {
             switch category {
             case ContentCategories.books.getName():
                 content = Book(
-                    id: UUID(uuidString: from[1])!,
+                    id: UUID(uuidString: from[1]) ?? UUID(),
+                    name: from[2],
+                    entryDate: try Date.ISO8601FormatStyle().parse(from[3]),
+                    author: from[4],
+                    isFavorite: Int(from[5])! > 0,
+                    url: from[6]
+                )
+            case ContentCategories.books.getSingularName():
+                content = Book(
+                    id: UUID(uuidString: from[1]) ?? UUID(),
                     name: from[2],
                     entryDate: try Date.ISO8601FormatStyle().parse(from[3]),
                     author: from[4],
@@ -132,17 +141,25 @@ class BackupManager: ObservableObject {
                 )
             case ContentCategories.movies.getName():
                 content = Movie(
-                    id: UUID(uuidString: from[1])!,
+                    id: UUID(uuidString: from[1]) ?? UUID(),
                     name: from[2],
                     director: from[4],
                     watchDate: try Date.ISO8601FormatStyle().parse(from[3]),
                     rating: Int(from[5])!,
                     url: from[6]
                 )
-                
+            case ContentCategories.movies.getSingularName():
+                content = Movie(
+                    id: UUID(uuidString: from[1]) ?? UUID(),
+                    name: from[2],
+                    director: from[4],
+                    watchDate: try Date.ISO8601FormatStyle().parse(from[3]),
+                    rating: Int(from[5])!,
+                    url: from[6]
+                )
             case ContentCategories.series.getName():
                 content = Series(
-                    id: UUID(uuidString: from[1])!,
+                    id: UUID(uuidString: from[1]) ?? UUID(),
                     name: from[2],
                     additionalInfo: from[4],
                     entryDate: try Date.ISO8601FormatStyle().parse(from[3]),
@@ -150,11 +167,13 @@ class BackupManager: ObservableObject {
                     url: from[6]
                 )
             default:
+                print("Could not determine category for: \(from)")
                 throw ErrorMappingContentFromString.runtimeError("Could not determine category for: \(from)")
             }
             
             return content
         } catch {
+            print("Error mapping content for: \(from)")
             throw ErrorMappingContentFromString.runtimeError("Error mapping content for: \(from)")
         }
     }

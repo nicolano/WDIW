@@ -108,7 +108,7 @@ class ContentViewModel: ObservableObject {
                 
         switch counterAlreadyInData {
         case 0:
-            ()
+            infoText += "None of them are stored in your app.\n\n"
         case 1:
             infoText += "**\(counterAlreadyInData)** of these contents is already stored in your app.\n\n"
         default:
@@ -119,9 +119,9 @@ class ContentViewModel: ObservableObject {
         case 0:
             infoText += "Therefore we did not import any new content to your app."
         case 1:
-            infoText += "We imported **\(counterNewData)** content to the app."
+            infoText += "Therefore we imported **\(counterNewData)** content to the app."
         default:
-            infoText += "We imported **\(counterNewData)** contents to the app."
+            infoText += "Therefore we imported **\(counterNewData)** contents to the app."
         }
         
         await showInfoMessage(infoText)
@@ -159,26 +159,56 @@ class ContentViewModel: ObservableObject {
         }
     }
     
-    func deleteAllMediaContent() {
-        deleteAllContentForCategory(contentCategory: .books)
-        deleteAllContentForCategory(contentCategory: .movies)
-        deleteAllContentForCategory(contentCategory: .series)
+    func deleteAllMediaContent() async {
+        let deletedBooks = await deleteAllContentForCategory(contentCategory: .books, showMessage: false)
+        let deletedMovies = await deleteAllContentForCategory(contentCategory: .movies, showMessage: false)
+        let deletedSeries = await deleteAllContentForCategory(contentCategory: .series, showMessage: false)
+        
+        let numOfDeletions = deletedBooks+deletedMovies+deletedSeries
+        switch numOfDeletions {
+        case 0:
+            await showInfoMessage("There was no content to delete.")
+        case 1:
+            await showInfoMessage("We deleted **1** entry from your app.")
+        default:
+            await showInfoMessage("We deleted **\(numOfDeletions)** entries from your app.")
+        }
     }
     
-    func deleteAllContentForCategory(contentCategory: ContentCategories) {
+    
+    func deleteAllContentForCategory(contentCategory: ContentCategories, showMessage: Bool = true) async -> Int {
+        var numOfDeletions = 0
         switch contentCategory {
         case .books:
+            numOfDeletions = books.count
             for book in books {
                 deleteContent(content: book)
             }
         case .movies:
+            numOfDeletions = movies.count
             for movie in movies {
                 deleteContent(content: movie)
             }
         case .series:
+            numOfDeletions = series.count
             for serie in series {
                 deleteContent(content: serie)
             }
         }
+        
+        if !showMessage {
+            return numOfDeletions
+        }
+        
+        switch numOfDeletions {
+        case 0:
+            await showInfoMessage("There was no content to delete.")
+        case 1:
+            await showInfoMessage("We deleted **1 \(contentCategory.getSingularName())** from your app.")
+        default:
+            await showInfoMessage("We deleted **\(numOfDeletions) \(contentCategory.getName())** from your app.")
+        }
+        
+        return numOfDeletions
     }
 }

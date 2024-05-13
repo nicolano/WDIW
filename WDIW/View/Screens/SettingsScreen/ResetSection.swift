@@ -49,7 +49,7 @@ extension ResetSection {
             }
             
             Button("Yes", role: .destructive) {
-                contentVM.deleteAllMediaContent()
+                Task { await contentVM.deleteAllMediaContent() }
             }
         }
     }
@@ -72,7 +72,7 @@ extension ResetSection {
             }
             
             Button("Yes", role: .destructive) {
-                contentVM.deleteAllContentForCategory(contentCategory: .books)
+                Task { await contentVM.deleteAllContentForCategory(contentCategory: .books) }
             }
         }
     }
@@ -95,7 +95,7 @@ extension ResetSection {
             }
             
             Button("Yes", role: .destructive) {
-                contentVM.deleteAllContentForCategory(contentCategory: .movies)
+                Task { await contentVM.deleteAllContentForCategory(contentCategory: .movies) }
             }
         }
     }
@@ -118,7 +118,7 @@ extension ResetSection {
             }
             
             Button("Yes", role: .destructive) {
-                contentVM.deleteAllContentForCategory(contentCategory: .series)
+                Task { await contentVM.deleteAllContentForCategory(contentCategory: .series) }
             }
         }
     }
