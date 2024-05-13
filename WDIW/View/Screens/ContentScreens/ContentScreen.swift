@@ -11,6 +11,9 @@ struct ContentScreen: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
     @EnvironmentObject private var contentVM: ContentViewModel
 
+    @State private var showSearch: Bool = false
+    @State private var searchQuery: String = ""
+
     let contentCategory: ContentCategories
     var contents: [MediaContent] {
         switch contentCategory {
@@ -23,6 +26,17 @@ struct ContentScreen: View {
         }
     }
     
+    var contentsFiltered: [MediaContent] {
+        if searchQuery.isEmpty {
+            contents
+        } else {
+            contents.filter { content in
+                content.name.localizedCaseInsensitiveContains(searchQuery) ||
+                content.additionalInfo.localizedCaseInsensitiveContains(searchQuery)
+            }
+        }
+    }
+    
     var body: some View {
         VStack.zeroSpacing(alignment: .leading) {
             headerSection
@@ -31,14 +45,29 @@ struct ContentScreen: View {
                 NoContentSection(contentCategory: .movies)
             } else {
                 ScrollView {
-                    ForEach(contents.indices, id: \.self) { index in
-                        ContentItem(contents[index]) {
-                            navigationVM.openEditContentSheet(content: contents[index])
+                    if showSearch {
+                        CustomTextField(value: $searchQuery, hint: "Search")
+                            .padding(.HorizontalM)
+                            .padding(.TopM)
+                            .opacity(0)
+                    }
+                    
+                    ForEach(contentsFiltered.indices, id: \.self) { index in
+                        ContentItem(contentsFiltered[index]) {
+                            navigationVM.openEditContentSheet(content: contentsFiltered[index])
                         }
                         .padding(.HorizontalM)
                         .padding(.TopS)
                     }
                     .padding(.TopS)
+                }
+                .overlay {
+                    if showSearch {
+                        CustomTextField(value: $searchQuery, hint: "Search", withShadow: true)
+                            .padding(.HorizontalM)
+                            .padding(.TopM)
+                            .align(.top)
+                    }
                 }
             }
             
@@ -52,13 +81,18 @@ extension ContentScreen {
     private var headerSection: some View {
         Header(title: contentCategory.getName()) {
             Button {
-                
+                withAnimation {
+                    showSearch.toggle()
+                }
             } label: {
-                Image(systemName: "magnifyingglass")
+                Image(systemName: showSearch ? "x.circle.fill" : "magnifyingglass")
                     .foregroundStyle(Color.Custom.primary)
                     .bold()
                     .padding(.Spacing.s)
                     .clipShape(Circle())
+                    .transaction { transaction in
+                        transaction.animation = .none
+                    }
             }
         } primaryButton: {
             Button {
