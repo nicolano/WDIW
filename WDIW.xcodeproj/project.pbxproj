@@ -61,6 +61,10 @@
 		F6D233AE2BF11EF900AC307A /* CSVInfoSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D233AD2BF11EF900AC307A /* CSVInfoSheet.swift */; };
 		F6D233B12BF121D300AC307A /* Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D233B02BF121D300AC307A /* Center.swift */; };
 		F6F5ABF62BF21742001BA30D /* InfoDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F5ABF52BF21742001BA30D /* InfoDialog.swift */; };
+		F6F5ABF82BF24CE9001BA30D /* ThemeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F5ABF72BF24CE9001BA30D /* ThemeSection.swift */; };
+		F6F5ABFA2BF258D3001BA30D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F5ABF92BF258D3001BA30D /* SettingsViewModel.swift */; };
+		F6F5ABFC2BF25C2D001BA30D /* ApplyColorSchemeApplyColorSchemeViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F5ABFB2BF25C2D001BA30D /* ApplyColorSchemeApplyColorSchemeViewModifier.swift */; };
+		F6F5ABFF2BF26052001BA30D /* ApplyAccentColorViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F5ABFE2BF26052001BA30D /* ApplyAccentColorViewModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +123,10 @@
 		F6D233AD2BF11EF900AC307A /* CSVInfoSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVInfoSheet.swift; sourceTree = "<group>"; };
 		F6D233B02BF121D300AC307A /* Center.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Center.swift; sourceTree = "<group>"; };
 		F6F5ABF52BF21742001BA30D /* InfoDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDialog.swift; sourceTree = "<group>"; };
+		F6F5ABF72BF24CE9001BA30D /* ThemeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSection.swift; sourceTree = "<group>"; };
+		F6F5ABF92BF258D3001BA30D /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		F6F5ABFB2BF25C2D001BA30D /* ApplyColorSchemeApplyColorSchemeViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyColorSchemeApplyColorSchemeViewModifier.swift; sourceTree = "<group>"; };
+		F6F5ABFE2BF26052001BA30D /* ApplyAccentColorViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyAccentColorViewModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +206,7 @@
 				F6B2F33C2B84B97B00A981C2 /* ContentCategories.swift */,
 				F6B2F33E2B84BB6C00A981C2 /* ContentViewModel.swift */,
 				F6B2F3422B85F93A00A981C2 /* NavigationViewModel.swift */,
+				F6F5ABF92BF258D3001BA30D /* SettingsViewModel.swift */,
 				F6D233A52BF0CD1F00AC307A /* PreferenceKeys.swift */,
 			);
 			path = ViewModel;
@@ -228,6 +237,7 @@
 		F6B2F32D2B84AC0300A981C2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				F6F5ABFD2BF2603D001BA30D /* ThemeModifier */,
 				F6D233AF2BF121B100AC307A /* Alignment */,
 				F6C1A6CB2BECD9A00008F236 /* Dialogs */,
 				F6C1A6BF2BECBE280008F236 /* Button */,
@@ -320,6 +330,7 @@
 				F6C1A6C32BECC07D0008F236 /* ResetSection.swift */,
 				F6C1A6C72BECD5510008F236 /* BackupSection.swift */,
 				F6D233AD2BF11EF900AC307A /* CSVInfoSheet.swift */,
+				F6F5ABF72BF24CE9001BA30D /* ThemeSection.swift */,
 			);
 			path = SettingsScreen;
 			sourceTree = "<group>";
@@ -351,6 +362,15 @@
 				F6D233B02BF121D300AC307A /* Center.swift */,
 			);
 			path = Alignment;
+			sourceTree = "<group>";
+		};
+		F6F5ABFD2BF2603D001BA30D /* ThemeModifier */ = {
+			isa = PBXGroup;
+			children = (
+				F6F5ABFB2BF25C2D001BA30D /* ApplyColorSchemeApplyColorSchemeViewModifier.swift */,
+				F6F5ABFE2BF26052001BA30D /* ApplyAccentColorViewModifier.swift */,
+			);
+			path = ThemeModifier;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -449,6 +469,7 @@
 				F66F55462B8A36A100C29AB0 /* Date.swift in Sources */,
 				F6B2F32F2B84AC1400A981C2 /* TabBarButton.swift in Sources */,
 				F6B2F30F2B849B9300A981C2 /* Item.swift in Sources */,
+				F6F5ABFF2BF26052001BA30D /* ApplyAccentColorViewModifier.swift in Sources */,
 				F6B2F30B2B849B9300A981C2 /* WDIWApp.swift in Sources */,
 				F653B1542BEB875D00913973 /* EditBookContent.swift in Sources */,
 				F6B693F12BEBF4E20085A1E3 /* MainScrollViewModifier.swift in Sources */,
@@ -460,6 +481,7 @@
 				F6B2F3362B84B2C400A981C2 /* Color.swift in Sources */,
 				F653B15B2BEBA82D00913973 /* IsFavoriteToggle.swift in Sources */,
 				F6B2F34D2B862CB200A981C2 /* Header.swift in Sources */,
+				F6F5ABFC2BF25C2D001BA30D /* ApplyColorSchemeApplyColorSchemeViewModifier.swift in Sources */,
 				F6B2F33F2B84BB6C00A981C2 /* ContentViewModel.swift in Sources */,
 				F6B693EF2BEBD88F0085A1E3 /* ContentSheetHeader.swift in Sources */,
 				F6B693F32BEBF6EB0085A1E3 /* TabBarModifier.swift in Sources */,
@@ -472,9 +494,11 @@
 				F6B693ED2BEBD5530085A1E3 /* ContentSwitch.swift in Sources */,
 				F6B2F32C2B84ABEE00A981C2 /* TabBar.swift in Sources */,
 				F6C1A6CD2BECD9B00008F236 /* LoadingDialog.swift in Sources */,
+				F6F5ABF82BF24CE9001BA30D /* ThemeSection.swift in Sources */,
 				F6B2F3222B84A43500A981C2 /* MediaContent.swift in Sources */,
 				F6B2F3242B84A61C00A981C2 /* Series.swift in Sources */,
 				F6D233AC2BF11EA500AC307A /* SheetManager.swift in Sources */,
+				F6F5ABFA2BF258D3001BA30D /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

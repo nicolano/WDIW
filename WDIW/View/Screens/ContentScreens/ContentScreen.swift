@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentScreen: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
     @EnvironmentObject private var contentVM: ContentViewModel
+    @EnvironmentObject private var settingsVM: SettingsViewModel
 
     @State private var showSearch: Bool = false
     @State private var searchQuery: String = ""
@@ -60,6 +61,8 @@ struct ContentScreen: View {
                         .padding(.TopS)
                     }
                     .padding(.TopS)
+                    
+                    Rectangle().fill(Color.clear).frame(height: 100)
                 }
                 .overlay {
                     if showSearch {
@@ -67,6 +70,7 @@ struct ContentScreen: View {
                             .padding(.HorizontalM)
                             .padding(.TopM)
                             .align(.top)
+                            .transition(ScaleTransition(0, anchor: .top))
                     }
                 }
             }
@@ -86,7 +90,6 @@ extension ContentScreen {
                 }
             } label: {
                 Image(systemName: showSearch ? "x.circle.fill" : "magnifyingglass")
-                    .foregroundStyle(Color.Custom.primary)
                     .bold()
                     .padding(.Spacing.s)
                     .clipShape(Circle())
@@ -101,7 +104,7 @@ extension ContentScreen {
                 Image(systemName: "plus")
                     .foregroundStyle(Color.Custom.onPrimary)
                     .padding(.Spacing.s)
-                    .background(Color.Custom.primary)
+                    .background(settingsVM.preferredAccentColor)
                     .clipShape(Circle())
             }
         }

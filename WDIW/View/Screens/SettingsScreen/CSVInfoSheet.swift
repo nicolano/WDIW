@@ -21,7 +21,7 @@ struct CSVInfoSheet: View {
                     } label: {
                         Image(systemName: "x.circle.fill")
                             .font(.headline)
-                            .foregroundStyle(Color.Custom.surface)
+                            .foregroundStyle(Color.accentColor)
                     }
                     .align(.topTrailing)
                     .padding(.AllS)

@@ -26,6 +26,7 @@ struct SettingsScreen: View {
             List {
                 BackupSection()                
                 ResetSection()
+                ThemeSection()
             }
             .listStyle(.sidebar)
             Spacer()

@@ -46,7 +46,7 @@ class BackupManager: ObservableObject {
                 let rating = String($0.rating)
                 let url = $0.url
                 
-                return "\(category),\(id),\(name),\(date),\(additionalInfo),\(rating),\(url)"
+                return "\(category);\(id);\(name);\(date);\(additionalInfo);\(rating);\(url)"
             }
             
             let stringData = heading + rows.joined(separator: "\n")

@@ -12,6 +12,7 @@ import SwiftData
 struct WDIWApp: App {
     @ObservedObject private var navigationVM = NavigationViewModel()
     @ObservedObject private var contentVM: ContentViewModel
+    @ObservedObject private var settingsVM = SettingsViewModel()
     
     private var sharedModelContainer: SharedModelContainer
     
@@ -26,11 +27,14 @@ struct WDIWApp: App {
         WindowGroup {
             MainScreen()
                 .sheets()
-                .environmentObject(navigationVM)
-                .environmentObject(contentVM)
                 .loadingDialog()
                 .errorDialog()
                 .infoDialog()
+                .applyAccentColor()
+                .applyColorScheme()
+                .environmentObject(settingsVM)
+                .environmentObject(navigationVM)
+                .environmentObject(contentVM)
         }
         .modelContainer(sharedModelContainer.modelContainer)
     }

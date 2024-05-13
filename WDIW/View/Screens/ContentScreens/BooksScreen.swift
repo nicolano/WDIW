@@ -10,6 +10,7 @@ import SwiftUI
 struct BooksScreen: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
     @EnvironmentObject private var contentVM: ContentViewModel
+    @EnvironmentObject private var settingsVM: SettingsViewModel
 
     let offset: CGPoint
     
@@ -24,7 +25,7 @@ struct BooksScreen: View {
                 .font(.largeTitle)
                 .opacity(hideOpacity)
                 .padding(.top, 12)
-                .foregroundStyle(Color.Custom.primary)
+                .foregroundStyle(settingsVM.preferredAccentColor)
                 .align(.topLeading)
                 .offset(x: -40)
         }

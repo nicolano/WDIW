@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TabBarButton: View {
+    @EnvironmentObject private var settingsVM: SettingsViewModel
+    
     let contentCategory: ContentCategories
     let isActive: Bool
     let onTap: () -> Void
@@ -30,7 +32,8 @@ struct TabBarButton: View {
         }
         .buttonStyle(
             TabBarButtonstyle(
-                isActive: isActive
+                isActive: isActive,
+                foregroundColor: settingsVM.preferredAccentColor
             )
         )
     }
@@ -38,20 +41,19 @@ struct TabBarButton: View {
 
 struct TabBarButtonstyle: ButtonStyle {
     let isActive: Bool
-
+    let foregroundColor: Color
+    
     func makeBody(configuration: Configuration) -> some View {
         if configuration.isPressed || isActive {
             configuration.label
                 .padding()
-                .background(
-                    .ultraThickMaterial
-                )
-                .foregroundStyle(Color.Custom.primary)
+                .background(.ultraThickMaterial)
+                .foregroundStyle(foregroundColor)
                 .clipShape(Capsule())
         } else {
             configuration.label
                 .padding()
-                .foregroundStyle(Color.Custom.primary)
+                .foregroundStyle(foregroundColor)
                 .clipShape(Capsule())
         }
     }

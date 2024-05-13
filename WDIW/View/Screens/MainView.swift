@@ -22,7 +22,7 @@ struct MainScreen: View {
             default:
                 ContentOverView()
                     .transition(.move(edge: .trailing))
-                    .zIndex(10)
+                    .zIndex(10)                
             }
         }
         // Sensory Feedback when moving to settings screen
