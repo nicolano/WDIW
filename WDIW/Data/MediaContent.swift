@@ -19,4 +19,6 @@ protocol MediaContent {
     var rating: Int { get }
     
     var isValid: Bool { get }
+    
+    var asString: String { get }
 }

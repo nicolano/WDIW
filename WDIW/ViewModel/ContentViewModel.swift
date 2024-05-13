@@ -7,13 +7,36 @@
 
 import Foundation
 import SwiftData
+import Combine
 
+@MainActor
 class ContentViewModel: ObservableObject {
     var modelContext: ModelContext
-    @Published var mediaContents = [MediaContent]()
+    
     @Published var movies = [Movie]()
     @Published var books = [Book]()
     @Published var series = [Series]()
+    
+    var mediaContents: [MediaContent] {
+        var mediaContents = books.map({$0 as MediaContent})
+        mediaContents.append(contentsOf: movies.map({$0 as MediaContent}))
+        mediaContents.append(contentsOf: series.map({$0 as MediaContent}))
+        return mediaContents
+    }
+    
+    @Published var infoMessage: String? = nil
+    private func showInfoMessage(_ text: String) async {
+        infoMessage = text
+        try? await Task.sleep(nanoseconds: 1_000_000_000)
+        infoMessage = nil
+    }
+    
+    @Published var errorMessage: String? = nil
+    private func showErrorMessage(_ text: String) async {
+        errorMessage = text
+        try? await Task.sleep(nanoseconds: 1_000_000_000)
+        errorMessage = nil
+    }
     
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
@@ -32,7 +55,6 @@ class ContentViewModel: ObservableObject {
                 sortBy: [SortDescriptor(\.date)]
             )
             movies = try modelContext.fetch(descriptor)
-            mediaContents.append(contentsOf: movies)
         } catch {
             print("Fetch for movies failed.")
         }
@@ -44,7 +66,6 @@ class ContentViewModel: ObservableObject {
                 sortBy: [SortDescriptor(\.date)]
             )
             books = try modelContext.fetch(descriptor)
-            mediaContents.append(contentsOf: movies)
         } catch {
             print("Fetch for books failed.")
         }
@@ -56,10 +77,54 @@ class ContentViewModel: ObservableObject {
                 sortBy: [SortDescriptor(\.date)]
             )
             series = try modelContext.fetch(descriptor)
-            mediaContents.append(contentsOf: movies)
         } catch {
             print("Fetch for series failed.")
         }
+    }
+    
+    func importContents(contents: [MediaContent]) async {
+        var counterNewData: Int = 0
+        var counterAlreadyInData: Int = 0
+        for content in contents {
+            if !mediaContents.map({$0.id}).contains(content.id) {
+                addContent(content: content)
+                counterNewData += 1
+            } else {
+                counterAlreadyInData += 1
+            }
+        }
+        
+        var infoText = ""
+        
+        switch contents.count {
+        case 0:
+            await showErrorMessage("We did not find any content in your file.")
+            return
+        case 1:
+            infoText += "We found **\(contents.count)** content in your file.\n\n"
+        default:
+            infoText += "We found **\(contents.count)** contents in your file.\n\n"
+        }
+                
+        switch counterAlreadyInData {
+        case 0:
+            ()
+        case 1:
+            infoText += "**\(counterAlreadyInData)** of these contents is already stored in your app.\n\n"
+        default:
+            infoText += "**\(counterAlreadyInData)** of these contents are already stored in your app.\n\n"
+        }
+        
+        switch counterNewData {
+        case 0:
+            infoText += "Therefore we did not import any new content to your app."
+        case 1:
+            infoText += "We imported **\(counterNewData)** content to the app."
+        default:
+            infoText += "We imported **\(counterNewData)** contents to the app."
+        }
+        
+        await showInfoMessage(infoText)
     }
     
     func addContent(content: MediaContent) {
@@ -115,9 +180,5 @@ class ContentViewModel: ObservableObject {
                 deleteContent(content: serie)
             }
         }
-    }
-
-    func writeToFile() {
-        
     }
 }

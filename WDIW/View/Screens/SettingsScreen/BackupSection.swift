@@ -7,25 +7,40 @@
 
 import SwiftUI
 
+struct URLWrapper: Identifiable {
+    var id: UUID
+    let url: URL
+}
+
 struct BackupSection: View {
     @EnvironmentObject private var contentVM: ContentViewModel
     @EnvironmentObject private var navigationVM: NavigationViewModel
     
     @StateObject private var backupManager = BackupManager()
     @State private var exportUrl: URLWrapper? = nil
-    
+    @State private var fileImporterIsOpen: Bool = false
+
     var body: some View {
         Section(
             header: Text("Import and Export Data"),
             footer: footer
         ) {
             Button {
-//                backupManager.testIsLoading()
+                fileImporterIsOpen = true
             } label: {
                 Label(
                     "Import from CSV File",
                     systemImage: "square.and.arrow.down"
                 )
+            }
+            .fileImporter(
+                isPresented: $fileImporterIsOpen,
+                allowedContentTypes: [.plainText]
+            ) { result in
+                Task {
+                    let contents = await backupManager.generateContentsFromFile(result)
+                    await contentVM.importContents(contents: contents)
+                }
             }
             
             Button {
@@ -44,6 +59,7 @@ struct BackupSection: View {
             }
             .preference(key: LoadingPreferenceKey.self, value: backupManager.isLoading)
             .preference(key: ErrorPreferenceKey.self, value: backupManager.errorMessage)
+            .preference(key: InfoPreferenceKey.self, value: contentVM.infoMessage)
         }
         .headerProminence(.increased)
         .sheet(item: $exportUrl, onDismiss: {
@@ -52,11 +68,6 @@ struct BackupSection: View {
             ActivityViewController(exportUrl: exportUrl)
         })
     }
-}
-
-struct URLWrapper: Identifiable {
-    var id: UUID
-    let url: URL
 }
 
 struct ActivityViewController: UIViewControllerRepresentable {

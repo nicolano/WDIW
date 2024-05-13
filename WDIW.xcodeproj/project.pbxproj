@@ -60,6 +60,7 @@
 		F6D233AC2BF11EA500AC307A /* SheetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D233AB2BF11EA500AC307A /* SheetManager.swift */; };
 		F6D233AE2BF11EF900AC307A /* CSVInfoSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D233AD2BF11EF900AC307A /* CSVInfoSheet.swift */; };
 		F6D233B12BF121D300AC307A /* Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D233B02BF121D300AC307A /* Center.swift */; };
+		F6F5ABF62BF21742001BA30D /* InfoDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F5ABF52BF21742001BA30D /* InfoDialog.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +118,7 @@
 		F6D233AB2BF11EA500AC307A /* SheetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetManager.swift; sourceTree = "<group>"; };
 		F6D233AD2BF11EF900AC307A /* CSVInfoSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVInfoSheet.swift; sourceTree = "<group>"; };
 		F6D233B02BF121D300AC307A /* Center.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Center.swift; sourceTree = "<group>"; };
+		F6F5ABF52BF21742001BA30D /* InfoDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDialog.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,6 +330,7 @@
 				F6D233A92BF0D46600AC307A /* Dialog.swift */,
 				F6C1A6CC2BECD9B00008F236 /* LoadingDialog.swift */,
 				F6D233A72BF0D44400AC307A /* ErrorDialog.swift */,
+				F6F5ABF52BF21742001BA30D /* InfoDialog.swift */,
 			);
 			path = Dialogs;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				F6B2F3432B85F93A00A981C2 /* NavigationViewModel.swift in Sources */,
 				F6D233A62BF0CD1F00AC307A /* PreferenceKeys.swift in Sources */,
 				F6B2F34A2B86286A00A981C2 /* NoContentSection.swift in Sources */,
+				F6F5ABF62BF21742001BA30D /* InfoDialog.swift in Sources */,
 				F6D233A82BF0D44400AC307A /* ErrorDialog.swift in Sources */,
 				F6D233B12BF121D300AC307A /* Center.swift in Sources */,
 				F6D233A32BF0BE1B00AC307A /* ContentSheet.swift in Sources */,

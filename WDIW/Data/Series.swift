@@ -58,4 +58,8 @@ import SwiftData
         
         return true
     }
+    
+    var asString: String {
+        "\(self.name), \(self.date.ISO8601Format()), \(self.additionalInfo), \(self.rating), \(self.url)"
+    }
 }

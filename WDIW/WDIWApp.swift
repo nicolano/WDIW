@@ -30,6 +30,7 @@ struct WDIWApp: App {
                 .environmentObject(contentVM)
                 .loadingDialog()
                 .errorDialog()
+                .infoDialog()
         }
         .modelContainer(sharedModelContainer.modelContainer)
     }

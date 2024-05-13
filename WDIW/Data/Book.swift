@@ -80,6 +80,6 @@ import SwiftData
     }
 
     var asString: String {
-        "\(self.name), \(self.date.ISO8601Format()), \(self.author), \(self.url)"
+        "\(self.name), \(self.date.ISO8601Format()), \(self.author), \(self.isFavorite), \(self.url)"
     }
 }

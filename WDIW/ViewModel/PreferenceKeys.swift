@@ -21,6 +21,13 @@ struct ErrorPreferenceKey: PreferenceKey {
     }
 }
 
+struct InfoPreferenceKey: PreferenceKey {
+    static var defaultValue: String? = nil
+    static func reduce(value: inout String?, nextValue: () -> String?) {
+        value = value ?? nextValue()
+    }
+}
+
 struct ScrollOffsetPreferenceKey: PreferenceKey {
     static var defaultValue: CGPoint = .zero
     static func reduce(value: inout CGPoint, nextValue: () -> CGPoint) { }
