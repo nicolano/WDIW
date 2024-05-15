@@ -13,6 +13,7 @@ enum ContentSheetType {
 
 struct ContentSheet: View {
     @EnvironmentObject private var contentVM: ContentViewModel
+    @EnvironmentObject private var navigationVM: NavigationViewModel
     @Environment(\.dismiss) var dismiss
     
     internal init(contentCategory: ContentCategories) {
@@ -40,10 +41,13 @@ struct ContentSheet: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            ContentSheetHeader(title: title, content: content) {
+            ContentSheetHeader(title: title, content: content, type: type) {
                 dismiss()
             } onSave: {
                 contentVM.addContent(content: content)
+                navigationVM.navigateToContentCategory(category: ContentCategories.getCategoryFor(mediaContent: content))
+            } onCategoryChange: { category in
+                self.content = category.getEmptyContent
             }
             
             ContentSwitch(content: $content) { book in
@@ -76,7 +80,7 @@ struct ContentSheet: View {
             }
             
             Spacer()
-        }
+        }        
     }
 }
 

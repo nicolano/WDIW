@@ -25,17 +25,8 @@ struct TabBar: View {
                 VStack {
                     Spacer()
                     
-                    Button {
+                    NewButton(backgroundColor: settingsVM.preferredAccentColor) {
                         navigationVM.openAddContentSheet(contentCategory: activeCategory)
-                    } label: {
-                        Text("New \(activeCategory.getSingularName())")
-                            .foregroundStyle(Color.Custom.onPrimary)
-                            .padding(.Spacing.s)
-                            .background {
-                                RoundedRectangle(cornerRadius: .CornerRadius.contentItem)
-                                    .fill(settingsVM.preferredAccentColor)
-                                    .shadow(radius: 3)
-                            }
                     }
                     .align(.trailing)
                     

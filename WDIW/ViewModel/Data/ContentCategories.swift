@@ -70,3 +70,7 @@ enum ContentCategories {
         fatalError("Could not determine category of media content")
     }
 }
+
+extension ContentCategories {
+    static var iterator: [ContentCategories] = [.books, .movies, .series]
+}

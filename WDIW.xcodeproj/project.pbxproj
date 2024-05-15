@@ -60,6 +60,8 @@
 		F6D233AC2BF11EA500AC307A /* SheetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D233AB2BF11EA500AC307A /* SheetManager.swift */; };
 		F6D233AE2BF11EF900AC307A /* CSVInfoSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D233AD2BF11EF900AC307A /* CSVInfoSheet.swift */; };
 		F6D233B12BF121D300AC307A /* Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D233B02BF121D300AC307A /* Center.swift */; };
+		F6DC1C592BF4E414003D44EC /* NewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DC1C582BF4E414003D44EC /* NewButton.swift */; };
+		F6DC1C5B2BF4E72C003D44EC /* ForEachCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DC1C5A2BF4E72C003D44EC /* ForEachCategory.swift */; };
 		F6F5ABF62BF21742001BA30D /* InfoDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F5ABF52BF21742001BA30D /* InfoDialog.swift */; };
 		F6F5ABF82BF24CE9001BA30D /* ThemeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F5ABF72BF24CE9001BA30D /* ThemeSection.swift */; };
 		F6F5ABFA2BF258D3001BA30D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F5ABF92BF258D3001BA30D /* SettingsViewModel.swift */; };
@@ -122,6 +124,8 @@
 		F6D233AB2BF11EA500AC307A /* SheetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetManager.swift; sourceTree = "<group>"; };
 		F6D233AD2BF11EF900AC307A /* CSVInfoSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVInfoSheet.swift; sourceTree = "<group>"; };
 		F6D233B02BF121D300AC307A /* Center.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Center.swift; sourceTree = "<group>"; };
+		F6DC1C582BF4E414003D44EC /* NewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewButton.swift; sourceTree = "<group>"; };
+		F6DC1C5A2BF4E72C003D44EC /* ForEachCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEachCategory.swift; sourceTree = "<group>"; };
 		F6F5ABF52BF21742001BA30D /* InfoDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDialog.swift; sourceTree = "<group>"; };
 		F6F5ABF72BF24CE9001BA30D /* ThemeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSection.swift; sourceTree = "<group>"; };
 		F6F5ABF92BF258D3001BA30D /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
@@ -203,7 +207,7 @@
 		F6B2F31A2B849BBE00A981C2 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				F6B2F33C2B84B97B00A981C2 /* ContentCategories.swift */,
+				F6DC1C5C2BF4E770003D44EC /* Data */,
 				F6B2F33E2B84BB6C00A981C2 /* ContentViewModel.swift */,
 				F6B2F3422B85F93A00A981C2 /* NavigationViewModel.swift */,
 				F6F5ABF92BF258D3001BA30D /* SettingsViewModel.swift */,
@@ -310,6 +314,7 @@
 				F6B693EC2BEBD5530085A1E3 /* ContentSwitch.swift */,
 				F6B693F02BEBF4E20085A1E3 /* MainScrollViewModifier.swift */,
 				F6D233AB2BF11EA500AC307A /* SheetManager.swift */,
+				F6DC1C5A2BF4E72C003D44EC /* ForEachCategory.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -319,6 +324,7 @@
 			children = (
 				F6C1A6C02BECBE380008F236 /* DeleteButton.swift */,
 				F6C1A6C52BECC4620008F236 /* FavButton.swift */,
+				F6DC1C582BF4E414003D44EC /* NewButton.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -362,6 +368,14 @@
 				F6D233B02BF121D300AC307A /* Center.swift */,
 			);
 			path = Alignment;
+			sourceTree = "<group>";
+		};
+		F6DC1C5C2BF4E770003D44EC /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F6B2F33C2B84B97B00A981C2 /* ContentCategories.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		F6F5ABFD2BF2603D001BA30D /* ThemeModifier */ = {
@@ -455,6 +469,7 @@
 				F66F55442B8A1DE400C29AB0 /* BackupManager.swift in Sources */,
 				F653B1572BEB8AC700913973 /* CustomTextField.swift in Sources */,
 				F6B2F31E2B84A1F000A981C2 /* Book.swift in Sources */,
+				F6DC1C592BF4E414003D44EC /* NewButton.swift in Sources */,
 				F6C1A6C62BECC4620008F236 /* FavButton.swift in Sources */,
 				F6B2F33D2B84B97B00A981C2 /* ContentCategories.swift in Sources */,
 				F6C1A6C82BECD5510008F236 /* BackupSection.swift in Sources */,
@@ -472,6 +487,7 @@
 				F6F5ABFF2BF26052001BA30D /* ApplyAccentColorViewModifier.swift in Sources */,
 				F6B2F30B2B849B9300A981C2 /* WDIWApp.swift in Sources */,
 				F653B1542BEB875D00913973 /* EditBookContent.swift in Sources */,
+				F6DC1C5B2BF4E72C003D44EC /* ForEachCategory.swift in Sources */,
 				F6B693F12BEBF4E20085A1E3 /* MainScrollViewModifier.swift in Sources */,
 				F6C1A6C42BECC07D0008F236 /* ResetSection.swift in Sources */,
 				F6B2F3452B860B1900A981C2 /* SettingsScreen.swift in Sources */,
