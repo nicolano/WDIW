@@ -29,10 +29,19 @@ struct MovieItem: View {
 
             Spacer(minLength: 0)
             
-            Group {
-                Text("\(Int(movie.rating))") + Text("/10")
+            VStack {
+                Group {
+                    Text("\(Int(movie.rating))") + Text("/10")
+                }
+                .foregroundStyle(Color.yellow)
+                
+                Spacer()
+                
+//                Image("imdb-logo")
+//                    .resizable()
+//                    .scaledToFit()
+//                    .frame(height: 36)
             }
-            .foregroundStyle(Color.yellow)
         }
     }
 }

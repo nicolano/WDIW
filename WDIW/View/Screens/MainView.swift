@@ -39,6 +39,8 @@ struct MainScreen: View {
                     .fill(Color.Custom.surface)
                     .ignoresSafeArea(edges: .top)
                     .frame(height: 70)
+                    .shadow(radius: 2)
+                    .blur(radius: 5)
                 
                 Spacer()
             }

@@ -7,18 +7,30 @@
 
 import SwiftUI
 
-struct CustomTextField: View {
-    init(value: Binding<String>, title: String? = nil, hint: String = "...", withShadow: Bool = false) {
+struct CustomTextField<LeadingContent: View, TrailingContent: View>: View {
+    init(
+        value: Binding<String>,
+        title: String? = nil,
+        hint: String = "...",
+        withShadow: Bool = false,
+        @ViewBuilder leadingContent: @escaping () -> LeadingContent,
+        @ViewBuilder trailingContent: @escaping () -> TrailingContent
+    ) {
         self._value = value
         self.title = title
         self.hint = hint
         self.withShadow = withShadow
+        self.leadingContent = leadingContent
+        self.trailingContent = trailingContent
     }
     
     @Binding var value: String
     private let title: String?
     private let hint: String
     private let withShadow: Bool
+    private let leadingContent: () -> LeadingContent
+    private let trailingContent: () -> TrailingContent
+
     
     var body: some View {
         VStack.zeroSpacing {
@@ -29,8 +41,14 @@ struct CustomTextField: View {
                     .padding(.BottomXS)
             }
             
-            TextField(text: $value) {
-                Text(hint)
+            HStack {
+                leadingContent()
+                
+                TextField(text: $value) {
+                    Text(hint)
+                }
+                
+                trailingContent()
             }
             .padding(.AllS)
             .background {
@@ -47,6 +65,52 @@ struct CustomTextField: View {
     }
 }
 
-#Preview {
-    CustomTextField(value: .constant(""))
+extension CustomTextField where TrailingContent == EmptyView {
+    init(
+        value: Binding<String>,
+        title: String? = nil,
+        hint: String = "...",
+        withShadow: Bool = false,
+        @ViewBuilder leadingContent: @escaping () -> LeadingContent
+    ) {
+        self._value = value
+        self.title = title
+        self.hint = hint
+        self.withShadow = withShadow
+        self.leadingContent = leadingContent
+        self.trailingContent = {EmptyView()}
+    }
+}
+
+extension CustomTextField where LeadingContent == EmptyView {
+    init(
+        value: Binding<String>,
+        title: String? = nil,
+        hint: String = "...",
+        withShadow: Bool = false,
+        @ViewBuilder trailingContent: @escaping () -> TrailingContent
+    ) {
+        self._value = value
+        self.title = title
+        self.hint = hint
+        self.withShadow = withShadow
+        self.leadingContent = {EmptyView()}
+        self.trailingContent = trailingContent
+    }
+}
+
+extension CustomTextField where LeadingContent == EmptyView, TrailingContent == EmptyView {
+    init(
+        value: Binding<String>,
+        title: String? = nil,
+        hint: String = "...",
+        withShadow: Bool = false
+    ) {
+        self._value = value
+        self.title = title
+        self.hint = hint
+        self.withShadow = withShadow
+        self.leadingContent = {EmptyView()}
+        self.trailingContent = {EmptyView()}
+    }
 }

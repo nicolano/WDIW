@@ -15,6 +15,8 @@ struct SettingsScreen: View {
         VStack(spacing: 0) {
             Header(title: "Settings") {
                 
+            } secondaryButton: {
+                
             } primaryButton: {
                 Button {
                     navigationVM.navigateToContents()

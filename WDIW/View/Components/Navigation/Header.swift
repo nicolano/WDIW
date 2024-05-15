@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct Header<Content1: View, Content2: View>: View {
+struct Header<Content1: View, Content2: View, Content3: View>: View {
     let title: String
-    @ViewBuilder let secondaryButton: Content1
-    @ViewBuilder let primaryButton: Content2
+    @ViewBuilder let tertiaryButton: Content1
+    @ViewBuilder let secondaryButton: Content2
+    @ViewBuilder let primaryButton: Content3
     
     var body: some View {
         HStack {
@@ -19,6 +20,8 @@ struct Header<Content1: View, Content2: View>: View {
                 .fontWeight(.black)
             
             Spacer()
+            
+            tertiaryButton
             
             secondaryButton
             
@@ -29,13 +32,4 @@ struct Header<Content1: View, Content2: View>: View {
         .padding(.bottom, .Spacing.m)
         .frame(height: 70)
     }
-}
-
-#Preview {
-    Header(title: "Settings") {
-        
-    } primaryButton: {
-        
-    }
-
 }

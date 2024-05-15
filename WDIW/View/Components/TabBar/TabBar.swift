@@ -9,6 +9,8 @@ import SwiftUI
 
 struct TabBar: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
+    @EnvironmentObject private var settingsVM: SettingsViewModel
+
     
     @State var activeCategory: ContentCategories = .books
     var offset: CGFloat = 0
@@ -22,6 +24,20 @@ struct TabBar: View {
             GeometryReader { geo in
                 VStack {
                     Spacer()
+                    
+                    Button {
+                        navigationVM.openAddContentSheet(contentCategory: activeCategory)
+                    } label: {
+                        Text("New \(activeCategory.getSingularName())")
+                            .foregroundStyle(Color.Custom.onPrimary)
+                            .padding(.Spacing.s)
+                            .background {
+                                RoundedRectangle(cornerRadius: .CornerRadius.contentItem)
+                                    .fill(settingsVM.preferredAccentColor)
+                                    .shadow(radius: 3)
+                            }
+                    }
+                    .align(.trailing)
                     
                     HStack(spacing: 0) {
                         booksButton

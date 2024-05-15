@@ -12,6 +12,10 @@ enum ErrorMappingContentFromString: Error {
     case runtimeError(String)
 }
 
+enum ErrorAccessingFile: Error {
+    case runtimeError(String)
+}
+
 @MainActor
 class BackupManager: ObservableObject {
     @Published var isLoading: Bool = false
@@ -77,15 +81,15 @@ class BackupManager: ObservableObject {
         
         switch result {
         case .success(let file):
-            let content = getContentFromFile(url: file.absoluteURL)
+            let content = await getContentFromFile(url: file.absoluteURL)
             
             
             isLoading = false
-            if content.isEmpty {
+            if let content = content, content.isEmpty {
                 await self.showErrorMessage("We could not extract any data from the file. Make sure that the file is formatted correctly and try again.")
             }
             
-            return content
+            return content ?? []
         case .failure(let error):
             await self.showErrorMessage(error.localizedDescription)
         }
@@ -94,26 +98,43 @@ class BackupManager: ObservableObject {
         return []
     }
     
-    private func getContentFromFile(url: URL) -> [MediaContent] {
+    private func getContentFromFile(url: URL) async -> [MediaContent]? {
+        var errorMappingContentCount = 0
+        
+        guard url.startAccessingSecurityScopedResource() else {
+            print("startAccessingSecurityScopedResource returned false")
+            await self.showErrorMessage("We could not open the file")
+            return nil
+        }
+
+        var content = ""
         do {
-            let content = try String(contentsOf: url)
-            var parsedCSV: [[String]] = content
-                .components(separatedBy: "\n")
-                .map { return $0.components(separatedBy: ";") }
-            // Remove first line
-            parsedCSV.remove(at: 0)
-            
-            var mappedContents: [MediaContent] = []
+            content = try String(contentsOf: url)
+        } catch {
+            print(error)
+            await self.showErrorMessage("We could not open the file")
+            return nil
+        }
+        
+        var parsedCSV: [[String]] = content
+            .components(separatedBy: "\n")
+            .map { return $0.components(separatedBy: ";") }
+        // Remove first line
+        parsedCSV.remove(at: 0)
+        
+        var mappedContents: [MediaContent] = []
+        do {
             for line in parsedCSV {
                 mappedContents.append(try mapConentent(from: line))
             }
-            
-            return mappedContents
-        } catch is ErrorMappingContentFromString {
-            return []
         } catch {
-            return []
+            if errorMappingContentCount == 0 {
+                await self.showErrorMessage("We could not import all contents from the file")
+            }
+            errorMappingContentCount += 1
         }
+        
+        return mappedContents
     }
     
     private func mapConentent(from: [String]) throws -> MediaContent {
