@@ -22,7 +22,7 @@ struct BackupSection: View {
 
     var body: some View {
         Section(
-            header: Text("Import and Export Data"),
+            header: Label("Import and Export Data", systemImage: "arrow.up.arrow.down"),
             footer: footer
         ) {
             Button {
@@ -54,7 +54,7 @@ struct BackupSection: View {
             } label: {
                 Label(
                     "Export as CSV File",
-                    systemImage: "list.bullet.rectangle.portrait"
+                    systemImage: "square.and.arrow.up"
                 )
             }
             .preference(key: LoadingPreferenceKey.self, value: backupManager.isLoading)

@@ -15,8 +15,9 @@ struct NewButton: View {
         Button {
             onTap()
         } label: {
-            Text("New")
+            Image(systemName: "plus")
                 .bold()
+                .font(.title)
                 .foregroundStyle(Color.Custom.onPrimary)
                 .padding(.Spacing.s)
         }
@@ -30,7 +31,8 @@ struct NewButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .background {
-                RoundedRectangle(cornerRadius: .CornerRadius.contentItem)
+//                RoundedRectangle(cornerRadius: .CornerRadius.contentItem)
+                Circle()
                     .fill(backgroundColor)
                     .shadow(radius: 3)
             }

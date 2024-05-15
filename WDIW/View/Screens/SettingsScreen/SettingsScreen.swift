@@ -24,7 +24,6 @@ struct SettingsScreen: View {
                     Text("Back").padding(.horizontal)
                 }
             }
-            .padding(.BottomS)
             
             List {
                 BackupSection()     

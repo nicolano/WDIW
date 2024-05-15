@@ -12,7 +12,7 @@ struct ThemeSection: View {
         
     var body: some View {
         Section(
-            header: Text("Theme")
+            header: Label("Theme", systemImage: "paintbrush.fill")
         ) {
             HStack {
                 Text("Color Scheme")

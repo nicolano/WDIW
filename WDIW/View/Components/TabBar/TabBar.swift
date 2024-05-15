@@ -28,7 +28,7 @@ struct TabBar: View {
                     NewButton(backgroundColor: settingsVM.preferredAccentColor) {
                         navigationVM.openAddContentSheet(contentCategory: activeCategory)
                     }
-                    .align(.trailing)
+//                    .align(.trailing)
                     
                     HStack(spacing: 0) {
                         booksButton

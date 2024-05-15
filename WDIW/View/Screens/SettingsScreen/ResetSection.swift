@@ -17,7 +17,7 @@ struct ResetSection: View {
 
     var body: some View {
         Section(
-            header: Text("Reset"),
+            header: Label("Reset", systemImage: "arrow.counterclockwise"),
             footer: Text("These actions cannot be undone, so be careful!")
         ) {
             deleteAllData
