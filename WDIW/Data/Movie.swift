@@ -19,31 +19,35 @@ import SwiftData
 @Model class Movie: MediaContent {
     @Attribute(.unique) var id: UUID
     var name: String
+    var creator: String
     var additionalInfo: String
     var date: Date
     var rating: Int
     var url: String
+    var imageUrl: String = ""
 
-    init(id: UUID, name: String, director: String, watchDate: Date, rating: Int, url: String) {
+    init(id: UUID, name: String, director: String, additionalInfo: String, watchDate: Date, rating: Int, url: String) {
         self.id = id
         self.name = name
-        self.additionalInfo = director
+        self.creator = director
+        self.additionalInfo = additionalInfo
         self.date = watchDate
         self.rating = rating
         self.url = url
     }
     
-    init(name: String, director: String, watchDate: Date, rating: Int, url: String) {
+    init(name: String, director: String, additionalInfo: String, watchDate: Date, rating: Int, url: String) {
         self.id = UUID()
         self.name = name
         self.date = watchDate
-        self.additionalInfo = director
+        self.creator = director
+        self.additionalInfo = additionalInfo
         self.rating = rating
         self.url = url
     }
     
     static var empty: Movie {
-        return Movie(name: "", director: "", watchDate: Date(), rating: -1, url: "")
+        return Movie(name: "", director: "", additionalInfo: "", watchDate: Date(), rating: -1, url: "")
     }
     
     /// Returns true if the `name` and `rating` field of the movie has an non empty value.
@@ -59,7 +63,17 @@ import SwiftData
         return true
     }
     
+    /// Mask for the additional info field, which is the author.
+    var director: String {
+        get {
+            self.creator
+        }
+        set {
+            self.creator = newValue
+        }
+    }
+    
     var asString: String {
-        "\(self.name), \(self.date.ISO8601Format()), \(self.additionalInfo), \(self.rating), \(self.url)"
+        "\(self.name), \(self.date.ISO8601Format()), \(self.creator), \(self.additionalInfo), \(self.rating), \(self.url)"
     }
 }

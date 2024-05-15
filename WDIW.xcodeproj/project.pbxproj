@@ -298,11 +298,9 @@
 		F6B2F3462B861A5500A981C2 /* ContentSheet */ = {
 			isa = PBXGroup;
 			children = (
+				F6DC1C5D2BF4EDF1003D44EC /* EditContent */,
 				F6D233A22BF0BE1B00AC307A /* ContentSheet.swift */,
 				F6B693EE2BEBD88F0085A1E3 /* ContentSheetHeader.swift */,
-				F653B1532BEB875D00913973 /* EditBookContent.swift */,
-				F6B693E62BEBCE340085A1E3 /* EditMovieContent.swift */,
-				F6B693EA2BEBD0070085A1E3 /* EditSeriesContent.swift */,
 			);
 			path = ContentSheet;
 			sourceTree = "<group>";
@@ -376,6 +374,16 @@
 				F6B2F33C2B84B97B00A981C2 /* ContentCategories.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		F6DC1C5D2BF4EDF1003D44EC /* EditContent */ = {
+			isa = PBXGroup;
+			children = (
+				F653B1532BEB875D00913973 /* EditBookContent.swift */,
+				F6B693E62BEBCE340085A1E3 /* EditMovieContent.swift */,
+				F6B693EA2BEBD0070085A1E3 /* EditSeriesContent.swift */,
+			);
+			path = EditContent;
 			sourceTree = "<group>";
 		};
 		F6F5ABFD2BF2603D001BA30D /* ThemeModifier */ = {

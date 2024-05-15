@@ -14,7 +14,9 @@ struct EditMovieContent: View {
         VStack.spacingM {
             CustomTextField(value: $movie.name, title: "Name")
             
-            CustomTextField(value: $movie.additionalInfo, title: "Additional Informations")
+            CustomTextField(value: $movie.director, title: "Director")
+
+            CustomTextField(value: $movie.additionalInfo, title: "Additional Informations", lineLimit: 5)
 
             RatingEditor(value: $movie.rating, title: "Rating")
 

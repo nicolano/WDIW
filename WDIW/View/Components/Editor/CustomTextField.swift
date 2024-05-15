@@ -12,6 +12,7 @@ struct CustomTextField<LeadingContent: View, TrailingContent: View>: View {
         value: Binding<String>,
         title: String? = nil,
         hint: String = "...",
+        lineLimit: Int = 1,
         withShadow: Bool = false,
         @ViewBuilder leadingContent: @escaping () -> LeadingContent,
         @ViewBuilder trailingContent: @escaping () -> TrailingContent
@@ -19,6 +20,7 @@ struct CustomTextField<LeadingContent: View, TrailingContent: View>: View {
         self._value = value
         self.title = title
         self.hint = hint
+        self.lineLimit = lineLimit
         self.withShadow = withShadow
         self.leadingContent = leadingContent
         self.trailingContent = trailingContent
@@ -27,6 +29,7 @@ struct CustomTextField<LeadingContent: View, TrailingContent: View>: View {
     @Binding var value: String
     private let title: String?
     private let hint: String
+    private let lineLimit: Int
     private let withShadow: Bool
     private let leadingContent: () -> LeadingContent
     private let trailingContent: () -> TrailingContent
@@ -44,10 +47,11 @@ struct CustomTextField<LeadingContent: View, TrailingContent: View>: View {
             HStack {
                 leadingContent()
                 
-                TextField(text: $value) {
-                    Text(hint)
-                }
                 
+                TextField(hint, text: $value, axis: .vertical)
+                    .lineLimit(lineLimit, reservesSpace: true)
+                    .multilineTextAlignment(.leading)
+
                 trailingContent()
             }
             .padding(.AllS)
@@ -70,12 +74,14 @@ extension CustomTextField where TrailingContent == EmptyView {
         value: Binding<String>,
         title: String? = nil,
         hint: String = "...",
+        lineLimit: Int = 1,
         withShadow: Bool = false,
         @ViewBuilder leadingContent: @escaping () -> LeadingContent
     ) {
         self._value = value
         self.title = title
         self.hint = hint
+        self.lineLimit = lineLimit
         self.withShadow = withShadow
         self.leadingContent = leadingContent
         self.trailingContent = {EmptyView()}
@@ -87,12 +93,14 @@ extension CustomTextField where LeadingContent == EmptyView {
         value: Binding<String>,
         title: String? = nil,
         hint: String = "...",
+        lineLimit: Int = 1,
         withShadow: Bool = false,
         @ViewBuilder trailingContent: @escaping () -> TrailingContent
     ) {
         self._value = value
         self.title = title
         self.hint = hint
+        self.lineLimit = lineLimit
         self.withShadow = withShadow
         self.leadingContent = {EmptyView()}
         self.trailingContent = trailingContent
@@ -104,11 +112,13 @@ extension CustomTextField where LeadingContent == EmptyView, TrailingContent == 
         value: Binding<String>,
         title: String? = nil,
         hint: String = "...",
+        lineLimit: Int = 1,
         withShadow: Bool = false
     ) {
         self._value = value
         self.title = title
         self.hint = hint
+        self.lineLimit = lineLimit
         self.withShadow = withShadow
         self.leadingContent = {EmptyView()}
         self.trailingContent = {EmptyView()}

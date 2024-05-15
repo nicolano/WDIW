@@ -15,7 +15,9 @@ struct EditBookContent: View {
             CustomTextField(value: $book.name, title: "Name")
             
             CustomTextField(value: $book.author, title: "Author")
-                        
+                       
+            CustomTextField(value: $book.additionalInfo, title: "Additional Informations", lineLimit: 5)
+            
             CustomDateField(value: $book.date, title: "Date")
             
             IsFavoriteToggle(value: $book.isFavorite, title: "Favorite")

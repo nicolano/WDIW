@@ -24,13 +24,15 @@ struct SettingsScreen: View {
                     Text("Back").padding(.horizontal)
                 }
             }
+            .padding(.BottomS)
             
             List {
-                BackupSection()                
+                BackupSection()     
                 ResetSection()
                 ThemeSection()
             }
             .listStyle(.sidebar)
+
             Spacer()
         }
         .ignoresSafeArea(.all, edges: .bottom)

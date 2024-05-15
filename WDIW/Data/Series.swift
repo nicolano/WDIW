@@ -19,13 +19,16 @@ import SwiftData
 @Model class Series: MediaContent {
     @Attribute(.unique) var id: UUID
     var name: String
+    var creator: String = ""
     var additionalInfo: String
     var date: Date
     var rating: Int
     var url: String
+    var imageUrl: String = ""
 
-    init(id: UUID, name: String, additionalInfo: String, entryDate: Date, rating: Int, url: String) {
+    init(id: UUID, name: String, directors: String, additionalInfo: String, entryDate: Date, rating: Int, url: String) {
         self.id = id
+        self.creator = directors
         self.additionalInfo = additionalInfo
         self.name = name
         self.date = entryDate
@@ -33,8 +36,9 @@ import SwiftData
         self.url = url
     }
     
-    init(name: String, additionalInfo: String, entryDate: Date, rating: Int, url: String) {
+    init(name: String, directors: String, additionalInfo: String, entryDate: Date, rating: Int, url: String) {
         self.id = UUID()
+        self.creator = directors
         self.additionalInfo = additionalInfo
         self.name = name
         self.date = entryDate
@@ -43,7 +47,7 @@ import SwiftData
     }
     
     static var empty: Series {
-        return Series(name: "", additionalInfo: "", entryDate: Date(), rating: -1, url: "")
+        return Series(name: "", directors: "", additionalInfo: "", entryDate: Date(), rating: -1, url: "")
     }
     
     /// Returns true if the `name` and `rating` field of the movie has an non empty value.
@@ -59,7 +63,17 @@ import SwiftData
         return true
     }
     
+    /// Mask for the additional info field, which is the author.
+    var directors: String {
+        get {
+            self.creator
+        }
+        set {
+            self.creator = newValue
+        }
+    }
+    
     var asString: String {
-        "\(self.name), \(self.date.ISO8601Format()), \(self.additionalInfo), \(self.rating), \(self.url)"
+        "\(self.name), \(self.date.ISO8601Format()), \(self.creator), \(self.additionalInfo), \(self.rating), \(self.url)"
     }
 }

@@ -40,17 +40,19 @@ class BackupManager: ObservableObject {
             // Add delay so loading animation looks nice
             try? await Task.sleep(nanoseconds: 1_000_000_000)
             
-            let heading = "Category;Id;Name;Date;Additional Info;Rating;Url\n"
+            let heading = "Category;Id;Name;Date;Creator;Additional Info;Rating;Url;Image Url\n"
             let rows = contents.map {
                 let category = ContentCategories.getCategoryFor(mediaContent: $0).getName()
                 let id = $0.id
                 let name = $0.name
+                let creator = $0.creator
                 let date = $0.date.ISO8601Format()
                 let additionalInfo = $0.additionalInfo
                 let rating = String($0.rating)
                 let url = $0.url
+                let imageUrl = $0.imageUrl
                 
-                return "\(category);\(id);\(name);\(date);\(additionalInfo);\(rating);\(url)"
+                return "\(category);\(id);\(name);\(date);\(creator);\(additionalInfo);\(rating);\(url);\(imageUrl)"
             }
             
             let stringData = heading + rows.joined(separator: "\n")
@@ -148,8 +150,9 @@ class BackupManager: ObservableObject {
                     name: from[2],
                     entryDate: try Date.ISO8601FormatStyle().parse(from[3]),
                     author: from[4],
-                    isFavorite: Int(from[5])! > 0,
-                    url: from[6]
+                    additionalInfo: from[5],
+                    isFavorite: Int(from[6])! > 0,
+                    url: from[7]
                 )
             case ContentCategories.books.getSingularName():
                 content = Book(
@@ -157,35 +160,39 @@ class BackupManager: ObservableObject {
                     name: from[2],
                     entryDate: try Date.ISO8601FormatStyle().parse(from[3]),
                     author: from[4],
-                    isFavorite: Int(from[5])! > 0,
-                    url: from[6]
+                    additionalInfo: from[5],
+                    isFavorite: Int(from[6])! > 0,
+                    url: from[7]
                 )
             case ContentCategories.movies.getName():
                 content = Movie(
                     id: UUID(uuidString: from[1]) ?? UUID(),
                     name: from[2],
                     director: from[4],
+                    additionalInfo: from[5],
                     watchDate: try Date.ISO8601FormatStyle().parse(from[3]),
-                    rating: Int(from[5])!,
-                    url: from[6]
+                    rating: Int(from[6])!,
+                    url: from[7]
                 )
             case ContentCategories.movies.getSingularName():
                 content = Movie(
                     id: UUID(uuidString: from[1]) ?? UUID(),
                     name: from[2],
                     director: from[4],
+                    additionalInfo: from[5],
                     watchDate: try Date.ISO8601FormatStyle().parse(from[3]),
-                    rating: Int(from[5])!,
-                    url: from[6]
+                    rating: Int(from[6])!,
+                    url: from[7]
                 )
             case ContentCategories.series.getName():
                 content = Series(
                     id: UUID(uuidString: from[1]) ?? UUID(),
                     name: from[2],
-                    additionalInfo: from[4],
+                    directors: from[4],
+                    additionalInfo: from[5],
                     entryDate: try Date.ISO8601FormatStyle().parse(from[3]),
-                    rating: Int(from[5])!,
-                    url: from[6]
+                    rating: Int(from[6])!,
+                    url: from[7]
                 )
             default:
                 print("Could not determine category for: \(from)")
