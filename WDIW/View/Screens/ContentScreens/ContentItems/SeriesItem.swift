@@ -30,9 +30,14 @@ struct SeriesItem: View {
             Spacer(minLength: 0)
             
             Group {
-                Text("\(Int(series.rating))") + Text("/10")
-            }
-            .foregroundStyle(Color.yellow)
+                Text("\(Int(series.rating))")                        
+                    .foregroundStyle(Color.yellow)
+                + Text("/10")
+            }                    
+            .bold()
+            .padding(.AllS)
+            .background(Color.Custom.surface)
+            .clipShape(Capsule())
         }
     }
 }

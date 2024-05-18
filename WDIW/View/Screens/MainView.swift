@@ -20,7 +20,7 @@ struct MainScreen: View {
                 SettingsScreen()
                     .transition(.move(edge: .leading))
             default:
-                ContentOverView()
+                ContentOverView(contentVM: contentVM)
                     .transition(.move(edge: .trailing))
                     .zIndex(10)                
             }

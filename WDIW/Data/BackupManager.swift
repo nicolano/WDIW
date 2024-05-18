@@ -127,6 +127,9 @@ class BackupManager: ObservableObject {
         var mappedContents: [MediaContent] = []
         do {
             for line in parsedCSV {
+                if line.isEmpty {
+                    break
+                }
                 mappedContents.append(try mapConentent(from: line))
             }
         } catch {
@@ -142,57 +145,57 @@ class BackupManager: ObservableObject {
     private func mapConentent(from: [String]) throws -> MediaContent {
         do {
             let content: MediaContent
-            let category = from[0]
+            let category = from[0].trimmingCharacters(in: [" "])
             switch category {
             case ContentCategories.books.getName():
                 content = Book(
-                    id: UUID(uuidString: from[1]) ?? UUID(),
-                    name: from[2],
-                    entryDate: try Date.ISO8601FormatStyle().parse(from[3]),
-                    author: from[4],
-                    additionalInfo: from[5],
-                    isFavorite: Int(from[6])! > 0,
-                    url: from[7]
+                    id: UUID(uuidString: from[1].trimmingCharacters(in: [" "])) ?? UUID(),
+                    name: from[2].trimmingCharacters(in: [" "]),
+                    entryDate: try Date.ISO8601FormatStyle().parse(from[3].trimmingCharacters(in: [" "])),
+                    author: from[4].trimmingCharacters(in: [" "]),
+                    additionalInfo: from[5].trimmingCharacters(in: [" "]),
+                    isFavorite: Int(from[6].trimmingCharacters(in: [" "]))! > 0,
+                    url: from[7].trimmingCharacters(in: [" "])
                 )
             case ContentCategories.books.getSingularName():
                 content = Book(
-                    id: UUID(uuidString: from[1]) ?? UUID(),
-                    name: from[2],
-                    entryDate: try Date.ISO8601FormatStyle().parse(from[3]),
-                    author: from[4],
-                    additionalInfo: from[5],
-                    isFavorite: Int(from[6])! > 0,
-                    url: from[7]
+                    id: UUID(uuidString: from[1].trimmingCharacters(in: [" "])) ?? UUID(),
+                    name: from[2].trimmingCharacters(in: [" "]),
+                    entryDate: try Date.ISO8601FormatStyle().parse(from[3].trimmingCharacters(in: [" "])),
+                    author: from[4].trimmingCharacters(in: [" "]),
+                    additionalInfo: from[5].trimmingCharacters(in: [" "]),
+                    isFavorite: Int(from[6].trimmingCharacters(in: [" "]))! > 0,
+                    url: from[7].trimmingCharacters(in: [" "])
                 )
             case ContentCategories.movies.getName():
                 content = Movie(
-                    id: UUID(uuidString: from[1]) ?? UUID(),
-                    name: from[2],
-                    director: from[4],
-                    additionalInfo: from[5],
-                    watchDate: try Date.ISO8601FormatStyle().parse(from[3]),
-                    rating: Int(from[6])!,
-                    url: from[7]
+                    id: UUID(uuidString: from[1].trimmingCharacters(in: [" "])) ?? UUID(),
+                    name: from[2].trimmingCharacters(in: [" "]),
+                    director: from[4].trimmingCharacters(in: [" "]),
+                    additionalInfo: from[5].trimmingCharacters(in: [" "]),
+                    watchDate: try Date.ISO8601FormatStyle().parse(from[3].trimmingCharacters(in: [" "])),
+                    rating: Int(from[6].trimmingCharacters(in: [" "]))!,
+                    url: from[7].trimmingCharacters(in: [" "])
                 )
             case ContentCategories.movies.getSingularName():
                 content = Movie(
-                    id: UUID(uuidString: from[1]) ?? UUID(),
-                    name: from[2],
-                    director: from[4],
-                    additionalInfo: from[5],
-                    watchDate: try Date.ISO8601FormatStyle().parse(from[3]),
-                    rating: Int(from[6])!,
-                    url: from[7]
+                    id: UUID(uuidString: from[1].trimmingCharacters(in: [" "])) ?? UUID(),
+                    name: from[2].trimmingCharacters(in: [" "]),
+                    director: from[4].trimmingCharacters(in: [" "]),
+                    additionalInfo: from[5].trimmingCharacters(in: [" "]),
+                    watchDate: try Date.ISO8601FormatStyle().parse(from[3].trimmingCharacters(in: [" "])),
+                    rating: Int(from[6].trimmingCharacters(in: [" "]))!,
+                    url: from[7].trimmingCharacters(in: [" "])
                 )
             case ContentCategories.series.getName():
                 content = Series(
-                    id: UUID(uuidString: from[1]) ?? UUID(),
-                    name: from[2],
-                    directors: from[4],
-                    additionalInfo: from[5],
-                    entryDate: try Date.ISO8601FormatStyle().parse(from[3]),
-                    rating: Int(from[6])!,
-                    url: from[7]
+                    id: UUID(uuidString: from[1].trimmingCharacters(in: [" "])) ?? UUID(),
+                    name: from[2].trimmingCharacters(in: [" "]),
+                    directors: from[4].trimmingCharacters(in: [" "]),
+                    additionalInfo: from[5].trimmingCharacters(in: [" "]),
+                    entryDate: try Date.ISO8601FormatStyle().parse(from[3].trimmingCharacters(in: [" "])),
+                    rating: Int(from[6].trimmingCharacters(in: [" "]))!,
+                    url: from[7].trimmingCharacters(in: [" "])
                 )
             default:
                 print("Could not determine category for: \(from)")

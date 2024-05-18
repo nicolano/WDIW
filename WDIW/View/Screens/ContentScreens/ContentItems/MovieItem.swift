@@ -22,25 +22,23 @@ struct MovieItem: View {
                 Text(movie.name)
                     .bold()
                 
-                Text(movie.date, style: .date)
+                Text(movie.director)
             }
             .multilineTextAlignment(.leading)
             .foregroundStyle(Color.primary)
 
             Spacer(minLength: 0)
             
-            VStack {
+            VStack {                
                 Group {
-                    Text("\(Int(movie.rating))") + Text("/10")
+                    Text("\(Int(movie.rating))")
+                        .foregroundStyle(Color.yellow)
+                    + Text("/10")
                 }
-                .foregroundStyle(Color.yellow)
-                
-                Spacer()
-                
-//                Image("imdb-logo")
-//                    .resizable()
-//                    .scaledToFit()
-//                    .frame(height: 36)
+                .bold()
+                .padding(.AllS)
+                .background(Color.Custom.surface)
+                .clipShape(Capsule())
             }
         }
     }
