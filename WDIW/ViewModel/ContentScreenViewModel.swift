@@ -21,6 +21,8 @@ class ContentScreenViewModel: ObservableObject {
         self.contentVM = contentVM
         self.contentCategory = contentCategory
         
+        observeShowSearch()
+        observeSearchquery()
         observeSortBy()
     }
     
@@ -62,6 +64,22 @@ class ContentScreenViewModel: ObservableObject {
         }
     }
     
+    var cancellable2 : AnyCancellable?
+    func observeShowSearch() {
+        cancellable2 = self.$showSearch.sink { newValue in
+            if newValue == false {
+                self.searchQuery.removeAll()
+            }
+        }
+    }
+    
+    var cancellable3 : AnyCancellable?
+    func observeSearchquery() {
+        cancellable3 = self.$searchQuery.sink { newValue in
+            self.sortContent(sortBy: self.sortBy)
+        }
+    }
+    
     func sortContent(sortBy: SortBy) {
         var sortedContent: [MediaContent] = []
         switch sortBy {
@@ -89,5 +107,9 @@ class ContentScreenViewModel: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
              self.displayedContents = contents
         }
+    }
+    
+    func toggleSearchField() {
+        self.showSearch.toggle()
     }
 }

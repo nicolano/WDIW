@@ -10,6 +10,7 @@ import SwiftUI
 struct SearchFieldViewModifier: ViewModifier {
     @Binding var searchQuery: String
     let showSearch: Bool
+    let onSubmit: () -> Void
     
     func body(content: Content) -> some View {
         content
@@ -21,6 +22,7 @@ struct SearchFieldViewModifier: ViewModifier {
                             value: $searchQuery,
                             hint: "Search",
                             withShadow: true,
+                            onSubmit: onSubmit,
                             leadingContent: {
                                 Image(systemName: "magnifyingglass")
                                     .foregroundStyle(Color.secondary)
@@ -46,7 +48,17 @@ struct SearchFieldViewModifier: ViewModifier {
 }
 
 extension View {
-    func searchField(searchQuery: Binding<String>, showSearch: Bool) -> some View {
-        modifier(SearchFieldViewModifier(searchQuery: searchQuery, showSearch: showSearch))
+    func searchField(
+        searchQuery: Binding<String>,
+        showSearch: Bool,
+        onSubmit: @escaping () -> Void = {}
+    ) -> some View {
+        modifier(
+            SearchFieldViewModifier(
+                searchQuery: searchQuery,
+                showSearch: showSearch,
+                onSubmit: onSubmit
+            )
+        )
     }
 }

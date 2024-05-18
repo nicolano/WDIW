@@ -14,6 +14,7 @@ struct CustomTextField<LeadingContent: View, TrailingContent: View>: View {
         hint: String = "...",
         lineLimit: Int = 1,
         withShadow: Bool = false,
+        onSubmit: @escaping () -> Void = {},
         @ViewBuilder leadingContent: @escaping () -> LeadingContent,
         @ViewBuilder trailingContent: @escaping () -> TrailingContent
     ) {
@@ -22,6 +23,7 @@ struct CustomTextField<LeadingContent: View, TrailingContent: View>: View {
         self.hint = hint
         self.lineLimit = lineLimit
         self.withShadow = withShadow
+        self.onSubmit = onSubmit
         self.leadingContent = leadingContent
         self.trailingContent = trailingContent
     }
@@ -31,9 +33,11 @@ struct CustomTextField<LeadingContent: View, TrailingContent: View>: View {
     private let hint: String
     private let lineLimit: Int
     private let withShadow: Bool
+    private let onSubmit: () -> Void
     private let leadingContent: () -> LeadingContent
     private let trailingContent: () -> TrailingContent
 
+    @FocusState private var isFocused: Bool
     
     var body: some View {
         VStack.zeroSpacing {
@@ -48,9 +52,20 @@ struct CustomTextField<LeadingContent: View, TrailingContent: View>: View {
                 leadingContent()
                 
                 
-                TextField(hint, text: $value, axis: .vertical)
+                TextField(hint, text: Binding(get: {
+                    value
+                }, set: { newValue in
+                    if let _ = newValue.lastIndex(of: "\n") {
+                        isFocused = false
+                        onSubmit()
+                    } else {
+                        value = newValue
+                    }
+                }) , axis: .vertical)
                     .lineLimit(lineLimit, reservesSpace: true)
                     .multilineTextAlignment(.leading)
+                    .submitLabel(.done)
+                    .focused($isFocused)
 
                 trailingContent()
             }
@@ -76,6 +91,7 @@ extension CustomTextField where TrailingContent == EmptyView {
         hint: String = "...",
         lineLimit: Int = 1,
         withShadow: Bool = false,
+        onSubmit: @escaping () -> Void = {},
         @ViewBuilder leadingContent: @escaping () -> LeadingContent
     ) {
         self._value = value
@@ -83,6 +99,7 @@ extension CustomTextField where TrailingContent == EmptyView {
         self.hint = hint
         self.lineLimit = lineLimit
         self.withShadow = withShadow
+        self.onSubmit = onSubmit
         self.leadingContent = leadingContent
         self.trailingContent = {EmptyView()}
     }
@@ -95,6 +112,7 @@ extension CustomTextField where LeadingContent == EmptyView {
         hint: String = "...",
         lineLimit: Int = 1,
         withShadow: Bool = false,
+        onSubmit: @escaping () -> Void = {},
         @ViewBuilder trailingContent: @escaping () -> TrailingContent
     ) {
         self._value = value
@@ -102,6 +120,7 @@ extension CustomTextField where LeadingContent == EmptyView {
         self.hint = hint
         self.lineLimit = lineLimit
         self.withShadow = withShadow
+        self.onSubmit = onSubmit
         self.leadingContent = {EmptyView()}
         self.trailingContent = trailingContent
     }
@@ -113,13 +132,15 @@ extension CustomTextField where LeadingContent == EmptyView, TrailingContent == 
         title: String? = nil,
         hint: String = "...",
         lineLimit: Int = 1,
-        withShadow: Bool = false
+        withShadow: Bool = false,
+        onSubmit: @escaping () -> Void = {}
     ) {
         self._value = value
         self.title = title
         self.hint = hint
         self.lineLimit = lineLimit
         self.withShadow = withShadow
+        self.onSubmit = onSubmit
         self.leadingContent = {EmptyView()}
         self.trailingContent = {EmptyView()}
     }

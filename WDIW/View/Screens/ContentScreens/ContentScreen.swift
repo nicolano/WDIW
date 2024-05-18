@@ -61,7 +61,7 @@ extension ContentScreen {
         } secondaryButton: {
             Button {
                 withAnimation {
-                    contentScreenVM.showSearch.toggle()
+                    contentScreenVM.toggleSearchField()
                 }
             } label: {
                 Image(systemName: contentScreenVM.showSearch ? "x.circle.fill" : "magnifyingglass")
