@@ -17,25 +17,29 @@ struct ContentScreen: View {
     
     var body: some View {
         VStack.zeroSpacing(alignment: .leading) {
-            headerSection
+            ContentScreenHeader(contentCategory: contentCategory)
             
             if contentScreenVM.contents.isEmpty {
                 NoContentSection(contentCategory: .movies)
             } else {
-                List(contentScreenVM.displayedContents.indices, id: \.self) { index in
-                    ContentItem(contentScreenVM.displayedContents[index]) {
-                        navigationVM.openEditContentSheet(content: contentScreenVM.displayedContents[index])
+                if contentScreenVM.displayedContents.isEmpty {
+                    ProgressView().align(.center)
+                } else {
+                    List(contentScreenVM.displayedContents.indices, id: \.self) { index in
+                        ContentItem(contentScreenVM.displayedContents[index]) {
+                            navigationVM.openEditContentSheet(content: contentScreenVM.displayedContents[index])
+                        }
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(.none)
+                        .listRowSpacing(.Spacing.s)
                     }
-                    .listRowSeparator(.hidden)
-                    .listRowInsets(.none)
-                    .listRowSpacing(.Spacing.s)
+                    .listStyle(.plain)
+                    .safeAreaPadding(.bottom, 100)
+                    .searchField(
+                        searchQuery: $contentScreenVM.searchQuery,
+                        showSearch: contentScreenVM.showSearch
+                    )
                 }
-                .listStyle(.plain)
-                .safeAreaPadding(.bottom, 100)
-                .searchField(
-                    searchQuery: $contentScreenVM.searchQuery,
-                    showSearch: contentScreenVM.showSearch
-                )
             }
             
             Spacer()
@@ -43,76 +47,3 @@ struct ContentScreen: View {
         .frame(width: UIScreen.main.bounds.width)
     }
 }
-
-extension ContentScreen {
-    private var headerSection: some View {
-        Header(title: contentCategory.getName()) {
-            EmptyView()
-        } secondaryButton: {
-            Button {
-                withAnimation {
-                    contentScreenVM.toggleSearchField()
-                }
-            } label: {
-                Image(systemName: contentScreenVM.showSearch ? "x.circle.fill" : "magnifyingglass")
-                    .bold()
-                    .transaction { transaction in
-                        transaction.animation = .none
-                    }
-            }
-        } primaryButton: {
-            Menu {
-                Menu("Sort by") {
-                    Button {
-                        contentScreenVM.sortBy = contentScreenVM.sortBy == .dateReverse ? .dateForward : .dateReverse
-                    } label: {
-                        if contentScreenVM.sortBy == .dateForward || contentScreenVM.sortBy == .dateReverse {
-                            Label("Date", systemImage: contentScreenVM.sortBy == .dateReverse ? "arrow.down" : "arrow.up")
-                        } else {
-                            Text("Date")
-                        }
-                    }
-                    
-                    Button {
-                        contentScreenVM.sortBy = contentScreenVM.sortBy == .nameForward ? .nameReverse : .nameForward
-                    } label: {
-                        if contentScreenVM.sortBy == .nameForward || contentScreenVM.sortBy == .nameReverse {
-                            Label("Name", systemImage: contentScreenVM.sortBy == .nameForward ? "arrow.down" : "arrow.up")
-                        } else {
-                            Text("Name")
-                        }
-                    }
-                    
-                    Button {
-                        contentScreenVM.sortBy = contentScreenVM.sortBy == .ratingReversed ? .ratingForward : .ratingReversed
-                    } label: {
-                        if contentScreenVM.sortBy == .ratingForward || contentScreenVM.sortBy == .ratingReversed {
-                            Label(contentCategory == .books ? "Favorites" : "Rating", systemImage: contentScreenVM.sortBy == .ratingForward ? "arrow.down" : "arrow.up")
-                        } else {
-                            Text(contentCategory == .books ? "Favorites" : "Rating")
-                        }
-                    }
-                    
-                    if contentCategory == .books {
-                        Button {
-                            contentScreenVM.sortBy = contentScreenVM.sortBy == .authorForward ? .authorReversed : .authorForward
-                        } label: {
-                            if contentScreenVM.sortBy == .authorReversed || contentScreenVM.sortBy == .authorForward {
-                                Label("Author", systemImage: contentScreenVM.sortBy == .authorForward ? "arrow.down" : "arrow.up")
-                            } else {
-                                Text("Author")
-                            }
-                        }
-                    }
-                }
-            } label: {
-                Image(systemName: "ellipsis")
-                    .bold()
-                    .rotationEffect(Angle(degrees: 90))
-                    .padding(.LeadingM)
-                    .contentShape(Rectangle())
-            }
-        }
-    }
-}
-
