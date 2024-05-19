@@ -7,21 +7,64 @@
 
 import SwiftUI
 
+enum FocusedField {
+    case name, author, additionalInfo
+}
+
 struct EditBookContent: View {
+    @EnvironmentObject private var contentVM: ContentViewModel
+    
     @Binding var book: Book
 
+    @FocusState private var focusedField: FocusedField?
+    
+    @State var predictions: [String] = []
+    
     var body: some View {
         VStack.spacingM {
-            CustomTextField(value: $book.name, title: "Name")
+            if focusedField == .name || focusedField == nil {
+                CustomTextField(value: $book.name, title: "Name")
+                    .focused($focusedField, equals: .name)
+            }
+
+            if focusedField == .author || focusedField == nil {
+                CustomTextField(value: $book.author, title: "Author")
+                    .focused($focusedField, equals: .author)
+            }
             
-            CustomTextField(value: $book.author, title: "Author")
-                       
-            CustomTextField(value: $book.additionalInfo, title: "Additional Informations", lineLimit: 5)
+            if focusedField == .additionalInfo || focusedField == nil {
+                CustomTextField(value: $book.additionalInfo, title: "Additional Informations", lineLimit: 5)
+                    .focused($focusedField, equals: .additionalInfo)
+            }
+
+            if focusedField == nil {
+                CustomDateField(value: $book.date, title: "Date")
+                
+                IsFavoriteToggle(value: $book.isFavorite, title: "Favorite")
+            }
             
-            CustomDateField(value: $book.date, title: "Date")
+            if focusedField == .author {
+                List(0..<predictions.count, id: \.self) { index in
+                    Text(predictions[index])
+                        .onTapGesture {
+                            book.author = predictions[index]
+                            focusedField = nil
+                        }
+//                        .listRowSeparator(.hidden)
+                        .listRowInsets(.none)
+                        .listRowSpacing(.Spacing.s)
+                }
+                .listStyle(.plain)
+            }
             
-            IsFavoriteToggle(value: $book.isFavorite, title: "Favorite")
+            Spacer()
         }
         .padding(.AllM)
+        .animation(.smooth, value: focusedField)
+        .onChange(of: book.author) { _, newValue in
+            predictions = contentVM.books.map({$0.author}).filter { authors in
+                authors.localizedCaseInsensitiveContains(book.author)
+            }.uniqued()
+        }
     }
 }

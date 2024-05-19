@@ -35,6 +35,7 @@ struct WDIWApp: App {
                 .environmentObject(settingsVM)
                 .environmentObject(navigationVM)
                 .environmentObject(contentVM)
+                .addKeyboardVisibilityToEnvironment()
         }
         .modelContainer(sharedModelContainer.modelContainer)
     }

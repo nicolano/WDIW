@@ -11,9 +11,8 @@ struct TabBar: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
     @EnvironmentObject private var settingsVM: SettingsViewModel
 
-    
+    @Environment(\.keyboardShowing) var keyboardShowing
     @State var activeCategory: ContentCategories = .books
-    var offset: CGFloat = 0
     
     private func getTabBarButtonWidth(tabBarWidth: CGFloat) -> CGFloat {
         (tabBarWidth / 3) - (4 * .Spacing.xxs)
@@ -28,7 +27,6 @@ struct TabBar: View {
                     NewButton(backgroundColor: settingsVM.preferredAccentColor) {
                         navigationVM.openAddContentSheet(contentCategory: activeCategory)
                     }
-//                    .align(.trailing)
                     
                     HStack(spacing: 0) {
                         booksButton
@@ -59,6 +57,10 @@ struct TabBar: View {
                     .padding(.Spacing.xs)
                     .background(background)
                 }
+                .opacity(keyboardShowing ? 0 : 1)
+                .blur(radius: keyboardShowing ? 5 : 0)
+                .animation(.smooth, value: keyboardShowing)
+                .ignoresSafeArea(.keyboard)
             }
         }
         .onReceive(navigationVM.$activeScreen) { value in
@@ -124,10 +126,4 @@ extension TabBar {
             }
         }
     }
-}
-
-#Preview {
-    TabBar(activeCategory: .books, offset: 0)
-        .padding(.horizontal, .Spacing.s)
-        .environmentObject(NavigationViewModel())
 }

@@ -23,25 +23,15 @@ struct ContentScreen: View {
                 NoContentSection(contentCategory: .movies)
             } else {
                 List(contentScreenVM.displayedContents.indices, id: \.self) { index in
-//                    if contentScreenVM.showSearch && index == 0 {
-//                        CustomTextField(value: .constant(""), hint: "")
-//                            .padding(.HorizontalM)
-//                            .padding(.TopM)
-//                            .opacity(0)
-//                    }
-
                     ContentItem(contentScreenVM.displayedContents[index]) {
                         navigationVM.openEditContentSheet(content: contentScreenVM.displayedContents[index])
                     }
-                    .padding(
-                        .bottom,
-                        index == contentScreenVM.displayedContents.count - 1 ? 100 : 0
-                    )
                     .listRowSeparator(.hidden)
                     .listRowInsets(.none)
                     .listRowSpacing(.Spacing.s)
                 }
                 .listStyle(.plain)
+                .safeAreaPadding(.bottom, 100)
                 .searchField(
                     searchQuery: $contentScreenVM.searchQuery,
                     showSearch: contentScreenVM.showSearch

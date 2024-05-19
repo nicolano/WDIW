@@ -80,6 +80,11 @@ struct CustomTextField<LeadingContent: View, TrailingContent: View>: View {
                         .fill(Material.ultraThin)
                 }
             }
+//            .onAppear {
+//                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+//                    self.isFocused = true
+//                }
+//            }
         }
     }
 }
