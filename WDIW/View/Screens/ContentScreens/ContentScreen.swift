@@ -15,6 +15,8 @@ struct ContentScreen: View {
 
     let contentCategory: ContentCategories
     
+    @State var scrollViewOffset: CGFloat = 0
+    
     var body: some View {
         VStack.zeroSpacing(alignment: .leading) {
             ContentScreenHeader(contentCategory: contentCategory)
@@ -22,16 +24,26 @@ struct ContentScreen: View {
             if contentScreenVM.contents.isEmpty {
                 NoContentSection(contentCategory: .movies)
             } else {
-                if contentScreenVM.displayedContents.isEmpty {
-                    ProgressView().align(.center)
-                } else {
-                    List(contentScreenVM.displayedContents.indices, id: \.self) { index in
-                        ContentItem(contentScreenVM.displayedContents[index]) {
-                            navigationVM.openEditContentSheet(content: contentScreenVM.displayedContents[index])
+                ScrollView {
+                    LazyVStack(spacing: .Spacing.s) {
+                        ForEach(contentScreenVM.displayedContents.indices, id: \.self) { index in
+                            ContentItem(contentScreenVM.displayedContents[index]) {
+                                navigationVM.openEditContentSheet(content: contentScreenVM.displayedContents[index])
+                            }
+                            .transaction { trans in
+                                trans.animation = .none
+                            }
                         }
-                        .listRowSeparator(.hidden)
-                        .listRowInsets(.none)
-                        .listRowSpacing(.Spacing.s)
+                    }
+                    .padding(contentScreenVM.yearSelectionIsExtended ? .TopXL : .TopL)
+                    .padding(.HorizontalM)
+                    .background {
+                        GeometryReader {
+                            Color.clear.preference(
+                                key: ViewOffsetKey.self,
+                                value: -$0.frame(in: .named("scroll")).origin.y
+                            )
+                        }
                     }
                     .listStyle(.plain)
                     .safeAreaPadding(.bottom, 100)
@@ -40,6 +52,15 @@ struct ContentScreen: View {
                         showSearch: contentScreenVM.showSearch
                     )
                 }
+                .onPreferenceChange(ViewOffsetKey.self) {
+                   scrollViewOffset = $0
+                }
+                .coordinateSpace(name: "scroll")
+                .overlay {
+                    YearSelection(scrollViewOffset: scrollViewOffset)
+                        .align(.topLeading)
+                        .padding(.top, contentScreenVM.showSearch ? 52 : 0)
+                }
             }
             
             Spacer()
@@ -47,3 +68,12 @@ struct ContentScreen: View {
         .frame(width: UIScreen.main.bounds.width)
     }
 }
+
+struct ViewOffsetKey: PreferenceKey {
+    typealias Value = CGFloat
+    static var defaultValue = CGFloat.zero
+    static func reduce(value: inout Value, nextValue: () -> Value) {
+        value += nextValue()
+    }
+}
+    
