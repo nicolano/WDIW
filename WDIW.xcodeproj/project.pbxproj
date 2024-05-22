@@ -24,6 +24,7 @@
 		F6912F8C2BFDE48000504B81 /* HeroBookContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6912F8B2BFDE48000504B81 /* HeroBookContent.swift */; };
 		F6912F8E2BFDE67D00504B81 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6912F8D2BFDE67D00504B81 /* ScrollView.swift */; };
 		F6912F902BFDF16900504B81 /* WikipediaContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6912F8F2BFDF16900504B81 /* WikipediaContent.swift */; };
+		F6912F922BFE1E9F00504B81 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6912F912BFE1E9F00504B81 /* String.swift */; };
 		F6B2F30B2B849B9300A981C2 /* WDIWApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F30A2B849B9300A981C2 /* WDIWApp.swift */; };
 		F6B2F30D2B849B9300A981C2 /* ContentOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F30C2B849B9300A981C2 /* ContentOverView.swift */; };
 		F6B2F30F2B849B9300A981C2 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F30E2B849B9300A981C2 /* Item.swift */; };
@@ -97,6 +98,7 @@
 		F6912F8B2BFDE48000504B81 /* HeroBookContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroBookContent.swift; sourceTree = "<group>"; };
 		F6912F8D2BFDE67D00504B81 /* ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		F6912F8F2BFDF16900504B81 /* WikipediaContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaContent.swift; sourceTree = "<group>"; };
+		F6912F912BFE1E9F00504B81 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		F6B2F3072B849B9300A981C2 /* WDIW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WDIW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6B2F30A2B849B9300A981C2 /* WDIWApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDIWApp.swift; sourceTree = "<group>"; };
 		F6B2F30C2B849B9300A981C2 /* ContentOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentOverView.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				F6457A942B9129270059C38C /* Spacing.swift */,
 				F6E1B77E2BF8DA5D00E6D64B /* View.swift */,
 				F6E1B7802BF8F7F100E6D64B /* Array.swift */,
+				F6912F912BFE1E9F00504B81 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				F6B2F34D2B862CB200A981C2 /* Header.swift in Sources */,
 				F6F5ABFC2BF25C2D001BA30D /* ApplyColorSchemeApplyColorSchemeViewModifier.swift in Sources */,
 				F6E1B77B2BF8A88A00E6D64B /* ContentScreenViewModel.swift in Sources */,
+				F6912F922BFE1E9F00504B81 /* String.swift in Sources */,
 				F6B2F33F2B84BB6C00A981C2 /* ContentViewModel.swift in Sources */,
 				F6B693EF2BEBD88F0085A1E3 /* ContentSheetHeader.swift in Sources */,
 				F6B693F32BEBF6EB0085A1E3 /* TabBarModifier.swift in Sources */,

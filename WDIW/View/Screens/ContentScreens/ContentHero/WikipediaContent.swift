@@ -35,7 +35,9 @@ struct WikipediaContent: View {
                         .foregroundStyle(Color.secondary)
                 } else {
                     Button {
-                        isOpen.toggle()
+                        withAnimation {
+                            isOpen.toggle()
+                        }
                     } label: {
                         Image(systemName: "chevron.down")
                             .rotationEffect(isOpen ? Angle(degrees: 0) : Angle(degrees: -90))
@@ -43,14 +45,14 @@ struct WikipediaContent: View {
                     }
                 }
             }
-            
+
             if let result, isOpen {
                 Button {
-                    if let url = URL(string: "https://wikipedia.org/wiki/\(result.key ?? "")") {
+                    if let url = URL(string: "\(WIKI_URL_PAGE)\(result.key ?? "")") {
                         UIApplication.shared.open(url)
                     }
                 } label: {
-                    HStack.spacingS(alignment: .bottom) {
+                    HStack.spacingS(alignment: .top) {
                         if let url = result.thumbnail?.url {
                             AsyncImage(url: URL(string: "https:\(url)")) { phase in
                                 switch phase {
@@ -68,12 +70,11 @@ struct WikipediaContent: View {
                         }
 
                         VStack.spacingXS(alignment: .leading) {
-                            Text(result.description ?? "")
+                            Text(result.description?.localizedCapitalized ?? "")
                                 .multilineTextAlignment(.leading)
                         }
                     }
                 }
-                .transition(.move(edge: .top))
             }
         }
         .task {
@@ -83,9 +84,14 @@ struct WikipediaContent: View {
     }
 }
 
+fileprivate let language = "en"
+fileprivate let limit = "1"
+fileprivate let WIKI_URL_SEARCH = "https://api.wikimedia.org/core/v1/wikipedia/\(language)/search/page?q="
+fileprivate let WIKI_URL_PAGE = "https://wikipedia.org/wiki/"
+
 extension WikipediaContent {
     private func loadData(_ forContent: String) async {
-        guard let url = URL(string: "https://api.wikimedia.org/core/v1/wikipedia/en/search/page?q=\(forContent)&limit=1") else {
+        guard let url = URL(string: "\(WIKI_URL_SEARCH)\(forContent)&limit=\(limit)") else {
             print("Invalid URL")
             return
         }

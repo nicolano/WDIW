@@ -29,7 +29,7 @@ struct WDIWApp: App {
         WindowGroup {
             MainScreen()
                 .sheets()
-                .contentHero(content: navigationVM.activeEditContentSheet)
+                .contentHero()
                 .loadingDialog()
                 .errorDialog()
                 .infoDialog()

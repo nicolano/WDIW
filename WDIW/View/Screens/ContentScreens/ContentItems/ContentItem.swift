@@ -32,27 +32,13 @@ struct ContentItem: View {
     }
 }
 
-struct ContentItemButtonStyle: ButtonStyle {
-    @State private var animateScale = 1.0
-    
+struct ContentItemButtonStyle: ButtonStyle {    
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding(.AllM)
             .background {
                 RoundedRectangle(cornerRadius: .CornerRadius.contentItem)
                     .fill(Material.ultraThin)
-            }
-            .scaleEffect(animateScale)
-            .onChange(of: configuration.isPressed) { oldValue, newValue in
-                if newValue == true {
-                    withAnimation {
-                        animateScale = 0.9
-                    }
-                } else {
-                    withAnimation {
-                        animateScale = 1.0
-                    }
-                }
             }
     }
 }

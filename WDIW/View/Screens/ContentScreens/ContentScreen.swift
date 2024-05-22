@@ -28,7 +28,7 @@ struct ContentScreen: View {
                     LazyVStack(spacing: .Spacing.s) {
                         ForEach(contentScreenVM.displayedContents.indices, id: \.self) { index in
                             ContentItem(contentScreenVM.displayedContents[index]) {
-                                navigationVM.openEditContentSheet(content: contentScreenVM.displayedContents[index])
+                                navigationVM.openSelectedContentHero(content: contentScreenVM.displayedContents[index])
                             }                
                             .transaction { trans in
                                 trans.animation = .none

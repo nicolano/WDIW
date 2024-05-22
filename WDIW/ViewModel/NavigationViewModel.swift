@@ -20,6 +20,7 @@ class NavigationViewModel: ObservableObject {
     }
     
     @Published var activeScreen: Screens = .books
+    @Published var selectedContent: MediaContent? = nil
     @Published var activeAddContentSheet: ContentCategories? = nil
     @Published var activeEditContentSheet: MediaContent? = nil
     @Published var showCSVInfoSheet: Bool = false
@@ -46,12 +47,24 @@ class NavigationViewModel: ObservableObject {
         activeEditContentSheet = content
     }
     
+    func openSelectedContentHero(content: MediaContent) {
+        withAnimation {
+            selectedContent = content
+        }
+    }
+    
     func closeAddContentSheet() {
         activeAddContentSheet = nil
     }
     
     func closeEditContentSheet() {
         activeEditContentSheet = nil
+    }
+    
+    func closeSelectedContentHero() {
+        withAnimation {
+            selectedContent = nil
+        }
     }
     
     func navigateToSettings() {

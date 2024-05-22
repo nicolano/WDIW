@@ -30,7 +30,6 @@ struct ContentHero: View {
         .background {
             RoundedRectangle(cornerRadius: .CornerRadius.dialog)
                 .fill(Color.Custom.surface)
-                .matchedGeometryEffect(id: "Background", in: navigationVM.heroAnimation)
         }
         .clipShape(RoundedRectangle(cornerRadius: .CornerRadius.dialog))
         .padding(.HorizontalM)
@@ -42,9 +41,7 @@ extension ContentHero {
     private func header(_ scrollViewOffset: CGFloat) -> some View {
         HStack {
             Button {
-                withAnimation {
-                    navigationVM.closeEditContentSheet()
-                }
+                navigationVM.closeSelectedContentHero()
             } label: {
                 Image(systemName: "x.circle.fill")
             }
@@ -52,7 +49,7 @@ extension ContentHero {
             Spacer()
             
             Button {
-                navigationVM.closeEditContentSheet()
+                navigationVM.openEditContentSheet(content: content)
             } label: {
                 Label("Edit", systemImage: "pencil")
             }
@@ -65,10 +62,10 @@ extension ContentHero {
 
 
 struct ContentHeroViewModifier: ViewModifier {
-    let mediaContent: MediaContent?
-    
-    private var isShown: Bool {
-        mediaContent != nil
+    @EnvironmentObject private var navigationVM: NavigationViewModel
+
+    var isShown: Bool {
+        !(navigationVM.selectedContent == nil)
     }
     
     func body(content: Content) -> some View {
@@ -77,9 +74,9 @@ struct ContentHeroViewModifier: ViewModifier {
                 .blur(radius: isShown ? 5 : 0)
                 .allowsHitTesting(isShown ? false : true)
             
-            if let mediaContent {
+            if let mediaContent = navigationVM.selectedContent {
                 ContentHero(content: mediaContent)
-                    .transition(.scale)
+                    .transition(.scale.combined(with: .opacity))
                     .zIndex(10000000000)
             }
         }
@@ -87,7 +84,7 @@ struct ContentHeroViewModifier: ViewModifier {
 }
 
 extension View {
-    func contentHero(content: MediaContent?) -> some View {
-        modifier(ContentHeroViewModifier(mediaContent: content))
+    func contentHero() -> some View {
+        modifier(ContentHeroViewModifier())
     }
 }
