@@ -104,9 +104,9 @@ struct ContentSheetViewModifier: ViewModifier {
                     set: { dismiss in
                         switch type {
                         case .ADD:
-                            navigationVM.closeAddContentSheet(dismiss)
+                            navigationVM.closeAddContentSheet()
                         case .EDIT:
-                            navigationVM.closeEditContentSheet(dismiss)
+                            navigationVM.closeEditContentSheet()
                         }
                     }
                 ),

@@ -23,10 +23,13 @@ struct WDIWApp: App {
         )
     }
     
+    @Namespace var heroAnimation
+    
     var body: some Scene {
         WindowGroup {
             MainScreen()
                 .sheets()
+                .contentHero(content: navigationVM.activeEditContentSheet)
                 .loadingDialog()
                 .errorDialog()
                 .infoDialog()

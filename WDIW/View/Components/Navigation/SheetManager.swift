@@ -16,7 +16,7 @@ struct SheetManager: ViewModifier {
                 CSVInfoSheet()
             })
             .contentSheet(type: .ADD)
-            .contentSheet(type: .EDIT)
+//            .contentSheet(type: .EDIT)
     }
 }
 

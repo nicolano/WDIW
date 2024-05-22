@@ -20,6 +20,10 @@
 		F66F55462B8A36A100C29AB0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66F55452B8A36A100C29AB0 /* Date.swift */; };
 		F68E4EFD2BF9EF9400B32D63 /* ContentScreenHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E4EFC2BF9EF9400B32D63 /* ContentScreenHeader.swift */; };
 		F68E4EFF2BF9F24D00B32D63 /* YearSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E4EFE2BF9F24D00B32D63 /* YearSelection.swift */; };
+		F6912F8A2BFDDD0C00504B81 /* ContentHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6912F892BFDDD0C00504B81 /* ContentHero.swift */; };
+		F6912F8C2BFDE48000504B81 /* HeroBookContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6912F8B2BFDE48000504B81 /* HeroBookContent.swift */; };
+		F6912F8E2BFDE67D00504B81 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6912F8D2BFDE67D00504B81 /* ScrollView.swift */; };
+		F6912F902BFDF16900504B81 /* WikipediaContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6912F8F2BFDF16900504B81 /* WikipediaContent.swift */; };
 		F6B2F30B2B849B9300A981C2 /* WDIWApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F30A2B849B9300A981C2 /* WDIWApp.swift */; };
 		F6B2F30D2B849B9300A981C2 /* ContentOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F30C2B849B9300A981C2 /* ContentOverView.swift */; };
 		F6B2F30F2B849B9300A981C2 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2F30E2B849B9300A981C2 /* Item.swift */; };
@@ -89,6 +93,10 @@
 		F66F55452B8A36A100C29AB0 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		F68E4EFC2BF9EF9400B32D63 /* ContentScreenHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentScreenHeader.swift; sourceTree = "<group>"; };
 		F68E4EFE2BF9F24D00B32D63 /* YearSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearSelection.swift; sourceTree = "<group>"; };
+		F6912F892BFDDD0C00504B81 /* ContentHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentHero.swift; sourceTree = "<group>"; };
+		F6912F8B2BFDE48000504B81 /* HeroBookContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroBookContent.swift; sourceTree = "<group>"; };
+		F6912F8D2BFDE67D00504B81 /* ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
+		F6912F8F2BFDF16900504B81 /* WikipediaContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaContent.swift; sourceTree = "<group>"; };
 		F6B2F3072B849B9300A981C2 /* WDIW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WDIW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6B2F30A2B849B9300A981C2 /* WDIWApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDIWApp.swift; sourceTree = "<group>"; };
 		F6B2F30C2B849B9300A981C2 /* ContentOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentOverView.swift; sourceTree = "<group>"; };
@@ -177,6 +185,16 @@
 				F6B693E42BEBCCC80085A1E3 /* SeriesItem.swift */,
 			);
 			path = ContentItems;
+			sourceTree = "<group>";
+		};
+		F6912F882BFDDCFE00504B81 /* ContentHero */ = {
+			isa = PBXGroup;
+			children = (
+				F6912F892BFDDD0C00504B81 /* ContentHero.swift */,
+				F6912F8B2BFDE48000504B81 /* HeroBookContent.swift */,
+				F6912F8F2BFDF16900504B81 /* WikipediaContent.swift */,
+			);
+			path = ContentHero;
 			sourceTree = "<group>";
 		};
 		F6B2F2FE2B849B9300A981C2 = {
@@ -301,6 +319,7 @@
 		F6B2F3392B84B41700A981C2 /* ContentScreens */ = {
 			isa = PBXGroup;
 			children = (
+				F6912F882BFDDCFE00504B81 /* ContentHero */,
 				F653B15C2BEBAC0700913973 /* ContentItems */,
 				F6B2F3462B861A5500A981C2 /* ContentSheet */,
 				F6B2F30C2B849B9300A981C2 /* ContentOverView.swift */,
@@ -331,6 +350,7 @@
 				F6B693F02BEBF4E20085A1E3 /* MainScrollViewModifier.swift */,
 				F6D233AB2BF11EA500AC307A /* SheetManager.swift */,
 				F6DC1C5A2BF4E72C003D44EC /* ForEachCategory.swift */,
+				F6912F8D2BFDE67D00504B81 /* ScrollView.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -492,6 +512,7 @@
 				F6D233A32BF0BE1B00AC307A /* ContentSheet.swift in Sources */,
 				F6B2F33B2B84B42900A981C2 /* ContentScreen.swift in Sources */,
 				F653B15E2BEBAC1700913973 /* BookItem.swift in Sources */,
+				F6912F8E2BFDE67D00504B81 /* ScrollView.swift in Sources */,
 				F66F55442B8A1DE400C29AB0 /* BackupManager.swift in Sources */,
 				F653B1572BEB8AC700913973 /* CustomTextField.swift in Sources */,
 				F6B2F31E2B84A1F000A981C2 /* Book.swift in Sources */,
@@ -515,6 +536,7 @@
 				F653B1542BEB875D00913973 /* EditBookContent.swift in Sources */,
 				F6DC1C5B2BF4E72C003D44EC /* ForEachCategory.swift in Sources */,
 				F6E1B77F2BF8DA5D00E6D64B /* View.swift in Sources */,
+				F6912F8C2BFDE48000504B81 /* HeroBookContent.swift in Sources */,
 				F6B693F12BEBF4E20085A1E3 /* MainScrollViewModifier.swift in Sources */,
 				F6E1B77D2BF8B2D100E6D64B /* SearchFieldViewModifier.swift in Sources */,
 				F6C1A6C42BECC07D0008F236 /* ResetSection.swift in Sources */,
@@ -522,6 +544,7 @@
 				F653B1592BEB900B00913973 /* CustomDateField.swift in Sources */,
 				F68E4EFF2BF9F24D00B32D63 /* YearSelection.swift in Sources */,
 				F653B1602BEBB06C00913973 /* ContentItem.swift in Sources */,
+				F6912F8A2BFDDD0C00504B81 /* ContentHero.swift in Sources */,
 				F6B2F3202B84A40500A981C2 /* Movie.swift in Sources */,
 				F6B2F3362B84B2C400A981C2 /* Color.swift in Sources */,
 				F653B15B2BEBA82D00913973 /* IsFavoriteToggle.swift in Sources */,
@@ -539,6 +562,7 @@
 				F68E4EFD2BF9EF9400B32D63 /* ContentScreenHeader.swift in Sources */,
 				F66F55402B8A068F00C29AB0 /* MainView.swift in Sources */,
 				F6B693ED2BEBD5530085A1E3 /* ContentSwitch.swift in Sources */,
+				F6912F902BFDF16900504B81 /* WikipediaContent.swift in Sources */,
 				F6B2F32C2B84ABEE00A981C2 /* TabBar.swift in Sources */,
 				F6C1A6CD2BECD9B00008F236 /* LoadingDialog.swift in Sources */,
 				F6F5ABF82BF24CE9001BA30D /* ThemeSection.swift in Sources */,
