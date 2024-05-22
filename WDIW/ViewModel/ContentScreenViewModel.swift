@@ -176,7 +176,7 @@ class ContentScreenViewModel: ObservableObject {
     }
     
     func fillDisplayedContens(contents: [MediaContent]) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
              self.displayedContents = contents
         }
     }
