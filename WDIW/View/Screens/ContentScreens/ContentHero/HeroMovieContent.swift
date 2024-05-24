@@ -1,44 +1,40 @@
 //
-//  HeroBookContent.swift
+//  HeroMovieContent.swift
 //  WDIW
 //
-//  Created by Nicolas von Trott on 22.05.24.
+//  Created by Nicolas von Trott on 24.05.24.
 //
 
 import SwiftUI
 
-struct HeroBookContent: View {
-    let book: Book
+struct HeroMovieContent: View {
+    let movie: Movie
     
     var body: some View {
         VStack.zeroSpacing(alignment: .leading) {
             HStack.spacingM(alignment: .top) {
-                Text(book.name)
+                Text(movie.name)
                     .font(.title)
                     .fontWeight(.black)
                     .align(.leading)
                 
-                if book.isFavorite {
-                    Image(systemName: "star.fill")
-                        .foregroundStyle(.yellow)
-                        .padding(.top, 7)
-                }
+                RatingContent(rating: movie.rating)
             }
             
-            Text(book.creator)
+            Text(movie.director)
                 .font(.headline)
                 .padding(.BottomM)
             
             Group {
-                if book.additionalInfo.isEmpty {
+                if movie.additionalInfo.isEmpty {
                     Text("...")
                 } else {
-                    Text(book.additionalInfo)
+                    Text(movie.additionalInfo)
                 }
             }
             
             Group {
-                Text("Entered on: ") + Text(book.date, style: .date).font(.headline)
+                Text("Watched on: ") + Text(movie.date, style: .date).font(.headline)
             }
             .padding(.TopM)
 
@@ -46,13 +42,14 @@ struct HeroBookContent: View {
                 .padding(.VerticalM)
 
             VStack.spacingM {
-                WikipediaContent(contentFor: book.author)
+                WikipediaContent(contentFor: movie.name)
                 
-                LinkContent(contentFor: book.name)
+                WikipediaContent(contentFor: movie.director)
                 
-                LinkContent(contentFor: book.author)
+                LinkContent(contentFor: movie.name)
+                
+                LinkContent(contentFor: movie.director)
             }
         }
     }
 }
-

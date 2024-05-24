@@ -14,6 +14,10 @@
 		F653B15B2BEBA82D00913973 /* IsFavoriteToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F653B15A2BEBA82D00913973 /* IsFavoriteToggle.swift */; };
 		F653B15E2BEBAC1700913973 /* BookItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F653B15D2BEBAC1700913973 /* BookItem.swift */; };
 		F653B1602BEBB06C00913973 /* ContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F653B15F2BEBB06C00913973 /* ContentItem.swift */; };
+		F65B466A2C004F48000923CC /* LinkContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65B46692C004F47000923CC /* LinkContent.swift */; };
+		F65B466C2C0052D4000923CC /* HeroMovieContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65B466B2C0052D4000923CC /* HeroMovieContent.swift */; };
+		F65B466E2C0054E6000923CC /* RatingContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65B466D2C0054E6000923CC /* RatingContent.swift */; };
+		F65B46702C005573000923CC /* HeroSeriesContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65B466F2C005573000923CC /* HeroSeriesContent.swift */; };
 		F66F55402B8A068F00C29AB0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66F553F2B8A068F00C29AB0 /* MainView.swift */; };
 		F66F55422B8A074200C29AB0 /* SharedModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66F55412B8A074200C29AB0 /* SharedModelContainer.swift */; };
 		F66F55442B8A1DE400C29AB0 /* BackupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66F55432B8A1DE400C29AB0 /* BackupManager.swift */; };
@@ -88,6 +92,10 @@
 		F653B15A2BEBA82D00913973 /* IsFavoriteToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsFavoriteToggle.swift; sourceTree = "<group>"; };
 		F653B15D2BEBAC1700913973 /* BookItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookItem.swift; sourceTree = "<group>"; };
 		F653B15F2BEBB06C00913973 /* ContentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentItem.swift; sourceTree = "<group>"; };
+		F65B46692C004F47000923CC /* LinkContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkContent.swift; sourceTree = "<group>"; };
+		F65B466B2C0052D4000923CC /* HeroMovieContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroMovieContent.swift; sourceTree = "<group>"; };
+		F65B466D2C0054E6000923CC /* RatingContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingContent.swift; sourceTree = "<group>"; };
+		F65B466F2C005573000923CC /* HeroSeriesContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroSeriesContent.swift; sourceTree = "<group>"; };
 		F66F553F2B8A068F00C29AB0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F66F55412B8A074200C29AB0 /* SharedModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedModelContainer.swift; sourceTree = "<group>"; };
 		F66F55432B8A1DE400C29AB0 /* BackupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupManager.swift; sourceTree = "<group>"; };
@@ -194,7 +202,10 @@
 			children = (
 				F6912F892BFDDD0C00504B81 /* ContentHero.swift */,
 				F6912F8B2BFDE48000504B81 /* HeroBookContent.swift */,
+				F65B466B2C0052D4000923CC /* HeroMovieContent.swift */,
 				F6912F8F2BFDF16900504B81 /* WikipediaContent.swift */,
+				F65B46692C004F47000923CC /* LinkContent.swift */,
+				F65B466F2C005573000923CC /* HeroSeriesContent.swift */,
 			);
 			path = ContentHero;
 			sourceTree = "<group>";
@@ -282,6 +293,7 @@
 				F653B1552BEB8AB600913973 /* Editor */,
 				F6B2F34B2B862C8800A981C2 /* Navigation */,
 				F6B2F3302B84AC1700A981C2 /* TabBar */,
+				F65B466D2C0054E6000923CC /* RatingContent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -520,6 +532,8 @@
 				F653B1572BEB8AC700913973 /* CustomTextField.swift in Sources */,
 				F6B2F31E2B84A1F000A981C2 /* Book.swift in Sources */,
 				F6DC1C592BF4E414003D44EC /* NewButton.swift in Sources */,
+				F65B466E2C0054E6000923CC /* RatingContent.swift in Sources */,
+				F65B466C2C0052D4000923CC /* HeroMovieContent.swift in Sources */,
 				F6C1A6C62BECC4620008F236 /* FavButton.swift in Sources */,
 				F6B2F33D2B84B97B00A981C2 /* ContentCategories.swift in Sources */,
 				F6C1A6C82BECD5510008F236 /* BackupSection.swift in Sources */,
@@ -536,6 +550,7 @@
 				F6B2F30F2B849B9300A981C2 /* Item.swift in Sources */,
 				F6F5ABFF2BF26052001BA30D /* ApplyAccentColorViewModifier.swift in Sources */,
 				F6B2F30B2B849B9300A981C2 /* WDIWApp.swift in Sources */,
+				F65B46702C005573000923CC /* HeroSeriesContent.swift in Sources */,
 				F653B1542BEB875D00913973 /* EditBookContent.swift in Sources */,
 				F6DC1C5B2BF4E72C003D44EC /* ForEachCategory.swift in Sources */,
 				F6E1B77F2BF8DA5D00E6D64B /* View.swift in Sources */,
@@ -563,6 +578,7 @@
 				F6D233AA2BF0D46600AC307A /* Dialog.swift in Sources */,
 				F6B693E32BEBCBED0085A1E3 /* MovieItem.swift in Sources */,
 				F6457A952B9129270059C38C /* Spacing.swift in Sources */,
+				F65B466A2C004F48000923CC /* LinkContent.swift in Sources */,
 				F68E4EFD2BF9EF9400B32D63 /* ContentScreenHeader.swift in Sources */,
 				F66F55402B8A068F00C29AB0 /* MainView.swift in Sources */,
 				F6B693ED2BEBD5530085A1E3 /* ContentSwitch.swift in Sources */,

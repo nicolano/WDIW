@@ -48,7 +48,7 @@ class NavigationViewModel: ObservableObject {
     }
     
     func openSelectedContentHero(content: MediaContent) {
-        withAnimation {
+        withAnimation(.spring) {
             selectedContent = content
         }
     }
@@ -62,7 +62,7 @@ class NavigationViewModel: ObservableObject {
     }
     
     func closeSelectedContentHero() {
-        withAnimation {
+        withAnimation(.spring(.smooth, blendDuration: 0.1)) {
             selectedContent = nil
         }
     }

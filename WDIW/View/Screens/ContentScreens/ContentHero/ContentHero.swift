@@ -20,9 +20,9 @@ struct ContentHero: View {
             ContentSwitch(content: .constant(content), bookContent: { book in
                 HeroBookContent(book: book.wrappedValue)
             }, movieContent: { movie in
-                
+                HeroMovieContent(movie: movie.wrappedValue)
             }, seriesContent: { series in
-                
+                HeroSeriesContent(series: series.wrappedValue)
             })
             .padding(.HorizontalM)
         }
@@ -78,6 +78,7 @@ struct ContentHeroViewModifier: ViewModifier {
                 ContentHero(content: mediaContent)
                     .transition(.scale.combined(with: .opacity))
                     .zIndex(10000000000)
+                    .geometryGroup()
             }
         }
     }

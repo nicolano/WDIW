@@ -75,6 +75,7 @@ struct WikipediaContent: View {
                         }
                     }
                 }
+                .padding(.TopS)
             }
         }
         .task {

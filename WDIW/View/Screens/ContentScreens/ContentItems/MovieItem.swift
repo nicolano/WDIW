@@ -29,17 +29,7 @@ struct MovieItem: View {
 
             Spacer(minLength: 0)
             
-            VStack {                
-                Group {
-                    Text("\(Int(movie.rating))")
-                        .foregroundStyle(Color.yellow)
-                    + Text("/10")
-                }
-                .bold()
-                .padding(.AllS)
-                .background(Color.Custom.surface)
-                .clipShape(Capsule())
-            }
+            RatingContent(rating: movie.rating)
         }
     }
 }
