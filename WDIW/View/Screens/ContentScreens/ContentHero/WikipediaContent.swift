@@ -103,7 +103,7 @@ extension WikipediaContent {
                 result = decodedResponse.pages.first
             }
         } catch {
-            print("Invalid data")
+            print("Error Decoding data:" + String(describing: error))
         }
     }
 }

@@ -44,10 +44,10 @@ struct HeroMovieContent: View {
             VStack.spacingM {
                 IMDbContent(contentFor: movie.name)
                 
-                WikipediaContent(contentFor: movie.name)
-                
-                WikipediaContent(contentFor: movie.director)
-                
+//                WikipediaContent(contentFor: movie.name)
+//                
+//                WikipediaContent(contentFor: movie.director)
+//                
                 LinkContent(contentFor: movie.name)
                 
                 LinkContent(contentFor: movie.director)

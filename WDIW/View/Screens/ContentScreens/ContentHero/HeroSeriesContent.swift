@@ -38,7 +38,9 @@ struct HeroSeriesContent: View {
                 .padding(.VerticalM)
 
             VStack.spacingM {
-                WikipediaContent(contentFor: series.name)
+                IMDbContent(contentFor: series.name)
+                
+//                WikipediaContent(contentFor: series.name)
                                 
                 LinkContent(contentFor: series.name)
             }
