@@ -15,8 +15,10 @@ struct TabBar: View {
     @State var activeCategory: ContentCategories = .books
     
     private func getTabBarButtonWidth(tabBarWidth: CGFloat) -> CGFloat {
-        (tabBarWidth / 3) - (4 * .Spacing.xxs)
+        (tabBarWidth / 4) - (4 * .Spacing.xxs)
     }
+    
+    
     
     var body: some View {
         Group {
@@ -24,35 +26,17 @@ struct TabBar: View {
                 VStack {
                     Spacer()
                     
-                    NewButton(backgroundColor: settingsVM.preferredAccentColor) {
-                        navigationVM.openAddContentSheet(contentCategory: activeCategory)
-                    }
-                    
                     HStack(spacing: 0) {
-                        booksButton
-                            .frame(
-                                width: getTabBarButtonWidth(
-                                    tabBarWidth: geo.size.width
-                                )
-                            )
-                        
-                        Spacer(minLength: 0)
-                        
-                        moviesButton
-                            .frame(
-                                width: getTabBarButtonWidth(
-                                    tabBarWidth: geo.size.width
-                                )
-                            )
-
-                        Spacer(minLength: 0)
-
-                        seriesButton
-                            .frame(
-                                width: getTabBarButtonWidth(
-                                    tabBarWidth: geo.size.width
-                                )
-                            )
+                        NewButton(backgroundColor: settingsVM.preferredAccentColor) {
+                            navigationVM.openAddContentSheet(contentCategory: activeCategory)
+                        }
+                        .padding(.TrailingXS)
+                                                
+                        GridRow {
+                            booksButton
+                            moviesButton
+                            seriesButton
+                        }
                     }
                     .padding(.Spacing.xs)
                     .background(background)

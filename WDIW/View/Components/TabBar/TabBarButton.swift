@@ -18,17 +18,12 @@ struct TabBarButton: View {
         Button {
             onTap()
         } label: {
-            HStack(spacing: 0) {
-                Spacer(minLength: 0)
-                
+            VStack(spacing: 0) {    
                 Image(systemName: contentCategory.getIconName(isActive: isActive))
-                    .padding(.trailing, .Spacing.s)
-                
                 Text(contentCategory.getName())
-
-                Spacer(minLength: 0)
             }
             .font(.caption)
+            .align(.hCenter)
         }
         .buttonStyle(
             TabBarButtonstyle(
@@ -46,13 +41,15 @@ struct TabBarButtonstyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         if configuration.isPressed || isActive {
             configuration.label
-                .padding()
+                .padding(.horizontal)                
+                .padding(.vertical, .Spacing.s)
                 .background(.ultraThickMaterial)
                 .foregroundStyle(foregroundColor)
                 .clipShape(Capsule())
         } else {
             configuration.label
-                .padding()
+                .padding(.horizontal)
+                .padding(.vertical, .Spacing.s)
                 .foregroundStyle(foregroundColor)
                 .clipShape(Capsule())
         }
