@@ -66,21 +66,7 @@ struct IMDbContent: View {
                     }
                 } label: {
                     HStack.spacingS(alignment: .center) {
-                        if let url = searchResult.Poster {
-                            AsyncImage(url: URL(string: url)) { phase in
-                                switch phase {
-                                    case .failure:
-                                        EmptyView()
-                                    case .success(let image):
-                                        image
-                                        .resizable()
-                                        .scaledToFit()
-                                    default:
-                                        ProgressView()
-                                }
-                            }
-                            .frame(width: 50)
-                        }
+                        ThumbnailContent(url: searchResult.Poster)
 
                         VStack(alignment: .leading) {
                             Text(searchResult.Title?.localizedCapitalized ?? "")
@@ -109,7 +95,6 @@ struct IMDbContent: View {
 
 extension IMDbContent {
     private func searchTitle(_ forContent: String) async {
-        print(buildOmdbUrl(parameter: "s=\(forContent)"))
         guard let url = URL(string: buildOmdbUrl(parameter: "s=\(forContent)")) else {
             print("Invalid URL")
             return

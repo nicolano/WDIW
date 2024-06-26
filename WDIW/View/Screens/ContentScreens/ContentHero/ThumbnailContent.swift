@@ -8,11 +8,23 @@
 import SwiftUI
 
 struct ThumbnailContent: View {
+    let url: String?
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        if let url = url {
+            AsyncImage(url: URL(string: url)) { phase in
+                switch phase {
+                    case .failure:
+                        EmptyView()
+                    case .success(let image):
+                        image
+                        .resizable()
+                        .scaledToFit()
+                    default:
+                        ProgressView()
+                }
+            }
+            .frame(width: 50)
+        }
     }
-}
-
-#Preview {
-    ThumbnailContent()
 }

@@ -53,21 +53,7 @@ struct WikipediaContent: View {
                     }
                 } label: {
                     HStack.spacingS(alignment: .top) {
-                        if let url = result.thumbnail?.url {
-                            AsyncImage(url: URL(string: "https:\(url)")) { phase in
-                                switch phase {
-                                    case .failure:
-                                        EmptyView()
-                                    case .success(let image):
-                                        image
-                                        .resizable()
-                                        .scaledToFit()
-                                    default:
-                                        ProgressView()
-                                }
-                            }
-                                .frame(width: 50)
-                        }
+                        ThumbnailContent(url: "https:\(result.thumbnail?.url ?? "")")
 
                         VStack.spacingXS(alignment: .leading) {
                             Text(result.description?.localizedCapitalized ?? "")
