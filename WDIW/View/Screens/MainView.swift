@@ -10,19 +10,61 @@ import SwiftUI
 struct MainScreen: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
     @EnvironmentObject private var contentVM: ContentViewModel
+    
+    internal init(contentVM: ContentViewModel) {
+        self.bookContentScreenViewModel = ContentScreenViewModel(
+            contentVM: contentVM,
+            contentCategory: .books
+        )
+        self.moviesContentScreenViewModel = ContentScreenViewModel(
+            contentVM: contentVM,
+            contentCategory: .movies
+        )
+        self.seriesContentScreenViewModel = ContentScreenViewModel(
+            contentVM: contentVM,
+            contentCategory: .series
+        )
+    }
 
+    @ObservedObject private var bookContentScreenViewModel: ContentScreenViewModel
+    @ObservedObject private var moviesContentScreenViewModel: ContentScreenViewModel
+    @ObservedObject private var seriesContentScreenViewModel: ContentScreenViewModel
+    
     @State private var isMovingToSettings: Bool = false
     
+    @State private var scrollPosition: CGPoint = .zero
+
     var body: some View {
         ZStack {
-            switch navigationVM.activeScreen {
-            case .settings:
+            ZStack {
+                if navigationVM.activeScreen == .books || navigationVM.activeScreen == .settings {
+                    BooksScreen(offset: scrollPosition)
+                        .id(ContentCategories.books)
+                        .environmentObject(bookContentScreenViewModel)
+                        .mainHorizontalScroll($scrollPosition)
+                        .transition(.identity)
+                }
+                
+                if navigationVM.activeScreen == .movies {
+                    ContentScreen(contentCategory: .movies)
+                        .id(ContentCategories.movies)
+                        .environmentObject(moviesContentScreenViewModel)
+                        .transition(.identity)
+                }
+                
+                if navigationVM.activeScreen == .series {
+                    ContentScreen(contentCategory: .series)
+                        .id(ContentCategories.series)
+                        .environmentObject(seriesContentScreenViewModel)
+                        .transition(.identity)
+                }
+            }
+            .tabBarOverlay()
+            
+            if navigationVM.activeScreen == .settings {
                 SettingsScreen()
                     .transition(.move(edge: .leading))
-            default:
-                ContentOverView(contentVM: contentVM)
-                    .transition(.move(edge: .trailing))
-                    .zIndex(10)                
+                    .zIndex(100)
             }
         }
         // Sensory Feedback when moving to settings screen

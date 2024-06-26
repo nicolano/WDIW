@@ -33,26 +33,6 @@ struct MainHorizontalScrollViewModifier: ViewModifier {
             }
             .coordinateSpace(name: "scroll")
             .scrollTargetBehavior(.paging)
-            .onReceive(navigationVM.$activeScreen) { value in
-                switch value {
-                case .books:
-                    withAnimation {
-                        scrollViewReader.scrollTo(ContentCategories.books)
-                    }
-                case .movies:
-                    withAnimation {
-                        scrollViewReader.scrollTo(ContentCategories.movies)
-                    }
-                case .series:
-                    withAnimation {
-                        scrollViewReader.scrollTo(ContentCategories.series)
-                    }
-                default:
-                    ()
-                }
-            }
-            
-            Spacer()
         }
     }
 }

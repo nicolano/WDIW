@@ -27,7 +27,7 @@ struct WDIWApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainScreen()
+            MainScreen(contentVM: contentVM)
                 .sheets()
                 .contentHero()
                 .loadingDialog()

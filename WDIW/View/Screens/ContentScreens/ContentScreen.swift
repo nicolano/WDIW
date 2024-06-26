@@ -45,7 +45,7 @@ struct ContentScreen: View {
                 )
                 .overlay {
                     YearSelection()
-                        .align(.topLeading)
+                        .align(.topTrailing)
                         .padding(.TopS)
                 }
             }

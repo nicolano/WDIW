@@ -35,6 +35,7 @@ struct SettingsScreen: View {
             Spacer()
         }
         .ignoresSafeArea(.all, edges: .bottom)
+        .background(Color.Custom.surface)
     }
 }
 

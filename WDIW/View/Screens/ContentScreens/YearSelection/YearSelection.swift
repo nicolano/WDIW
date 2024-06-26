@@ -31,6 +31,8 @@ struct YearSelection: View {
         .padding(.horizontal, isExtended ? .Spacing.m : .Spacing.s)
         .padding(isExtended ? .VerticalM : .VerticalS)
         .background(background)
+        .opacity(contentScreenVM.yearsWithEntry.count > 1 ? 1 : 0)
+        .offset(x: contentScreenVM.showSearch ? reducedSize + 2 * .Spacing.s : 0)
     }
 }
 
@@ -45,10 +47,10 @@ extension YearSelection {
             }
             .clipShape(
                 .rect(
-                    topLeadingRadius: 0,
-                    bottomLeadingRadius: 0,
-                    bottomTrailingRadius: .CornerRadius.contentItem,
-                    topTrailingRadius: .CornerRadius.contentItem
+                    topLeadingRadius: .CornerRadius.contentItem,
+                    bottomLeadingRadius: .CornerRadius.contentItem,
+                    bottomTrailingRadius: 0,
+                    topTrailingRadius: 0
                 )
             )
             .shadow(radius: 10)
@@ -60,7 +62,7 @@ extension YearSelection {
                 contentScreenVM.yearSelectionIsExtended = false
             }
         } label: {
-            Image(systemName: "arrowshape.backward.fill")
+            Image(systemName: "arrowshape.forward.fill")
                 .resizable()
                 .scaledToFit()
                 .foregroundColor(.white)
