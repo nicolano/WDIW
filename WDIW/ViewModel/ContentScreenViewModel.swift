@@ -139,6 +139,13 @@ class ContentScreenViewModel: ObservableObject {
     }
     
     func selectYear(year: String) {
+        if !yearSelectionIsExtended {
+            withAnimation {
+                yearSelectionIsExtended = true
+            }
+            return
+        }
+        
         if self.selectedYears.count == 1 && self.selectedYears.first == year {
             return
         }

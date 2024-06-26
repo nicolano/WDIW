@@ -35,31 +35,18 @@ struct ContentScreen: View {
                             }
                         }
                     }
-                    .padding(contentScreenVM.yearSelectionIsExtended ? .TopXL : .TopL)
+                    .padding(.TopS)
                     .padding(.HorizontalM)
-                    .background {
-                        GeometryReader {
-                            Color.clear.preference(
-                                key: ViewOffsetKey.self,
-                                value: -$0.frame(in: .named("scroll")).origin.y
-                            )
-                        }
-                    }
-                    .listStyle(.plain)
                     .safeAreaPadding(.bottom, 100)
-                    .searchField(
-                        searchQuery: $contentScreenVM.searchQuery,
-                        showSearch: contentScreenVM.showSearch
-                    )
                 }
-                .onPreferenceChange(ViewOffsetKey.self) {
-                   scrollViewOffset = $0
-                }
-                .coordinateSpace(name: "scroll")
+                .searchField(
+                    searchQuery: $contentScreenVM.searchQuery,
+                    showSearch: contentScreenVM.showSearch
+                )
                 .overlay {
-                    YearSelection(scrollViewOffset: scrollViewOffset)
+                    YearSelection()
                         .align(.topLeading)
-                        .padding(.top, contentScreenVM.showSearch ? 52 : 0)
+                        .padding(.TopS)
                 }
             }
             
