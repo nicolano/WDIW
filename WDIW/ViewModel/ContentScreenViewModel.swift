@@ -17,6 +17,28 @@ enum SortBy {
 }
 
 @MainActor
+class ContentScreenViewModels: ObservableObject {
+    @Published var forBooks: ContentScreenViewModel
+    @Published var forMovies: ContentScreenViewModel
+    @Published var forSeries: ContentScreenViewModel
+    
+    init(contentVM: ContentViewModel) {
+        self.forBooks = ContentScreenViewModel(
+            contentVM: contentVM,
+            contentCategory: .books
+        )
+        self.forMovies = ContentScreenViewModel(
+            contentVM: contentVM,
+            contentCategory: .movies
+        )
+        self.forSeries = ContentScreenViewModel(
+            contentVM: contentVM,
+            contentCategory: .series
+        )
+    }
+}
+
+@MainActor
 class ContentScreenViewModel: ObservableObject {
     internal init(contentVM: ContentViewModel, contentCategory: ContentCategories) {
         self.contentVM = contentVM

@@ -10,26 +10,8 @@ import SwiftUI
 struct MainScreen: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
     @EnvironmentObject private var contentVM: ContentViewModel
-    
-    internal init(contentVM: ContentViewModel) {
-        self.bookContentScreenViewModel = ContentScreenViewModel(
-            contentVM: contentVM,
-            contentCategory: .books
-        )
-        self.moviesContentScreenViewModel = ContentScreenViewModel(
-            contentVM: contentVM,
-            contentCategory: .movies
-        )
-        self.seriesContentScreenViewModel = ContentScreenViewModel(
-            contentVM: contentVM,
-            contentCategory: .series
-        )
-    }
+    @EnvironmentObject private var contentScreenViewModels: ContentScreenViewModels
 
-    @ObservedObject private var bookContentScreenViewModel: ContentScreenViewModel
-    @ObservedObject private var moviesContentScreenViewModel: ContentScreenViewModel
-    @ObservedObject private var seriesContentScreenViewModel: ContentScreenViewModel
-    
     @State private var isMovingToSettings: Bool = false
     
     @State private var scrollPosition: CGPoint = .zero
@@ -40,7 +22,7 @@ struct MainScreen: View {
                 if navigationVM.activeScreen == .books || navigationVM.activeScreen == .settings {
                     BooksScreen(offset: scrollPosition)
                         .id(ContentCategories.books)
-                        .environmentObject(bookContentScreenViewModel)
+                        .environmentObject(contentScreenViewModels.forBooks)
                         .mainHorizontalScroll($scrollPosition)
                         .transition(.identity)
                 }
@@ -48,14 +30,14 @@ struct MainScreen: View {
                 if navigationVM.activeScreen == .movies {
                     ContentScreen(contentCategory: .movies)
                         .id(ContentCategories.movies)
-                        .environmentObject(moviesContentScreenViewModel)
+                        .environmentObject(contentScreenViewModels.forMovies)
                         .transition(.identity)
                 }
                 
                 if navigationVM.activeScreen == .series {
                     ContentScreen(contentCategory: .series)
                         .id(ContentCategories.series)
-                        .environmentObject(seriesContentScreenViewModel)
+                        .environmentObject(contentScreenViewModels.forSeries)
                         .transition(.identity)
                 }
             }
