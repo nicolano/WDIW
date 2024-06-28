@@ -23,6 +23,7 @@ struct BookItem: View {
                     .bold()
                 
                 Text(book.author)
+                    .foregroundStyle(.secondary)
             }
             .multilineTextAlignment(.leading)
             .foregroundStyle(Color.primary)

@@ -28,6 +28,7 @@ struct ContentItem: View {
                 SeriesItem(series.wrappedValue) { onTap() }
             }
         }
+        .contentShape(Rectangle())
         .buttonStyle(ContentItemButtonStyle())
     }
 }
@@ -35,10 +36,6 @@ struct ContentItem: View {
 struct ContentItemButtonStyle: ButtonStyle {    
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .padding(.AllM)
-            .background {
-                RoundedRectangle(cornerRadius: .CornerRadius.contentItem)
-                    .fill(Material.ultraThin)
-            }
+            .padding(.VerticalXS)
     }
 }

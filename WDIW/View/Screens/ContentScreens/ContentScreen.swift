@@ -33,6 +33,10 @@ struct ContentScreen: View {
                             .transaction { trans in
                                 trans.animation = .none
                             }
+                            
+                            if index < contentScreenVM.displayedContents.indices.count - 1 {
+                                Rectangle().fill(Color.Custom.divider).frame(height: 1)
+                            }
                         }
                     }
                     .padding(.TopS)

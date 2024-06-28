@@ -17,12 +17,13 @@ struct SeriesItem: View {
     private let onTap: () -> Void
     
     var body: some View {
-        HStack.spacingS(alignment: .top) {
+        HStack.spacingS(alignment: .center) {
             VStack.spacingXS(alignment: .leading) {
                 Text(series.name)
                     .bold()
                 
                 Text(series.additionalInfo)
+                    .foregroundStyle(.secondary)
             }
             .multilineTextAlignment(.leading)
             .foregroundStyle(Color.primary)

@@ -17,12 +17,13 @@ struct MovieItem: View {
     private let onTap: () -> Void
     
     var body: some View {
-        HStack.spacingS(alignment: .top) {
+        HStack.spacingS(alignment: .center) {
             VStack.spacingXS(alignment: .leading) {
                 Text(movie.name)
                     .bold()
                 
                 Text(movie.director)
+                    .foregroundStyle(.secondary)
             }
             .multilineTextAlignment(.leading)
             .foregroundStyle(Color.primary)

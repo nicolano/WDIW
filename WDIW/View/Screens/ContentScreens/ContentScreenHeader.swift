@@ -22,6 +22,7 @@ struct ContentScreenHeader: View {
             } label: {
                 Image(systemName: contentScreenVM.showSearch ? "x.circle.fill" : "magnifyingglass")
                     .bold()
+                    .font(.headline)
                     .transaction { transaction in
                         transaction.animation = .none
                     }

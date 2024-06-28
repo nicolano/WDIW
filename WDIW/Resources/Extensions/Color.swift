@@ -12,6 +12,7 @@ extension Color {
     struct Custom {
         static var primary = Color.blue
         static var onPrimary = Color.white
+        static var divider = Color.secondary.opacity(0.5)
         
         static var surface = Material.thinMaterial
     }
