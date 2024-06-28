@@ -11,12 +11,9 @@ struct ContentHero: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
     
     let content: MediaContent
-    
-    @State private var scrollViewOffset: CGFloat = 0
-    
+        
     var body: some View {
-        // TODO: Remove Scroll View Offset if not needed
-        VerticalScrollView($scrollViewOffset) {
+        ScrollView {
             ContentSwitch(content: .constant(content), bookContent: { book in
                 HeroBookContent(book: book.wrappedValue)
             }, movieContent: { movie in
@@ -26,7 +23,7 @@ struct ContentHero: View {
             })
             .padding(.HorizontalM)
         }
-        .safeAreaInset(edge: .top, content: { header(scrollViewOffset) })
+        .safeAreaInset(edge: .top, content: { header })
         .background {
             RoundedRectangle(cornerRadius: .CornerRadius.dialog)
                 .fill(Color.Custom.surface)
@@ -38,7 +35,7 @@ struct ContentHero: View {
 }
 
 extension ContentHero {
-    private func header(_ scrollViewOffset: CGFloat) -> some View {
+    private var header: some View {
         HStack {
             Button {
                 navigationVM.closeSelectedContentHero()
