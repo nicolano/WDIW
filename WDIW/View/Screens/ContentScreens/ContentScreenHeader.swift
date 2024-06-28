@@ -72,9 +72,8 @@ struct ContentScreenHeader: View {
                     }
                 }
             } label: {
-                Image(systemName: "ellipsis")
+                Image(systemName: "line.3.horizontal.decrease")
                     .bold()
-                    .rotationEffect(Angle(degrees: 90))
                     .padding(.LeadingM)
                     .contentShape(Rectangle())
             }

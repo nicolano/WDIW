@@ -74,6 +74,7 @@
 		F6DC1C592BF4E414003D44EC /* NewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DC1C582BF4E414003D44EC /* NewButton.swift */; };
 		F6DC1C5B2BF4E72C003D44EC /* ForEachCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DC1C5A2BF4E72C003D44EC /* ForEachCategory.swift */; };
 		F6DCC5A62C2C3BFD00BD2C33 /* ThumbnailContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DCC5A52C2C3BFD00BD2C33 /* ThumbnailContent.swift */; };
+		F6E08C002C2EE34D005726B4 /* Glur in Frameworks */ = {isa = PBXBuildFile; productRef = F6E08BFF2C2EE34D005726B4 /* Glur */; };
 		F6E12C812C2CA0A9009304A1 /* YearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E12C802C2CA0A9009304A1 /* YearButton.swift */; };
 		F6E1B77B2BF8A88A00E6D64B /* ContentScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E1B77A2BF8A88A00E6D64B /* ContentScreenViewModel.swift */; };
 		F6E1B77D2BF8B2D100E6D64B /* SearchFieldViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E1B77C2BF8B2D100E6D64B /* SearchFieldViewModifier.swift */; };
@@ -172,6 +173,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6E08C002C2EE34D005726B4 /* Glur in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +480,9 @@
 			dependencies = (
 			);
 			name = WDIW;
+			packageProductDependencies = (
+				F6E08BFF2C2EE34D005726B4 /* Glur */,
+			);
 			productName = WDIW;
 			productReference = F6B2F3072B849B9300A981C2 /* WDIW.app */;
 			productType = "com.apple.product-type.application";
@@ -506,6 +511,9 @@
 				Base,
 			);
 			mainGroup = F6B2F2FE2B849B9300A981C2;
+			packageReferences = (
+				F6E08BFE2C2EE34D005726B4 /* XCRemoteSwiftPackageReference "Glur" */,
+			);
 			productRefGroup = F6B2F3082B849B9300A981C2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -814,6 +822,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F6E08BFE2C2EE34D005726B4 /* XCRemoteSwiftPackageReference "Glur" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/joogps/Glur.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F6E08BFF2C2EE34D005726B4 /* Glur */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F6E08BFE2C2EE34D005726B4 /* XCRemoteSwiftPackageReference "Glur" */;
+			productName = Glur;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F6B2F2FF2B849B9300A981C2 /* Project object */;
 }

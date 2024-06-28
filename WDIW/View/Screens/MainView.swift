@@ -13,7 +13,6 @@ struct MainScreen: View {
     @EnvironmentObject private var contentScreenViewModels: ContentScreenViewModels
 
     @State private var isMovingToSettings: Bool = false
-    
     @State private var scrollPosition: CGPoint = .zero
 
     var body: some View {

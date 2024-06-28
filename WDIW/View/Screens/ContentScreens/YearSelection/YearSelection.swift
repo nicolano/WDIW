@@ -81,3 +81,4 @@ extension YearSelection {
         .padding(.top, isExtended ? .Spacing.m : 0)
     }
 }
+

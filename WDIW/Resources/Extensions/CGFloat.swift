@@ -25,4 +25,6 @@ extension CGFloat {
     }
     
     static var offsetNavToSettings: CGFloat = 80.0
+    
+    
 }

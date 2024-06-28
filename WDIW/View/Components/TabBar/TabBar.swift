@@ -14,39 +14,25 @@ struct TabBar: View {
     @Environment(\.keyboardShowing) var keyboardShowing
     @State var activeCategory: ContentCategories = .books
     
-    private func getTabBarButtonWidth(tabBarWidth: CGFloat) -> CGFloat {
-        (tabBarWidth / 4) - (4 * .Spacing.xxs)
-    }
-    
-    
-    
     var body: some View {
-        Group {
-            GeometryReader { geo in
-                VStack {
-                    Spacer()
-                    
-                    HStack(spacing: 0) {
-                        NewButton(backgroundColor: settingsVM.preferredAccentColor) {
-                            navigationVM.openAddContentSheet(contentCategory: activeCategory)
-                        }
-                        .padding(.TrailingXS)
-                                                
-                        GridRow {
-                            booksButton
-                            moviesButton
-                            seriesButton
-                        }
-                    }
-                    .padding(.Spacing.xs)
-                    .background(background)
-                }
-                .opacity(keyboardShowing ? 0 : 1)
-                .blur(radius: keyboardShowing ? 5 : 0)
-                .animation(.smooth, value: keyboardShowing)
-                .ignoresSafeArea(.keyboard)
+        HStack(spacing: 0) {
+            NewButton(backgroundColor: settingsVM.preferredAccentColor) {
+                navigationVM.openAddContentSheet(contentCategory: activeCategory)
+            }
+            .padding(.TrailingXS)
+                                    
+            GridRow {
+                booksButton
+                moviesButton
+                seriesButton
             }
         }
+        .padding(.Spacing.xs)
+        .background(background)
+        .opacity(keyboardShowing ? 0 : 1)
+        .blur(radius: keyboardShowing ? 5 : 0)
+        .animation(.smooth, value: keyboardShowing)
+        .ignoresSafeArea(.keyboard)
         .onReceive(navigationVM.$activeScreen) { value in
             switch value {
             case .books:

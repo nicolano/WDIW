@@ -66,6 +66,8 @@ class ContentScreenViewModel: ObservableObject {
     @Published var selectedYears: [String] = ["2024"]
     @Published var yearSelectionIsExtended: Bool = false
 
+    @Published var isSearchFieldFocused: Bool = false
+    
     var contents: [MediaContent] {
         switch contentCategory {
         case .books:
@@ -211,6 +213,22 @@ class ContentScreenViewModel: ObservableObject {
     }
     
     func toggleSearchField() {
+        if self.showSearch {
+            self.clearSearchQuery()
+            self.isSearchFieldFocused = false
+        } else {
+            self.isSearchFieldFocused = true
+        }
+        
+        if self.showSearch {
+            self.clearSearchQuery()
+        }
+        
         self.showSearch.toggle()
+    }
+    
+    func clearSearchQuery() {
+        self.searchQuery.removeAll()
+        self.sortContent(sortBy: self.sortBy)
     }
 }

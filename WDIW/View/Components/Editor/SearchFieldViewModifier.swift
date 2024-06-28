@@ -7,30 +7,30 @@
 
 import SwiftUI
 
+
 struct SearchFieldViewModifier: ViewModifier {
-    @Binding var searchQuery: String
-    let showSearch: Bool
-    let onSubmit: () -> Void
+    @EnvironmentObject private var contentScreenVM: ContentScreenViewModel
+
+    @FocusState private var isFocused: Bool
     
     func body(content: Content) -> some View {
         content
             .safeAreaInset(
                 edge: .top,
                 content: {
-                    if showSearch {
+                    if contentScreenVM.showSearch {
                         CustomTextField(
-                            value: $searchQuery,
+                            value: $contentScreenVM.searchQuery,
                             hint: "Search",
                             withShadow: true,
-                            onSubmit: onSubmit,
                             leadingContent: {
                                 Image(systemName: "magnifyingglass")
                                     .foregroundStyle(Color.secondary)
                             },
                             trailingContent: {
-                                if !searchQuery.isEmpty {
+                                if !contentScreenVM.searchQuery.isEmpty {
                                     Button {
-                                        searchQuery.removeAll()
+                                        contentScreenVM.clearSearchQuery()
                                     } label: {
                                         Image(systemName: "xmark")
                                             .foregroundStyle(Color.secondary)
@@ -38,27 +38,21 @@ struct SearchFieldViewModifier: ViewModifier {
                                 }
                             }
                         )
+                        .focused($isFocused)
                         .padding(.HorizontalM)
                         .padding(.TopM)
                         .transition(ScaleTransition(0, anchor: .top))
                     }
                 }
             )
+            .onReceive(contentScreenVM.$isSearchFieldFocused) { output in
+                isFocused = output
+            }
     }
 }
 
 extension View {
-    func searchField(
-        searchQuery: Binding<String>,
-        showSearch: Bool,
-        onSubmit: @escaping () -> Void = {}
-    ) -> some View {
-        modifier(
-            SearchFieldViewModifier(
-                searchQuery: searchQuery,
-                showSearch: showSearch,
-                onSubmit: onSubmit
-            )
-        )
+    func searchField() -> some View {
+        modifier(SearchFieldViewModifier())
     }
 }

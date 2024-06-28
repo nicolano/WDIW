@@ -14,6 +14,7 @@ struct CustomTextField<LeadingContent: View, TrailingContent: View>: View {
         hint: String = "...",
         lineLimit: Int = 1,
         withShadow: Bool = false,
+        autoFocus: Bool = false,
         onSubmit: @escaping () -> Void = {},
         @ViewBuilder leadingContent: @escaping () -> LeadingContent,
         @ViewBuilder trailingContent: @escaping () -> TrailingContent
@@ -23,6 +24,7 @@ struct CustomTextField<LeadingContent: View, TrailingContent: View>: View {
         self.hint = hint
         self.lineLimit = lineLimit
         self.withShadow = withShadow
+        self.autoFocus = autoFocus
         self.onSubmit = onSubmit
         self.leadingContent = leadingContent
         self.trailingContent = trailingContent
@@ -33,6 +35,7 @@ struct CustomTextField<LeadingContent: View, TrailingContent: View>: View {
     private let hint: String
     private let lineLimit: Int
     private let withShadow: Bool
+    private let autoFocus: Bool
     private let onSubmit: () -> Void
     private let leadingContent: () -> LeadingContent
     private let trailingContent: () -> TrailingContent
@@ -80,11 +83,13 @@ struct CustomTextField<LeadingContent: View, TrailingContent: View>: View {
                         .fill(Material.ultraThin)
                 }
             }
-//            .onAppear {
-//                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
-//                    self.isFocused = true
-//                }
-//            }
+            .onAppear {
+                if autoFocus {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(400)) {
+                        self.isFocused = true
+                    }
+                }
+            }
         }
     }
 }
@@ -96,6 +101,7 @@ extension CustomTextField where TrailingContent == EmptyView {
         hint: String = "...",
         lineLimit: Int = 1,
         withShadow: Bool = false,
+        autoFocus: Bool = false,
         onSubmit: @escaping () -> Void = {},
         @ViewBuilder leadingContent: @escaping () -> LeadingContent
     ) {
@@ -104,6 +110,7 @@ extension CustomTextField where TrailingContent == EmptyView {
         self.hint = hint
         self.lineLimit = lineLimit
         self.withShadow = withShadow
+        self.autoFocus = autoFocus
         self.onSubmit = onSubmit
         self.leadingContent = leadingContent
         self.trailingContent = {EmptyView()}
@@ -117,6 +124,7 @@ extension CustomTextField where LeadingContent == EmptyView {
         hint: String = "...",
         lineLimit: Int = 1,
         withShadow: Bool = false,
+        autoFocus: Bool = false,
         onSubmit: @escaping () -> Void = {},
         @ViewBuilder trailingContent: @escaping () -> TrailingContent
     ) {
@@ -125,6 +133,7 @@ extension CustomTextField where LeadingContent == EmptyView {
         self.hint = hint
         self.lineLimit = lineLimit
         self.withShadow = withShadow
+        self.autoFocus = autoFocus
         self.onSubmit = onSubmit
         self.leadingContent = {EmptyView()}
         self.trailingContent = trailingContent
@@ -138,6 +147,7 @@ extension CustomTextField where LeadingContent == EmptyView, TrailingContent == 
         hint: String = "...",
         lineLimit: Int = 1,
         withShadow: Bool = false,
+        autoFocus: Bool = false,
         onSubmit: @escaping () -> Void = {}
     ) {
         self._value = value
@@ -145,6 +155,7 @@ extension CustomTextField where LeadingContent == EmptyView, TrailingContent == 
         self.hint = hint
         self.lineLimit = lineLimit
         self.withShadow = withShadow
+        self.autoFocus = autoFocus
         self.onSubmit = onSubmit
         self.leadingContent = {EmptyView()}
         self.trailingContent = {EmptyView()}

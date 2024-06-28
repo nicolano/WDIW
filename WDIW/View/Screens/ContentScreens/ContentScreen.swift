@@ -39,10 +39,7 @@ struct ContentScreen: View {
                     .padding(.HorizontalM)
                     .safeAreaPadding(.bottom, 100)
                 }
-                .searchField(
-                    searchQuery: $contentScreenVM.searchQuery,
-                    showSearch: contentScreenVM.showSearch
-                )
+                .searchField()
                 .overlay {
                     YearSelection()
                         .align(.topTrailing)
@@ -50,7 +47,7 @@ struct ContentScreen: View {
                 }
             }
             
-            Spacer()
+            Spacer(minLength: 0)
         }
         .frame(width: UIScreen.main.bounds.width)
     }

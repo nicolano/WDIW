@@ -31,6 +31,7 @@ struct WDIWApp: App {
     var body: some Scene {
         WindowGroup {
             MainScreen()
+                .ignoresSafeArea(.all, edges: .bottom)
                 .sheets()
                 .contentHero()
                 .loadingDialog()
@@ -39,9 +40,9 @@ struct WDIWApp: App {
                 .applyAccentColor()
                 .applyColorScheme()
                 .environmentObject(settingsVM)
-                .environmentObject(navigationVM)
                 .environmentObject(contentVM)
                 .environmentObject(contentScreenViewModels)
+                .environmentObject(navigationVM)
                 .addKeyboardVisibilityToEnvironment()
         }
         .modelContainer(sharedModelContainer.modelContainer)
