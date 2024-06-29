@@ -7,14 +7,13 @@
 
 import SwiftUI
 
-struct ContentScreenHeader: View {
+struct ContentScreenHeaderButtons: View {
     @EnvironmentObject private var contentScreenVM: ContentScreenViewModel
     let contentCategory: ContentCategories
     
+    
     var body: some View {
-        Header(title: contentCategory.getName()) {
-            EmptyView()
-        } secondaryButton: {
+        HStack.spacingM {
             Button {
                 withAnimation {
                     contentScreenVM.toggleSearchField()
@@ -23,11 +22,8 @@ struct ContentScreenHeader: View {
                 Image(systemName: contentScreenVM.showSearch ? "x.circle.fill" : "magnifyingglass")
                     .bold()
                     .font(.headline)
-                    .transaction { transaction in
-                        transaction.animation = .none
-                    }
             }
-        } primaryButton: {
+
             Menu {
                 Menu("Sort by") {
                     Button {

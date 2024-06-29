@@ -13,16 +13,15 @@ struct MainScreen: View {
     @EnvironmentObject private var contentScreenViewModels: ContentScreenViewModels
 
     @State private var isMovingToSettings: Bool = false
-    @State private var scrollPosition: CGPoint = .zero
+    @State private var scrollPosition: CGFloat = .zero
 
     var body: some View {
         ZStack {
             ZStack {
                 if navigationVM.activeScreen == .books || navigationVM.activeScreen == .settings {
-                    BooksScreen(offset: scrollPosition)
+                    ContentScreen(contentCategory: .books)
                         .id(ContentCategories.books)
                         .environmentObject(contentScreenViewModels.forBooks)
-                        .mainHorizontalScroll($scrollPosition)
                         .transition(.identity)
                 }
                 
@@ -40,7 +39,6 @@ struct MainScreen: View {
                         .transition(.identity)
                 }
             }
-            .tabBarOverlay()
             
             if navigationVM.activeScreen == .settings {
                 SettingsScreen()
@@ -48,6 +46,11 @@ struct MainScreen: View {
                     .zIndex(100)
             }
         }
+        .safeAreaInset(edge: .top) {
+            MainHeader(offset: scrollPosition)
+        }
+        .mainHorizontalScroll($scrollPosition)
+        .tabBarOverlay()
         // Sensory Feedback when moving to settings screen
         .sensoryFeedback(.success, trigger: isMovingToSettings)
         .onChange(of: navigationVM.activeScreen, { oldValue, newValue in
@@ -56,15 +59,5 @@ struct MainScreen: View {
             }
         })
         .animation(.default, value: self.navigationVM.activeScreen)
-        .background {
-            VStack {
-                Rectangle()
-                    .fill(Color.Custom.surface)
-                    .ignoresSafeArea(edges: .top)
-                    .frame(height: 70)
-                
-                Spacer()
-            }
-        }
     }
 }

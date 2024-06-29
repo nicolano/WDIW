@@ -20,6 +20,7 @@ class NavigationViewModel: ObservableObject {
     }
     
     @Published var activeScreen: Screens = .books
+    private var lastActiveContentScreen: Screens = .books
     @Published var selectedContent: MediaContent? = nil
     @Published var activeAddContentSheet: ContentCategories? = nil
     @Published var activeEditContentSheet: MediaContent? = nil
@@ -68,11 +69,12 @@ class NavigationViewModel: ObservableObject {
     }
     
     func navigateToSettings() {
+        lastActiveContentScreen = activeScreen
         activeScreen = .settings
     }
     
     func navigateToContents() {
-        activeScreen = .books
+        activeScreen = lastActiveContentScreen
     }
     
     func navigateFromOffset(offset: CGPoint) {

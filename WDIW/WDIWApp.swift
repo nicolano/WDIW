@@ -31,7 +31,7 @@ struct WDIWApp: App {
     var body: some Scene {
         WindowGroup {
             MainScreen()
-                .ignoresSafeArea(.all, edges: .bottom)
+                .ignoresSafeArea(.all, edges: .vertical)
                 .sheets()
                 .contentHero()
                 .loadingDialog()

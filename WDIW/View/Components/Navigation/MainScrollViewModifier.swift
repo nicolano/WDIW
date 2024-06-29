@@ -10,35 +10,50 @@ import SwiftUI
 struct MainHorizontalScrollViewModifier: ViewModifier {
     @EnvironmentObject private var navigationVM: NavigationViewModel
 
-    @Binding var scrollPosition: CGPoint
+    @Binding var scrollPosition: CGFloat
     
     func body(content: Content) -> some View {
-        ScrollViewReader { scrollViewReader in
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    content
-                }
-                .scrollTargetLayout()
-                .background(GeometryReader { geometry in
-                    Color.clear
-                        .preference(
-                            key: ScrollOffsetPreferenceKey.self,
-                            value: geometry.frame(in: .named("scroll")).origin
-                        )
-                })
-                .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
-                    scrollPosition = value
-                    navigationVM.navigateFromOffset(offset: value)
-                }
-            }
-            .coordinateSpace(name: "scroll")
-            .scrollTargetBehavior(.paging)
+        VStack {
+            content
         }
+        .background(GeometryReader { geometry in
+            Color.clear
+                .preference(
+                    key: ScrollOffsetPreferenceKey.self,
+                    value: geometry.frame(in: .named("scroll")).origin
+                )
+        })
+        .offset(x: scrollPosition)
+        .highPriorityGesture(DragGesture()
+            .onChanged({ value in
+                if navigationVM.activeScreen == .settings {
+                    withAnimation(.smooth) {
+                        scrollPosition = 0
+                    }
+                    return
+                }
+                
+                if value.translation.width > 0 && value.translation.width < 120 {
+                    scrollPosition = value.translation.width
+                }
+            })
+            .onEnded({ value in
+                withAnimation(.smooth) {
+                    scrollPosition = 0
+                }
+            })
+        )
+        .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
+            scrollPosition = value.x
+            navigationVM.navigateFromOffset(offset: value)
+        }
+        .coordinateSpace(name: "scroll")
+
     }
 }
 
 extension View {
-    func mainHorizontalScroll(_ scrollPosition: Binding<CGPoint>) -> some View {
+    func mainHorizontalScroll(_ scrollPosition: Binding<CGFloat>) -> some View {
         modifier(MainHorizontalScrollViewModifier(scrollPosition: scrollPosition))
     }
 }

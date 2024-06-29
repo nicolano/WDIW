@@ -13,18 +13,6 @@ struct SettingsScreen: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Header(title: "Settings") {
-                
-            } secondaryButton: {
-                
-            } primaryButton: {
-                Button {
-                    navigationVM.navigateToContents()
-                } label: {
-                    Text("Back").padding(.horizontal)
-                }
-            }
-            
             List {
                 BackupSection()     
                 ResetSection()

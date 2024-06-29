@@ -12,8 +12,6 @@ struct TabBarModifier: ViewModifier {
     @EnvironmentObject private var navigationVM: NavigationViewModel
     @EnvironmentObject private var settingsVM: SettingsViewModel
     @Environment(\.safeAreaInsets) private var safeAreaInsets
-
-    
     
     func body(content: Content) -> some View {
         content
@@ -21,16 +19,19 @@ struct TabBarModifier: ViewModifier {
                 VStack {
                     Spacer()
                     
-                    TabBar()
-                        .padding(.horizontal, .Spacing.m)
-                        .padding(.bottom, safeAreaInsets.bottom)
-                        .background {
-                            Rectangle()
-                                .fill(
-                                    Material.ultraThinMaterial
-                                )
-                                .padding(.TopL)
-                        }
+                    if navigationVM.activeScreen != .settings {
+                        TabBar()
+                            .padding(.horizontal, .Spacing.m)
+                            .padding(.bottom, safeAreaInsets.bottom)
+                            .background {
+                                Rectangle()
+                                    .fill(
+                                        Material.ultraThinMaterial
+                                    )
+                                    .padding(.TopL)
+                            }
+                            .transition(.move(edge: .bottom))
+                    }
                 }
             }
     }

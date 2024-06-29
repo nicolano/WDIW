@@ -19,8 +19,6 @@ struct ContentScreen: View {
     
     var body: some View {
         VStack.zeroSpacing(alignment: .leading) {
-            ContentScreenHeader(contentCategory: contentCategory)
-            
             if contentScreenVM.contents.isEmpty {
                 NoContentSection(contentCategory: .movies)
             } else {

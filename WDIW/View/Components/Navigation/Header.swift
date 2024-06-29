@@ -7,29 +7,28 @@
 
 import SwiftUI
 
-struct Header<Content1: View, Content2: View, Content3: View>: View {
+struct Header<Content1: View>: View {
+    @Environment(\.safeAreaInsets) private var safeAreaInsets
+
     let title: String
-    @ViewBuilder let tertiaryButton: Content1
-    @ViewBuilder let secondaryButton: Content2
-    @ViewBuilder let primaryButton: Content3
+    @ViewBuilder let buttons: Content1
     
     var body: some View {
         HStack {
             Text(title)
                 .font(.largeTitle)
                 .fontWeight(.black)
+//                .transaction { trans in
+//                    trans.animation = .none
+//                }
             
             Spacer()
             
-            tertiaryButton
-            
-            secondaryButton
-            
-            primaryButton
+            buttons
         }
-        .padding(.horizontal, .Spacing.l)
+        .padding(.horizontal, .Spacing.m)
+        .padding(.top, safeAreaInsets.top)
         .padding(.top, .Spacing.m)
         .padding(.bottom, .Spacing.m)
-        .frame(height: 70)
     }
 }
