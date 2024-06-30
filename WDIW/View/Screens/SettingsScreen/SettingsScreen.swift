@@ -26,7 +26,3 @@ struct SettingsScreen: View {
         .background(Color.Custom.surface)
     }
 }
-
-#Preview {
-    SettingsScreen()
-}

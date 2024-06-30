@@ -25,7 +25,8 @@ class NavigationViewModel: ObservableObject {
     @Published var activeAddContentSheet: ContentCategories? = nil
     @Published var activeEditContentSheet: MediaContent? = nil
     @Published var showCSVInfoSheet: Bool = false
-    
+    @Published var contentScrollOffset: CGFloat = 0
+
     func openSheet(type: Sheets) {
         switch type {
         case .csvInfo:
@@ -69,12 +70,16 @@ class NavigationViewModel: ObservableObject {
     }
     
     func navigateToSettings() {
-        lastActiveContentScreen = activeScreen
-        activeScreen = .settings
+        withAnimation {
+            lastActiveContentScreen = activeScreen
+            activeScreen = .settings
+        }
     }
     
     func navigateToContents() {
-        activeScreen = lastActiveContentScreen
+        withAnimation {
+            activeScreen = lastActiveContentScreen
+        }
     }
     
     func navigateFromOffset(offset: CGPoint) {

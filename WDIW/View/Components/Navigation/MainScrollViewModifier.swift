@@ -26,6 +26,10 @@ struct MainHorizontalScrollViewModifier: ViewModifier {
         .offset(x: scrollPosition)
         .highPriorityGesture(DragGesture()
             .onChanged({ value in
+                if value.startLocation.x > CGFloat(50.0){
+                    return
+                }
+                
                 if navigationVM.activeScreen == .settings {
                     withAnimation(.smooth) {
                         scrollPosition = 0

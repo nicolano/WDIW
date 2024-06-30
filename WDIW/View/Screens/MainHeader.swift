@@ -11,11 +11,7 @@ struct MainHeader: View {
     @Environment(\.safeAreaInsets) private var safeAreaInsets
 
     @EnvironmentObject private var navigationVM: NavigationViewModel
-    @EnvironmentObject private var settingsVM: SettingsViewModel
     @EnvironmentObject private var contentScreenViewModels: ContentScreenViewModels
-    
-    let offset: CGFloat
-    @State private var hideOpacity = 1.0
     
     private var title: String {
         switch navigationVM.activeScreen {
@@ -48,25 +44,9 @@ struct MainHeader: View {
                 }
             }
         }
-        .overlay {
-            Image(systemName: "gear")
-                .opacity(offset / .offsetNavToSettings)
-                .scaleEffect(offset / .offsetNavToSettings)
-                .font(.largeTitle)
-                .opacity(hideOpacity)
-                .foregroundStyle(settingsVM.preferredAccentColor)
-                .offset(x: -40)
-                .align(.bottomLeading)
-                .padding(.BottomM)
-        }
-        .onChange(of: offset) { oldValue, newValue in
-            if newValue > .offsetNavToSettings {
-                hideOpacity = 0.0
-            }
-        }
-        .onChange(of: navigationVM.activeScreen) { oldValue, newValue in
-            if newValue == .books {
-                hideOpacity = 1.0
+        .background {
+            if navigationVM.activeScreen == .settings || navigationVM.contentScrollOffset > -115 {
+                Rectangle().fill(Color.Custom.surface)
             }
         }
     }

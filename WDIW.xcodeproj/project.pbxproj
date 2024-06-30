@@ -20,6 +20,7 @@
 		F65B466E2C0054E6000923CC /* RatingContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65B466D2C0054E6000923CC /* RatingContent.swift */; };
 		F65B46702C005573000923CC /* HeroSeriesContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65B466F2C005573000923CC /* HeroSeriesContent.swift */; };
 		F65B46722C005728000923CC /* IMDbContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65B46712C005728000923CC /* IMDbContent.swift */; };
+		F6667DB92C31451D00F52C68 /* SwipeToSettingsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6667DB82C31451D00F52C68 /* SwipeToSettingsModifier.swift */; };
 		F66F55402B8A068F00C29AB0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66F553F2B8A068F00C29AB0 /* MainView.swift */; };
 		F66F55422B8A074200C29AB0 /* SharedModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66F55412B8A074200C29AB0 /* SharedModelContainer.swift */; };
 		F66F55442B8A1DE400C29AB0 /* BackupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66F55432B8A1DE400C29AB0 /* BackupManager.swift */; };
@@ -99,6 +100,7 @@
 		F65B466D2C0054E6000923CC /* RatingContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingContent.swift; sourceTree = "<group>"; };
 		F65B466F2C005573000923CC /* HeroSeriesContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroSeriesContent.swift; sourceTree = "<group>"; };
 		F65B46712C005728000923CC /* IMDbContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMDbContent.swift; sourceTree = "<group>"; };
+		F6667DB82C31451D00F52C68 /* SwipeToSettingsModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeToSettingsModifier.swift; sourceTree = "<group>"; };
 		F66F553F2B8A068F00C29AB0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F66F55412B8A074200C29AB0 /* SharedModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedModelContainer.swift; sourceTree = "<group>"; };
 		F66F55432B8A1DE400C29AB0 /* BackupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupManager.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 				F6D233AB2BF11EA500AC307A /* SheetManager.swift */,
 				F6DC1C5A2BF4E72C003D44EC /* ForEachCategory.swift */,
 				F6912F8D2BFDE67D00504B81 /* ScrollView.swift */,
+				F6667DB82C31451D00F52C68 /* SwipeToSettingsModifier.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 				F6B2F3322B84ACBB00A981C2 /* CGFloat.swift in Sources */,
 				F6D233AA2BF0D46600AC307A /* Dialog.swift in Sources */,
 				F6B693E32BEBCBED0085A1E3 /* MovieItem.swift in Sources */,
+				F6667DB92C31451D00F52C68 /* SwipeToSettingsModifier.swift in Sources */,
 				F6457A952B9129270059C38C /* Spacing.swift in Sources */,
 				F65B466A2C004F48000923CC /* LinkContent.swift in Sources */,
 				F68E4EFD2BF9EF9400B32D63 /* ContentScreenHeader.swift in Sources */,

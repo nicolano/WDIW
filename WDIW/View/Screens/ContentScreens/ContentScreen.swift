@@ -22,7 +22,7 @@ struct ContentScreen: View {
             if contentScreenVM.contents.isEmpty {
                 NoContentSection(contentCategory: .movies)
             } else {
-                ScrollView {
+                VerticalScrollView($navigationVM.contentScrollOffset) {
                     LazyVStack(spacing: .Spacing.s) {
                         ForEach(contentScreenVM.displayedContents.indices, id: \.self) { index in
                             ContentItem(contentScreenVM.displayedContents[index]) {
