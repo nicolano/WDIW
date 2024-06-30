@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Glur
 
 struct TabBarModifier: ViewModifier {
     @EnvironmentObject private var navigationVM: NavigationViewModel

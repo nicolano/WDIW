@@ -7,9 +7,11 @@
 
 import Foundation
 
-enum ContentCategories {
+enum ContentCategories: Equatable, Codable {
     case books, movies, series
-    
+}
+
+extension ContentCategories {
     func getName() -> String {
         switch self {
         case .books:
@@ -69,8 +71,6 @@ enum ContentCategories {
         
         fatalError("Could not determine category of media content")
     }
-}
-
-extension ContentCategories {
+    
     static var iterator: [ContentCategories] = [.books, .movies, .series]
 }

@@ -9,12 +9,27 @@ import Foundation
 import SwiftUI
 import Combine
 
+enum Screens {
+    case settings, books, movies, series
+}
+
+extension Screens {
+    func getRelatedContentCategory() -> ContentCategories {
+        switch self {
+        case .settings:
+            return .books
+        case .books:
+            return .books
+        case .movies:
+            return .movies
+        case .series:
+            return .series
+        }
+    }
+}
+
 @MainActor
 class NavigationViewModel: ObservableObject {
-    enum Screens {
-        case settings, books, movies, series
-    }
-    
     enum Sheets {
         case csvInfo
     }
@@ -100,6 +115,38 @@ class NavigationViewModel: ObservableObject {
             activeScreen = .movies
         case .series:
             activeScreen = .series
+        }
+    }
+    
+    
+    enum NavigationAdjustmentOptions { case activeScreen, lastActiveScreen }
+    func adjustNavigationToDisplayedCategories(
+        _ displayedcategories: [ContentCategories],
+        screenToAdjust: NavigationAdjustmentOptions
+    ) {
+        if displayedcategories.contains(activeScreen.getRelatedContentCategory()) {
+            return
+        } else {
+            switch screenToAdjust {
+            case .activeScreen:
+                switch displayedcategories.first ?? .books {
+                case .books:
+                    activeScreen = .books
+                case .movies:
+                    activeScreen = .movies
+                case .series:
+                    activeScreen = .series
+                }
+            case .lastActiveScreen:
+                switch displayedcategories.first ?? .books {
+                case .books:
+                    lastActiveContentScreen = .books
+                case .movies:
+                    lastActiveContentScreen = .movies
+                case .series:
+                    lastActiveContentScreen = .series
+                }
+            }
         }
     }
 }

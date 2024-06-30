@@ -10,9 +10,9 @@ import SwiftData
 
 @main
 struct WDIWApp: App {
-    @ObservedObject private var navigationVM = NavigationViewModel()
+    @ObservedObject private var navigationVM: NavigationViewModel
     @ObservedObject private var contentVM: ContentViewModel
-    @ObservedObject private var settingsVM = SettingsViewModel()
+    @ObservedObject private var settingsVM: SettingsViewModel
     @ObservedObject private var contentScreenViewModels: ContentScreenViewModels
     
     private var sharedModelContainer: SharedModelContainer
@@ -24,6 +24,22 @@ struct WDIWApp: App {
         )
         self.contentScreenViewModels = ContentScreenViewModels(contentVM: contentVM)
         self.contentVM = contentVM
+        
+        // Initialize navigation and settings view models, and react to a possible change of
+        // the displayed content categories
+        let navigationVM = NavigationViewModel()
+        let settingsVM = SettingsViewModel(onSelectedCategoriesChange: { categories in
+            navigationVM.adjustNavigationToDisplayedCategories(
+                categories,
+                screenToAdjust: .lastActiveScreen
+            )
+        })
+        navigationVM.adjustNavigationToDisplayedCategories(
+            settingsVM.displayedCategories,
+            screenToAdjust: .activeScreen
+        )
+        self.navigationVM = navigationVM
+        self.settingsVM = settingsVM
     }
     
     @Namespace var heroAnimation

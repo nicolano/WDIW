@@ -14,12 +14,13 @@ struct SettingsScreen: View {
     var body: some View {
         VStack(spacing: 0) {
             List {
-                BackupSection()     
+                PersonalizationSection()
+                BackupSection()
                 ResetSection()
                 ThemeSection()
             }
             .listStyle(.sidebar)
-
+ 
             Spacer()
         }
         .ignoresSafeArea(.all, edges: .bottom)

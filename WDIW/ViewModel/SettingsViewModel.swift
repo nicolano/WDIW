@@ -21,8 +21,43 @@ extension ThemeOption {
 
 @MainActor
 class SettingsViewModel: ObservableObject {
+    init(onSelectedCategoriesChange: @escaping (_ categories: [ContentCategories]) -> Void) {
+        self.onSelectedCategoriesChange = onSelectedCategoriesChange
+    }
+    
+    let onSelectedCategoriesChange: ([ContentCategories]) -> Void
+    
     @AppStorage("preferredTheme") var preferredTheme: ThemeOption = .system
     @AppStorage("accentColor") var preferredAccentColor: Color = .blue
+    @AppStorage("displayedCategories") var displayedCategories: [ContentCategories] = ContentCategories.iterator
+    
+    func setDisplayedCategories(contentCategory: ContentCategories) {
+        if displayedCategories.contains(contentCategory) {
+            if displayedCategories.count == 1 {
+                return
+            }
+            
+            displayedCategories.removeAll { it in
+                it == contentCategory
+            }
+        } else {
+            displayedCategories.append(contentCategory)
+        }
+        
+        onSelectedCategoriesChange(displayedCategories)
+    }
+    
+    func selectedCategoriesToDisplayString() -> String {
+        var selectedCategories = ""
+        for category in displayedCategories {
+            if !selectedCategories.isEmpty {
+                selectedCategories += ", "
+            }
+            selectedCategories += category.getName()
+        }
+        
+        return selectedCategories.isEmpty ? "None" : selectedCategories
+    }
     
     func setTheme(option: ThemeOption) {
         preferredTheme = option

@@ -22,9 +22,17 @@ struct TabBar: View {
             .padding(.TrailingXS)
                                     
             GridRow {
-                booksButton
-                moviesButton
-                seriesButton
+                if settingsVM.displayedCategories.contains(.books) {
+                    booksButton
+                }
+                
+                if settingsVM.displayedCategories.contains(.movies) {
+                    moviesButton
+                }
+                
+                if settingsVM.displayedCategories.contains(.series) {
+                    seriesButton
+                }
             }
         }
         .padding(.Spacing.xs)
