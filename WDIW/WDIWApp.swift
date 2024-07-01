@@ -18,13 +18,6 @@ struct WDIWApp: App {
     private var sharedModelContainer: SharedModelContainer
     
     init() {
-        self.sharedModelContainer = SharedModelContainer(isInMemory: false)
-        let contentVM = ContentViewModel(
-            modelContext: sharedModelContainer.modelContainer.mainContext
-        )
-        self.contentScreenViewModels = ContentScreenViewModels(contentVM: contentVM)
-        self.contentVM = contentVM
-        
         // Initialize navigation and settings view models, and react to a possible change of
         // the displayed content categories
         let navigationVM = NavigationViewModel()
@@ -40,6 +33,17 @@ struct WDIWApp: App {
         )
         self.navigationVM = navigationVM
         self.settingsVM = settingsVM
+        
+        // Initialize database and content view model
+        self.sharedModelContainer = SharedModelContainer(
+            isInMemory: false,
+            iCloudEnabled: settingsVM.iCloudEnabled
+        )
+        let contentVM = ContentViewModel(
+            modelContext: sharedModelContainer.modelContainer.mainContext
+        )
+        self.contentScreenViewModels = ContentScreenViewModels(contentVM: contentVM)
+        self.contentVM = contentVM
     }
     
     @Namespace var heroAnimation

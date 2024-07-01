@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MainScreen: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
-    @EnvironmentObject private var contentVM: ContentViewModel
     @EnvironmentObject private var contentScreenViewModels: ContentScreenViewModels
     @EnvironmentObject private var settingsVM: SettingsViewModel
 

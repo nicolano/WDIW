@@ -12,7 +12,7 @@ enum ContentSheetType {
 }
 
 struct ContentSheet: View {
-    @EnvironmentObject private var contentVM: ContentViewModel
+    @EnvironmentObject private var contentScreenVMs: ContentScreenViewModels
     @EnvironmentObject private var navigationVM: NavigationViewModel
     @Environment(\.dismiss) var dismiss
     
@@ -39,13 +39,40 @@ struct ContentSheet: View {
         }
     }
     
+    func onSave() {
+        switch content {
+        case is Book:
+            contentScreenVMs.forBooks.addContent(content: content)
+        case is Movie:
+            contentScreenVMs.forMovies.addContent(content: content)
+        case is Series:
+            contentScreenVMs.forSeries.addContent(content: content)
+        default:
+            return
+        }
+    }
+    
+    func onDelete() {
+        switch content {
+        case is Book:
+            contentScreenVMs.forBooks.deleteContent(content: content)
+        case is Movie:
+            contentScreenVMs.forMovies.deleteContent(content: content)
+        case is Series:
+            contentScreenVMs.forSeries.deleteContent(content: content)
+        default:
+            return
+        }
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             ContentSheetHeader(title: title, content: content, type: type) {
                 dismiss()
             } onSave: {
-                contentVM.addContent(content: content)
+                onSave()
                 navigationVM.navigateToContentCategory(category: ContentCategories.getCategoryFor(mediaContent: content))
+                dismiss()
             } onCategoryChange: { category in
                 self.content = category.getEmptyContent
             }
@@ -73,7 +100,9 @@ struct ContentSheet: View {
                     }
                     
                     Button("Yes", role: .destructive) {
-                        contentVM.deleteContent(content: content)
+                        onDelete()
+                        navigationVM.closeSelectedContentHero()
+                        navigationVM.navigateToContentCategory(category: ContentCategories.getCategoryFor(mediaContent: content))
                         dismiss()
                     }
                 }

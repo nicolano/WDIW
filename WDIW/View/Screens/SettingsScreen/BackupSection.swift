@@ -15,16 +15,22 @@ struct URLWrapper: Identifiable {
 struct BackupSection: View {
     @EnvironmentObject private var contentVM: ContentViewModel
     @EnvironmentObject private var navigationVM: NavigationViewModel
+    @EnvironmentObject private var settingsVM: SettingsViewModel
     
     @StateObject private var backupManager = BackupManager()
     @State private var exportUrl: URLWrapper? = nil
     @State private var fileImporterIsOpen: Bool = false
 
+    @State private var showICloudAlert: Bool = false
+    @State private var showICloudDeleteAlert: Bool = false
+
     var body: some View {
         Section(
-            header: Label("Import and Export Data", systemImage: "arrow.up.arrow.down"),
+            header: Label("Data", systemImage: "arrow.up.arrow.down"),
             footer: footer
         ) {
+            ICloudButton
+            
             Button {
                 fileImporterIsOpen = true
             } label: {
@@ -81,6 +87,55 @@ struct ActivityViewController: UIViewControllerRepresentable {
 }
 
 extension BackupSection {
+    private var ICloudButton: some View {
+        Button {
+            showICloudAlert.toggle()
+        } label: {
+            Label(
+                settingsVM.iCloudEnabled ? "iCloud Sync enabled" : "iCloud Sync disabled",
+                systemImage: settingsVM.iCloudEnabled ? "checkmark.icloud.fill" : "xmark.icloud.fill"
+            )
+            .symbolRenderingMode(.hierarchical)
+            .foregroundStyle(.green)
+        }
+        .alert(
+            settingsVM.iCloudEnabled ? "Synchronization with iCloud is enabled" : "Synchronization with iCloud is disabled",
+            isPresented: $showICloudAlert
+        ) {
+            Button("Cancel", role: .cancel) {
+                showICloudAlert = false
+            }
+            
+            Button(settingsVM.iCloudEnabled ? "Disable" : "Enable", role: .destructive) {
+                showICloudDeleteAlert.toggle()
+            }
+        } message: {
+            if settingsVM.iCloudEnabled {
+                Text("Do you want to turn off syncing with iCloud? This will result in the loss of all currently stored content.")
+            } else {
+                Text("Do you want to sync with iCloud? This will overwrite all currently saved content.")
+            }
+        }
+        .alert(
+            settingsVM.iCloudEnabled ? "Disable iCloud" : "Enable iCloud",
+            isPresented: $showICloudDeleteAlert
+        ) {
+            Button("Cancel", role: .cancel) {
+                showICloudAlert = false
+            }
+            
+            Button(settingsVM.iCloudEnabled ? "Disable" : "Enable", role: .destructive) {
+                settingsVM.toggleICloudEnabled()
+            }
+        } message: {
+            if settingsVM.iCloudEnabled {
+                Text("Are you sure you want to stop syncing with iCloud? This will result in the loss of all currently stored content. You will need to restart the application for this to happen.")
+            } else {
+                Text("Are you sure you want to start syncing with iCloud? This will result in the loss of all currently stored content. You will need to restart the application for this to happen.")
+            }
+        }
+    }
+    
     private var footer: some View {
         HStack {
             Button {

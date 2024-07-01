@@ -17,13 +17,13 @@ import SwiftData
 ///   - rating: The rating of the movie, which should be in a range from 1 to 10.
 ///   - url: The Imdb id.
 @Model class Movie: MediaContent {
-    @Attribute(.unique) var id: UUID
-    var name: String
-    var creator: String
-    var additionalInfo: String
-    var date: Date
-    var rating: Int
-    var url: String
+    var id: UUID = UUID()
+    var name: String = ""
+    var creator: String = ""
+    var additionalInfo: String = ""
+    var date: Date = Date.distantPast
+    var rating: Int = -1
+    var url: String = ""
     var imageUrl: String = ""
 
     init(id: UUID, name: String, director: String, additionalInfo: String, watchDate: Date, rating: Int, url: String) {

@@ -30,6 +30,11 @@ class SettingsViewModel: ObservableObject {
     @AppStorage("preferredTheme") var preferredTheme: ThemeOption = .system
     @AppStorage("accentColor") var preferredAccentColor: Color = .blue
     @AppStorage("displayedCategories") var displayedCategories: [ContentCategories] = ContentCategories.iterator
+    @AppStorage("iCloudEnabled") var iCloudEnabled: Bool = true
+    
+    func toggleICloudEnabled() {
+        iCloudEnabled.toggle()
+    }
     
     func setDisplayedCategories(contentCategory: ContentCategories) {
         if displayedCategories.contains(contentCategory) {

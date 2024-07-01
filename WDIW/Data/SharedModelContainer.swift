@@ -15,11 +15,16 @@ class SharedModelContainer {
     
     let modelConfiguration: ModelConfiguration
     let modelContainer: ModelContainer
-        
-    init(isInMemory: Bool) {
+    
+    init(isInMemory: Bool, iCloudEnabled: Bool) {
         do {
-            modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: isInMemory)
-//            try FileManager.default.removeItem(at: modelConfiguration.url)
+            modelConfiguration = ModelConfiguration(
+                schema: schema,
+                isStoredInMemoryOnly: isInMemory,
+                cloudKitDatabase: iCloudEnabled ?
+                    ModelConfiguration.CloudKitDatabase.automatic :
+                    ModelConfiguration.CloudKitDatabase.none
+            )
             modelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
             fatalError("Could not create ModelContainer: \(error)")

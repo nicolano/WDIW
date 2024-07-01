@@ -17,13 +17,13 @@ import SwiftData
 ///   - rating: The rating of the book, if greater than zero, the book counts as a favourite, accessible under `isFavourite`.
 ///   - url: ??
 @Model class Book: MediaContent {
-    @Attribute(.unique) var id: UUID
-    var name: String
-    var creator: String
-    var additionalInfo: String
-    var date: Date
-    var rating: Int
-    var url: String
+    var id: UUID = UUID()
+    var name: String = ""
+    var creator: String = ""
+    var additionalInfo: String = ""
+    var date: Date = Date.distantPast
+    var rating: Int = -1
+    var url: String = ""
     var imageUrl: String = ""
 
     init(id: UUID, name: String, entryDate: Date, author: String, additionalInfo: String, isFavorite: Bool, url: String) {

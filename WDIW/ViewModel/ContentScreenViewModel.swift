@@ -79,7 +79,7 @@ class ContentScreenViewModel: ObservableObject {
         }
     }
     
-    var contentsFiltered: [MediaContent] {
+    private var contentsFiltered: [MediaContent] {
         let contetsFilteredForYear = contents.filter {
             let components = Calendar.current.dateComponents([Calendar.Component.year], from: $0.date)
             let year = components.year?.description ?? ""
@@ -98,15 +98,15 @@ class ContentScreenViewModel: ObservableObject {
         }
     }
     
-    var cancellable : AnyCancellable?
-    func observeSortBy() {
+    private var cancellable : AnyCancellable?
+    private func observeSortBy() {
         cancellable = self.$sortBy.sink { newValue in
             self.sortContent(sortBy: newValue)
         }
     }
     
-    var cancellable2 : AnyCancellable?
-    func observeShowSearch() {
+    private var cancellable2 : AnyCancellable?
+    private func observeShowSearch() {
         cancellable2 = self.$showSearch.sink { newValue in
             if newValue == false {
                 self.searchQuery.removeAll()
@@ -114,15 +114,15 @@ class ContentScreenViewModel: ObservableObject {
         }
     }
     
-    var cancellable3 : AnyCancellable?
-    func observeSearchquery() {
+    private var cancellable3 : AnyCancellable?
+    private func observeSearchquery() {
         cancellable3 = self.$searchQuery.sink { newValue in
-            self.sortContent(sortBy: self.sortBy)
+            self.refresh()
         }
     }
     
-    var cancellable4 : AnyCancellable?
-    func observeYearsWithEntry() {
+    private var cancellable4 : AnyCancellable?
+    private func observeYearsWithEntry() {
         switch contentCategory {
         case .books:
             cancellable4 = contentVM.$books.sink { contents in
@@ -139,16 +139,14 @@ class ContentScreenViewModel: ObservableObject {
         }
     }
     
-    var cancellable5 : AnyCancellable?
-    func observeSelectedYears() {
+    private var cancellable5 : AnyCancellable?
+    private func observeSelectedYears() {
         cancellable5 = self.$selectedYears.sink { newValue in
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
-                self.sortContent(sortBy: self.sortBy)
-            }
+            self.refresh()
         }
     }
     
-    func getYearsFromContents(contents: [MediaContent]) -> [String] {
+    private func getYearsFromContents(contents: [MediaContent]) -> [String] {
         var years: [String] = []
         for content in contents {
             let components = Calendar.current.dateComponents([Calendar.Component.year], from: content.date)
@@ -183,7 +181,7 @@ class ContentScreenViewModel: ObservableObject {
         self.storedSelectedYears = self.selectedYears
     }
         
-    func sortContent(sortBy: SortBy) {
+    private func sortContent(sortBy: SortBy) {
         var sortedContent: [MediaContent] = []
         switch sortBy {
         case .dateForward:
@@ -206,7 +204,7 @@ class ContentScreenViewModel: ObservableObject {
         fillDisplayedContens(contents: sortedContent)
     }
     
-    func fillDisplayedContens(contents: [MediaContent]) {
+    private func fillDisplayedContens(contents: [MediaContent]) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
              self.displayedContents = contents
         }
@@ -229,6 +227,22 @@ class ContentScreenViewModel: ObservableObject {
     
     func clearSearchQuery() {
         self.searchQuery.removeAll()
-        self.sortContent(sortBy: self.sortBy)
+        refresh()
+    }
+    
+    private func refresh() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
+            self.sortContent(sortBy: self.sortBy)
+        }
+    }
+    
+    func addContent(content: MediaContent) {
+        contentVM.addContent(content: content)
+        refresh()
+    }
+    
+    func deleteContent(content: MediaContent) {
+        contentVM.deleteContent(content: content)
+        refresh()
     }
 }
