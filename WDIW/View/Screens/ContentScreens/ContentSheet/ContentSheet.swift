@@ -84,12 +84,14 @@ struct ContentSheet: View {
             } seriesContent: { series in
                 EditSeriesContent(series: series)
             }
-                        
+              
+            Spacer(minLength: 0)
+            
             if type == .EDIT {
                 DeleteButton {                        
                     showDeleteContentAlert = true
                 }
-                .padding(.TopL)
+                .padding(.VerticalS)
                 .padding(.HorizontalM)
                 .alert(
                     "Are you sure you want to delete \"\(content.name)\"?",
@@ -107,9 +109,7 @@ struct ContentSheet: View {
                     }
                 }
             }
-            
-            Spacer()
-        }        
+        }
     }
 }
 

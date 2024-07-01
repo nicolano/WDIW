@@ -7,23 +7,55 @@
 
 import SwiftUI
 
+fileprivate enum FocusedField {
+    case name, director, additionalInfo
+}
+
 struct EditMovieContent: View {
+    @EnvironmentObject private var contentVM: ContentViewModel
+    
     @Binding var movie: Movie
 
+    @FocusState private var focusedField: FocusedField?
+    
+    @State var predictions: [String] = []
+    
+    var nonFocused: Bool { return self.focusedField == nil }
+    
     var body: some View {
         VStack.spacingM {
-            CustomTextField(value: $movie.name, title: "Name")
+            if focusedField == .name || nonFocused {
+                CustomTextField(value: $movie.name, title: "Name")
+                    .focused($focusedField, equals: .name)
+            }
             
-            CustomTextField(value: $movie.director, title: "Director")
+            if focusedField == .director || nonFocused {
+                CustomTextField(value: $movie.director, title: "Director")
+                    .focused($focusedField, equals: .director)
+            }
+            
+            if focusedField == .additionalInfo || nonFocused {
+                CustomTextField(value: $movie.additionalInfo, title: "Additional Informations", lineLimit: 5)
+                    .focused($focusedField, equals: .additionalInfo)
+            }
 
-            CustomTextField(value: $movie.additionalInfo, title: "Additional Informations", lineLimit: 5)
+            if nonFocused {
+                RatingEditor(value: $movie.rating, title: "Rating")
 
-            RatingEditor(value: $movie.rating, title: "Rating")
-
-            CustomDateField(value: $movie.date, title: "Date")
-                .padding(.TopS)
+                CustomDateField(value: $movie.date, title: "Date")
+                    .padding(.TopS)
+            }
         }
-        .padding(.AllM)
+        .padding(.AllM)        
+        .animation(.smooth, value: focusedField)
+        .onChange(of: movie.director) { _, newValue in
+            predictions = contentVM.movies
+                .map({$0.director})
+                .filter { names in
+                    names.localizedCaseInsensitiveContains(movie.director)
+                }
+                .uniqued()
+        }
     }
 }
 

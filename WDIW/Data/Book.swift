@@ -86,4 +86,8 @@ import SwiftData
     var asString: String {
         "\(self.name), \(self.date.ISO8601Format()), \(self.author), \(self.additionalInfo), \(self.isFavorite), \(self.url)"
     }
+    
+    func copy() -> any MediaContent {
+        return Book(id: self.id, name: self.name, entryDate: self.date, author: self.author, additionalInfo: self.additionalInfo, isFavorite: self.isFavorite, url: self.url)
+    }
 }

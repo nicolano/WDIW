@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum FocusedField {
+fileprivate enum FocusedField {
     case name, author, additionalInfo
 }
 
@@ -20,41 +20,36 @@ struct EditBookContent: View {
     
     @State var predictions: [String] = []
     
+    var nonFocused: Bool { return self.focusedField == nil }
+    
     var body: some View {
         VStack.spacingM {
-            if focusedField == .name || focusedField == nil {
+            if focusedField == .name || nonFocused {
                 CustomTextField(value: $book.name, title: "Name")
                     .focused($focusedField, equals: .name)
             }
 
-            if focusedField == .author || focusedField == nil {
+            if focusedField == .author || nonFocused {
                 CustomTextField(value: $book.author, title: "Author")
                     .focused($focusedField, equals: .author)
             }
             
-            if focusedField == .additionalInfo || focusedField == nil {
+            if focusedField == .additionalInfo || nonFocused {
                 CustomTextField(value: $book.additionalInfo, title: "Additional Informations", lineLimit: 5)
                     .focused($focusedField, equals: .additionalInfo)
             }
 
-            if focusedField == nil {
+            if nonFocused {
                 CustomDateField(value: $book.date, title: "Date")
                 
                 IsFavoriteToggle(value: $book.isFavorite, title: "Favorite")
             }
             
             if focusedField == .author {
-                List(0..<predictions.count, id: \.self) { index in
-                    Text(predictions[index])
-                        .onTapGesture {
-                            book.author = predictions[index]
-                            focusedField = nil
-                        }
-//                        .listRowSeparator(.hidden)
-                        .listRowInsets(.none)
-                        .listRowSpacing(.Spacing.s)
+                PredictionsLists(predictions: predictions) { index in
+                    book.author = predictions[index]
+                    focusedField = nil
                 }
-                .listStyle(.plain)
             }
             
             Spacer()
@@ -62,9 +57,12 @@ struct EditBookContent: View {
         .padding(.AllM)
         .animation(.smooth, value: focusedField)
         .onChange(of: book.author) { _, newValue in
-            predictions = contentVM.books.map({$0.author}).filter { authors in
-                authors.localizedCaseInsensitiveContains(book.author)
-            }.uniqued()
+            predictions = contentVM.books
+                .map({$0.author})
+                .filter { authors in
+                    authors.localizedCaseInsensitiveContains(book.author)
+                }
+                .uniqued()
         }
     }
 }
