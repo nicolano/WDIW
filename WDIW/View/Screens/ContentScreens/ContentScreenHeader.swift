@@ -22,7 +22,7 @@ struct ContentScreenHeaderButtons: View {
             } label: {
                 Image(systemName: contentScreenVM.showSearch ? "x.circle.fill" : "magnifyingglass")
                     .bold()
-                    .font(.headline)
+                    .font(.title2)
             }
             
             ContentScreenMenu(contentCategory: contentCategory)

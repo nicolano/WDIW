@@ -26,8 +26,8 @@ struct ContentScreenMenu: View {
             }
         } label: {
             Image(systemName: "ellipsis.circle.fill")
-                .bold()
-                .padding(.LeadingM)
+                .font(.title2)
+                .padding(.LeadingS)
                 .contentShape(Rectangle())
         }
     }

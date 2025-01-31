@@ -40,7 +40,7 @@ struct SearchFieldViewModifier: ViewModifier {
                         )
                         .focused($isFocused)
                         .padding(.HorizontalM)
-                        .padding(.TopM)
+                        .padding(.TopS)
                         .transition(ScaleTransition(0, anchor: .top))
                     }
                 }
