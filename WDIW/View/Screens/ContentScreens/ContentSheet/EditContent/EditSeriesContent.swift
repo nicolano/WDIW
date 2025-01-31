@@ -27,12 +27,6 @@ struct EditSeriesContent: View {
                     .focused($focusedField, equals: .name)
             }
             
-            if focusedField == .director || nonFocused {
-                CustomTextField(value: $series.directors, title: "Director/s")
-                    .focused($focusedField, equals: .director)
-            }
-            
-            
             if focusedField == .additionalInfo || nonFocused {
                 CustomTextField(value: $series.additionalInfo, title: "Additional Informations", lineLimit: 5)
                     .focused($focusedField, equals: .additionalInfo)

@@ -38,6 +38,13 @@ struct EditMovieContent: View {
                 CustomTextField(value: $movie.additionalInfo, title: "Additional Informations", lineLimit: 5)
                     .focused($focusedField, equals: .additionalInfo)
             }
+            
+            if focusedField == .director {
+                PredictionsLists(predictions: predictions) { index in
+                    movie.director = predictions[index]
+                    focusedField = nil
+                }
+            }
 
             if nonFocused {
                 RatingEditor(value: $movie.rating, title: "Rating")
