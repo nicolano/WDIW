@@ -9,58 +9,27 @@ import SwiftUI
 
 struct ContentScreenMenu: View {
     @EnvironmentObject private var contentScreenVM: ContentScreenViewModel
+    @EnvironmentObject private var navigationVM: NavigationViewModel
+    
     let contentCategory: ContentCategories
 
     var body: some View {
         Menu {
-            Menu("Sort by") {
-                Button {
-                    contentScreenVM.sortBy = contentScreenVM.sortBy == .dateReverse ? .dateForward : .dateReverse
-                } label: {
-                    if contentScreenVM.sortBy == .dateForward || contentScreenVM.sortBy == .dateReverse {
-                        Label("Date", systemImage: contentScreenVM.sortBy == .dateReverse ? "arrow.down" : "arrow.up")
-                    } else {
-                        Text("Date")
-                    }
-                }
-                
-                Button {
-                    contentScreenVM.sortBy = contentScreenVM.sortBy == .nameForward ? .nameReverse : .nameForward
-                } label: {
-                    if contentScreenVM.sortBy == .nameForward || contentScreenVM.sortBy == .nameReverse {
-                        Label("Name", systemImage: contentScreenVM.sortBy == .nameForward ? "arrow.down" : "arrow.up")
-                    } else {
-                        Text("Name")
-                    }
-                }
-                
-                Button {
-                    contentScreenVM.sortBy = contentScreenVM.sortBy == .ratingReversed ? .ratingForward : .ratingReversed
-                } label: {
-                    if contentScreenVM.sortBy == .ratingForward || contentScreenVM.sortBy == .ratingReversed {
-                        Label(contentCategory == .books ? "Favorites" : "Rating", systemImage: contentScreenVM.sortBy == .ratingForward ? "arrow.down" : "arrow.up")
-                    } else {
-                        Text(contentCategory == .books ? "Favorites" : "Rating")
-                    }
-                }
-                
-                if contentCategory == .books {
-                    Button {
-                        contentScreenVM.sortBy = contentScreenVM.sortBy == .authorForward ? .authorReversed : .authorForward
-                    } label: {
-                        if contentScreenVM.sortBy == .authorReversed || contentScreenVM.sortBy == .authorForward {
-                            Label("Author", systemImage: contentScreenVM.sortBy == .authorForward ? "arrow.down" : "arrow.up")
-                        } else {
-                            Text("Author")
-                        }
-                    }
-                }
+            SortContentMenu(contentCategory: contentCategory)
+            
+            SelectYearContentMenu(contentCategory: contentCategory)
+            
+            Button {
+                navigationVM.navigateToSettings()
+            } label: {
+                Label("Settings", systemImage: "gear")
             }
         } label: {
-            Image(systemName: "line.3.horizontal.decrease")
+            Image(systemName: "ellipsis.circle.fill")
                 .bold()
                 .padding(.LeadingM)
                 .contentShape(Rectangle())
         }
     }
 }
+

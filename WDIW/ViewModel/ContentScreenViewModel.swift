@@ -16,6 +16,27 @@ enum SortBy {
          ratingForward, ratingReversed
 }
 
+func sortByDescription(_ sortBy: SortBy) -> String {
+    switch sortBy {
+    case .dateForward:
+        "Date, oldest first"
+    case .dateReverse:
+        "Date, latest first"
+    case .nameForward:
+        "Name ascending"
+    case .nameReverse:
+        "Name descending"
+    case .authorForward:
+        "Author ascending"
+    case .authorReversed:
+        "Author descending"
+    case .ratingForward:
+        "Rating ascending"
+    case .ratingReversed:
+        "Rating descending"
+    }
+}
+
 @MainActor
 class ContentScreenViewModels: ObservableObject {
     @Published var forBooks: ContentScreenViewModel
@@ -160,14 +181,20 @@ class ContentScreenViewModel: ObservableObject {
         return years
     }
     
-    func selectYear(year: String) {
-        if !yearSelectionIsExtended {
-            withAnimation {
-                yearSelectionIsExtended = true
-            }
-            return
+    func selectAllYears() {
+        self.selectedYears = self.yearsWithEntry
+        self.storedSelectedYears = self.selectedYears
+    }
+    
+    func selectCurrentYear() {
+        if !self.yearsWithEntry.isEmpty {
+            self.selectedYears.removeAll()
+            self.selectedYears.append(self.yearsWithEntry.first!)
+            self.storedSelectedYears = self.selectedYears
         }
-        
+    }
+    
+    func selectYear(year: String) {
         if self.selectedYears.count == 1 && self.selectedYears.first == year {
             return
         }
@@ -176,6 +203,7 @@ class ContentScreenViewModel: ObservableObject {
             self.selectedYears.removeAll(where: { $0 == year })
         } else {
             self.selectedYears.append(year)
+            self.selectedYears.sort(by: >)
         }
         
         self.storedSelectedYears = self.selectedYears

@@ -66,6 +66,9 @@
 		F6C1A6C82BECD5510008F236 /* BackupSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C1A6C72BECD5510008F236 /* BackupSection.swift */; };
 		F6C1A6CD2BECD9B00008F236 /* LoadingDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C1A6CC2BECD9B00008F236 /* LoadingDialog.swift */; };
 		F6CBBEBE2C32D278008F989A /* PredictionsLists.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CBBEBD2C32D278008F989A /* PredictionsLists.swift */; };
+		F6CF87A72D4CD49C0043520F /* ContentScreenMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CF87A62D4CD49C0043520F /* ContentScreenMenu.swift */; };
+		F6CF87AC2D4CD54E0043520F /* SortContentMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CF87AB2D4CD54E0043520F /* SortContentMenu.swift */; };
+		F6CF87B02D4CEA2F0043520F /* SelectYearContentMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CF87AF2D4CEA2F0043520F /* SelectYearContentMenu.swift */; };
 		F6D233A32BF0BE1B00AC307A /* ContentSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D233A22BF0BE1B00AC307A /* ContentSheet.swift */; };
 		F6D233A62BF0CD1F00AC307A /* PreferenceKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D233A52BF0CD1F00AC307A /* PreferenceKeys.swift */; };
 		F6D233A82BF0D44400AC307A /* ErrorDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D233A72BF0D44400AC307A /* ErrorDialog.swift */; };
@@ -151,6 +154,9 @@
 		F6C1A6C72BECD5510008F236 /* BackupSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupSection.swift; sourceTree = "<group>"; };
 		F6C1A6CC2BECD9B00008F236 /* LoadingDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDialog.swift; sourceTree = "<group>"; };
 		F6CBBEBD2C32D278008F989A /* PredictionsLists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsLists.swift; sourceTree = "<group>"; };
+		F6CF87A62D4CD49C0043520F /* ContentScreenMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentScreenMenu.swift; sourceTree = "<group>"; };
+		F6CF87AB2D4CD54E0043520F /* SortContentMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortContentMenu.swift; sourceTree = "<group>"; };
+		F6CF87AF2D4CEA2F0043520F /* SelectYearContentMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectYearContentMenu.swift; sourceTree = "<group>"; };
 		F6D233A22BF0BE1B00AC307A /* ContentSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSheet.swift; sourceTree = "<group>"; };
 		F6D233A52BF0CD1F00AC307A /* PreferenceKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceKeys.swift; sourceTree = "<group>"; };
 		F6D233A72BF0D44400AC307A /* ErrorDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDialog.swift; sourceTree = "<group>"; };
@@ -347,7 +353,8 @@
 		F6B2F3392B84B41700A981C2 /* ContentScreens */ = {
 			isa = PBXGroup;
 			children = (
-				F6E12C7F2C2CA098009304A1 /* YearSelection */,
+				F6CF87A82D4CD4F90043520F /* ContentScreenMenu */,
+				F6E12C7F2C2CA098009304A1 /* YearSelectionDeprecated */,
 				F6912F882BFDDCFE00504B81 /* ContentHero */,
 				F653B15C2BEBAC0700913973 /* ContentItems */,
 				F6B2F3462B861A5500A981C2 /* ContentSheet */,
@@ -416,6 +423,16 @@
 			path = Dialogs;
 			sourceTree = "<group>";
 		};
+		F6CF87A82D4CD4F90043520F /* ContentScreenMenu */ = {
+			isa = PBXGroup;
+			children = (
+				F6CF87A62D4CD49C0043520F /* ContentScreenMenu.swift */,
+				F6CF87AF2D4CEA2F0043520F /* SelectYearContentMenu.swift */,
+				F6CF87AB2D4CD54E0043520F /* SortContentMenu.swift */,
+			);
+			path = ContentScreenMenu;
+			sourceTree = "<group>";
+		};
 		F6D233A42BF0C1E700AC307A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -454,13 +471,13 @@
 			path = EditContent;
 			sourceTree = "<group>";
 		};
-		F6E12C7F2C2CA098009304A1 /* YearSelection */ = {
+		F6E12C7F2C2CA098009304A1 /* YearSelectionDeprecated */ = {
 			isa = PBXGroup;
 			children = (
 				F68E4EFE2BF9F24D00B32D63 /* YearSelection.swift */,
 				F6E12C802C2CA0A9009304A1 /* YearButton.swift */,
 			);
-			path = YearSelection;
+			path = YearSelectionDeprecated;
 			sourceTree = "<group>";
 		};
 		F6F5ABFD2BF2603D001BA30D /* ThemeModifier */ = {
@@ -553,6 +570,7 @@
 				F6F5ABF62BF21742001BA30D /* InfoDialog.swift in Sources */,
 				F6D233A82BF0D44400AC307A /* ErrorDialog.swift in Sources */,
 				F6D233B12BF121D300AC307A /* Center.swift in Sources */,
+				F6CF87B02D4CEA2F0043520F /* SelectYearContentMenu.swift in Sources */,
 				F6D233A32BF0BE1B00AC307A /* ContentSheet.swift in Sources */,
 				F6B2F33B2B84B42900A981C2 /* ContentScreen.swift in Sources */,
 				F653B15E2BEBAC1700913973 /* BookItem.swift in Sources */,
@@ -572,6 +590,7 @@
 				F66F55422B8A074200C29AB0 /* SharedModelContainer.swift in Sources */,
 				F6B693E72BEBCE340085A1E3 /* EditMovieContent.swift in Sources */,
 				F6D233AE2BF11EF900AC307A /* CSVInfoSheet.swift in Sources */,
+				F6CF87AC2D4CD54E0043520F /* SortContentMenu.swift in Sources */,
 				F6B693E92BEBCEC20085A1E3 /* RatingEditor.swift in Sources */,
 				F6B693E52BEBCCC80085A1E3 /* SeriesItem.swift in Sources */,
 				F6CBBEBE2C32D278008F989A /* PredictionsLists.swift in Sources */,
@@ -588,6 +607,7 @@
 				F6B693F12BEBF4E20085A1E3 /* MainScrollViewModifier.swift in Sources */,
 				F6E1B77D2BF8B2D100E6D64B /* SearchFieldViewModifier.swift in Sources */,
 				F6C1A6C42BECC07D0008F236 /* ResetSection.swift in Sources */,
+				F6CF87A72D4CD49C0043520F /* ContentScreenMenu.swift in Sources */,
 				F6B2F3452B860B1900A981C2 /* SettingsScreen.swift in Sources */,
 				F653B1592BEB900B00913973 /* CustomDateField.swift in Sources */,
 				F68E4EFF2BF9F24D00B32D63 /* YearSelection.swift in Sources */,

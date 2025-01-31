@@ -18,9 +18,9 @@ struct Header<Content1: View>: View {
             Text(title)
                 .font(.largeTitle)
                 .fontWeight(.black)
-//                .transaction { trans in
-//                    trans.animation = .none
-//                }
+                .transaction { trans in
+                    trans.animation = .none
+                }
             
             Spacer()
             
