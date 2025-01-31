@@ -11,6 +11,7 @@ struct MainScreen: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
     @EnvironmentObject private var contentScreenViewModels: ContentScreenViewModels
     @EnvironmentObject private var settingsVM: SettingsViewModel
+    @EnvironmentObject private var statisticsVM: StatisticsViewModel
 
     var body: some View {
         ZStack {
@@ -39,6 +40,12 @@ struct MainScreen: View {
             
             if navigationVM.activeScreen == .settings {
                 SettingsScreen()
+                    .transition(.move(edge: .leading))
+                    .zIndex(100)
+            }
+            
+            if navigationVM.activeScreen == .statistics {
+                StatisticsScreen()
                     .transition(.move(edge: .leading))
                     .zIndex(100)
             }

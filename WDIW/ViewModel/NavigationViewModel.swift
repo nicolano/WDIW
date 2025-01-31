@@ -10,12 +10,14 @@ import SwiftUI
 import Combine
 
 enum Screens {
-    case settings, books, movies, series
+    case statistics, settings, books, movies, series
 }
 
 extension Screens {
     func getRelatedContentCategory() -> ContentCategories {
         switch self {
+        case .statistics:
+            return .books
         case .settings:
             return .books
         case .books:
@@ -88,6 +90,13 @@ class NavigationViewModel: ObservableObject {
         withAnimation {
             lastActiveContentScreen = activeScreen
             activeScreen = .settings
+        }
+    }
+    
+    func navigateToStatistics() {
+        withAnimation {
+            lastActiveContentScreen = activeScreen
+            activeScreen = .statistics
         }
     }
     

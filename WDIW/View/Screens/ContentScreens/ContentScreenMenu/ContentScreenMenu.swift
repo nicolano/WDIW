@@ -20,6 +20,12 @@ struct ContentScreenMenu: View {
             SelectYearContentMenu(contentCategory: contentCategory)
             
             Button {
+                navigationVM.navigateToStatistics()
+            } label: {
+                Label("Statistics", systemImage: "chart.line.text.clipboard")
+            }
+            
+            Button {
                 navigationVM.navigateToSettings()
             } label: {
                 Label("Settings", systemImage: "gear")

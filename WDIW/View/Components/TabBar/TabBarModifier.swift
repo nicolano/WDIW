@@ -18,7 +18,9 @@ struct TabBarModifier: ViewModifier {
                 VStack {
                     Spacer()
                     
-                    if navigationVM.activeScreen != .settings {
+                    if navigationVM.activeScreen == .books
+                        || navigationVM.activeScreen == .movies
+                        || navigationVM.activeScreen == .series {
                         TabBar()
                             .padding(.horizontal, .Spacing.m)
                             .padding(.bottom, safeAreaInsets.bottom)

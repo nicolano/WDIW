@@ -13,6 +13,7 @@ struct WDIWApp: App {
     @ObservedObject private var navigationVM: NavigationViewModel
     @ObservedObject private var contentVM: ContentViewModel
     @ObservedObject private var settingsVM: SettingsViewModel
+    @ObservedObject private var statisticsVM: StatisticsViewModel
     @ObservedObject private var contentScreenViewModels: ContentScreenViewModels
     
     private var sharedModelContainer: SharedModelContainer
@@ -43,6 +44,7 @@ struct WDIWApp: App {
             modelContext: sharedModelContainer.modelContainer.mainContext
         )
         self.contentScreenViewModels = ContentScreenViewModels(contentVM: contentVM)
+        self.statisticsVM = StatisticsViewModel(contentVM: contentVM)
         self.contentVM = contentVM
     }
     
@@ -59,6 +61,7 @@ struct WDIWApp: App {
                 .infoDialog()
                 .applyAccentColor()
                 .applyColorScheme()
+                .environmentObject(statisticsVM)
                 .environmentObject(settingsVM)
                 .environmentObject(contentVM)
                 .environmentObject(contentScreenViewModels)

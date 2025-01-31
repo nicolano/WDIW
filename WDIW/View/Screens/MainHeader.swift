@@ -15,6 +15,8 @@ struct MainHeader: View {
     
     private var title: String {
         switch navigationVM.activeScreen {
+        case .statistics:
+            "Statistics"
         case .settings:
             "Settings"
         case .books:
@@ -30,6 +32,8 @@ struct MainHeader: View {
         Group {
             Header(title: title) {
                 switch navigationVM.activeScreen {
+                case .statistics:
+                    SettingsHeaderButtons
                 case .settings:
                     SettingsHeaderButtons
                 case .books:
@@ -45,7 +49,9 @@ struct MainHeader: View {
             }
         }
         .background {
-            if navigationVM.activeScreen == .settings || navigationVM.contentScrollOffset > -115 {
+            if navigationVM.activeScreen == .statistics
+                || navigationVM.activeScreen == .settings
+                || navigationVM.contentScrollOffset > -115 {
                 Rectangle().fill(Color.Custom.surface)
             }
         }

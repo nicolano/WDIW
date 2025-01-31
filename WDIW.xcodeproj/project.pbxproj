@@ -69,6 +69,9 @@
 		F6CF87A72D4CD49C0043520F /* ContentScreenMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CF87A62D4CD49C0043520F /* ContentScreenMenu.swift */; };
 		F6CF87AC2D4CD54E0043520F /* SortContentMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CF87AB2D4CD54E0043520F /* SortContentMenu.swift */; };
 		F6CF87B02D4CEA2F0043520F /* SelectYearContentMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CF87AF2D4CEA2F0043520F /* SelectYearContentMenu.swift */; };
+		F6CF87B32D4D2FD00043520F /* StatisticsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CF87B22D4D2FD00043520F /* StatisticsScreen.swift */; };
+		F6CF87B72D4D34A60043520F /* TotalContentStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CF87B62D4D34A60043520F /* TotalContentStatistics.swift */; };
+		F6CF87B92D4D35560043520F /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CF87B82D4D35560043520F /* StatisticsViewModel.swift */; };
 		F6D233A32BF0BE1B00AC307A /* ContentSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D233A22BF0BE1B00AC307A /* ContentSheet.swift */; };
 		F6D233A62BF0CD1F00AC307A /* PreferenceKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D233A52BF0CD1F00AC307A /* PreferenceKeys.swift */; };
 		F6D233A82BF0D44400AC307A /* ErrorDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D233A72BF0D44400AC307A /* ErrorDialog.swift */; };
@@ -157,6 +160,9 @@
 		F6CF87A62D4CD49C0043520F /* ContentScreenMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentScreenMenu.swift; sourceTree = "<group>"; };
 		F6CF87AB2D4CD54E0043520F /* SortContentMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortContentMenu.swift; sourceTree = "<group>"; };
 		F6CF87AF2D4CEA2F0043520F /* SelectYearContentMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectYearContentMenu.swift; sourceTree = "<group>"; };
+		F6CF87B22D4D2FD00043520F /* StatisticsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsScreen.swift; sourceTree = "<group>"; };
+		F6CF87B62D4D34A60043520F /* TotalContentStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalContentStatistics.swift; sourceTree = "<group>"; };
+		F6CF87B82D4D35560043520F /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		F6D233A22BF0BE1B00AC307A /* ContentSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSheet.swift; sourceTree = "<group>"; };
 		F6D233A52BF0CD1F00AC307A /* PreferenceKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceKeys.swift; sourceTree = "<group>"; };
 		F6D233A72BF0D44400AC307A /* ErrorDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDialog.swift; sourceTree = "<group>"; };
@@ -273,6 +279,7 @@
 				F6DC1C5C2BF4E770003D44EC /* Data */,
 				F6B2F33E2B84BB6C00A981C2 /* ContentViewModel.swift */,
 				F6B2F3422B85F93A00A981C2 /* NavigationViewModel.swift */,
+				F6CF87B82D4D35560043520F /* StatisticsViewModel.swift */,
 				F6F5ABF92BF258D3001BA30D /* SettingsViewModel.swift */,
 				F6D233A52BF0CD1F00AC307A /* PreferenceKeys.swift */,
 				F6E1B77A2BF8A88A00E6D64B /* ContentScreenViewModel.swift */,
@@ -433,11 +440,21 @@
 			path = ContentScreenMenu;
 			sourceTree = "<group>";
 		};
+		F6CF87B52D4D2FF60043520F /* StatisticsScreeen */ = {
+			isa = PBXGroup;
+			children = (
+				F6CF87B22D4D2FD00043520F /* StatisticsScreen.swift */,
+				F6CF87B62D4D34A60043520F /* TotalContentStatistics.swift */,
+			);
+			path = StatisticsScreeen;
+			sourceTree = "<group>";
+		};
 		F6D233A42BF0C1E700AC307A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
 				F62FC8A22C30049A00B9AD73 /* MainHeader.swift */,
 				F66F553F2B8A068F00C29AB0 /* MainView.swift */,
+				F6CF87B52D4D2FF60043520F /* StatisticsScreeen */,
 				F6C1A6C22BECC0240008F236 /* SettingsScreen */,
 				F6B2F3392B84B41700A981C2 /* ContentScreens */,
 			);
@@ -607,6 +624,7 @@
 				F6B693F12BEBF4E20085A1E3 /* MainScrollViewModifier.swift in Sources */,
 				F6E1B77D2BF8B2D100E6D64B /* SearchFieldViewModifier.swift in Sources */,
 				F6C1A6C42BECC07D0008F236 /* ResetSection.swift in Sources */,
+				F6CF87B32D4D2FD00043520F /* StatisticsScreen.swift in Sources */,
 				F6CF87A72D4CD49C0043520F /* ContentScreenMenu.swift in Sources */,
 				F6B2F3452B860B1900A981C2 /* SettingsScreen.swift in Sources */,
 				F653B1592BEB900B00913973 /* CustomDateField.swift in Sources */,
@@ -632,6 +650,7 @@
 				F65B466A2C004F48000923CC /* LinkContent.swift in Sources */,
 				F68E4EFD2BF9EF9400B32D63 /* ContentScreenHeader.swift in Sources */,
 				F66F55402B8A068F00C29AB0 /* MainView.swift in Sources */,
+				F6CF87B92D4D35560043520F /* StatisticsViewModel.swift in Sources */,
 				F6B693ED2BEBD5530085A1E3 /* ContentSwitch.swift in Sources */,
 				F6912F902BFDF16900504B81 /* WikipediaContent.swift in Sources */,
 				F6B2F32C2B84ABEE00A981C2 /* TabBar.swift in Sources */,
@@ -643,6 +662,7 @@
 				F6D233AC2BF11EA500AC307A /* SheetManager.swift in Sources */,
 				F6F5ABFA2BF258D3001BA30D /* SettingsViewModel.swift in Sources */,
 				F6E1B7812BF8F7F100E6D64B /* Array.swift in Sources */,
+				F6CF87B72D4D34A60043520F /* TotalContentStatistics.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
