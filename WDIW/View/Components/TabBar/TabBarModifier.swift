@@ -22,13 +22,6 @@ struct TabBarModifier: ViewModifier {
                         TabBar()
                             .padding(.horizontal, .Spacing.m)
                             .padding(.bottom, safeAreaInsets.bottom)
-                            .background {
-                                Rectangle()
-                                    .fill(
-                                        Material.ultraThinMaterial
-                                    )
-                                    .padding(.TopL)
-                            }
                             .transition(.move(edge: .bottom))
                     }
                 }

@@ -84,7 +84,9 @@ class ContentScreenViewModel: ObservableObject {
     
     @Published var yearsWithEntry: [String] = []
     @AppStorage("selectedYears") var storedSelectedYears: [String] = []
-    @Published var selectedYears: [String] = ["2024"]
+    @Published var selectedYears: [String] = ["2025"]
+    @Published var selectedYearsCache: [String] = []
+
     @Published var yearSelectionIsExtended: Bool = false
 
     @Published var isSearchFieldFocused: Bool = false
@@ -131,6 +133,10 @@ class ContentScreenViewModel: ObservableObject {
         cancellable2 = self.$showSearch.sink { newValue in
             if newValue == false {
                 self.searchQuery.removeAll()
+                self.selectedYears = self.selectedYearsCache
+            } else {
+                self.selectedYearsCache = self.selectedYears
+                self.selectAllYears()
             }
         }
     }

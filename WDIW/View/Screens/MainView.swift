@@ -44,7 +44,6 @@ struct MainScreen: View {
             }
         }
         .safeAreaInset(edge: .top) { MainHeader() }
-//        .swipeToSettings()
         .tabBarOverlay()
     }
 }

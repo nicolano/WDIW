@@ -42,11 +42,6 @@ struct ContentScreen: View {
                     .safeAreaPadding(.bottom, 100)
                 }
                 .searchField()
-//                .overlay {
-//                    YearSelection()
-//                        .align(.topTrailing)
-//                        .padding(.TopS)
-//                }
             }
             
             Spacer(minLength: 0)
