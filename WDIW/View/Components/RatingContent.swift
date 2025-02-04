@@ -18,9 +18,9 @@ struct RatingContent: View {
                 + Text("/10")
             }
             .bold()
-            .padding(.AllS)
+            .padding(.AllXS)
             .background(Color.Custom.surface)
-            .clipShape(Capsule())
+            .clipShape(RoundedRectangle(cornerRadius: .CornerRadius.textField))
         }
     }
 }

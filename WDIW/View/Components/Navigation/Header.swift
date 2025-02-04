@@ -29,6 +29,6 @@ struct Header<Content1: View>: View {
         .padding(.horizontal, .Spacing.m)
         .padding(.top, safeAreaInsets.top)
         .padding(.top, .Spacing.m)
-        .padding(.bottom, .Spacing.m)
+        .padding(.bottom, .Spacing.s)
     }
 }

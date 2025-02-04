@@ -15,6 +15,7 @@ struct SettingsScreen: View {
         VStack(spacing: 0) {
             List {
                 PersonalizationSection()
+                    .padding(.TopS)
                 BackupSection()
                 ResetSection()
                 ThemeSection()
