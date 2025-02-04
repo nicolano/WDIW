@@ -10,7 +10,8 @@ import SwiftUI
 struct TotalContentStatistics: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
     @EnvironmentObject private var statisticsVM: StatisticsViewModel
-
+    @EnvironmentObject private var settingsVM: SettingsViewModel
+    
     var body: some View {
         ScrollView(.horizontal) {
             HStack.spacingS {
@@ -32,8 +33,9 @@ extension TotalContentStatistics {
                 Text("\(count)").font(.largeTitle).bold()
             }
             
-            Text(category.getName())
+            Text(category.getName()).fontWeight(.black)
         }
         .padding(.AllM)
+        .foregroundStyle(settingsVM.preferredAccentColor)
     }
 }

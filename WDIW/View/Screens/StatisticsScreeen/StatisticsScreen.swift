@@ -10,7 +10,8 @@ import SwiftUI
 struct StatisticsScreen: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
     @EnvironmentObject private var statisticsVM: StatisticsViewModel
-
+    @EnvironmentObject private var settingsVM: SettingsViewModel
+    
     var body: some View {
         VStack(spacing: 0) {
             ScrollView {
