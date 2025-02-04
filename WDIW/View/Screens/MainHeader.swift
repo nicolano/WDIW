@@ -28,6 +28,30 @@ struct MainHeader: View {
         }
     }
     
+    var contentCategory: ContentCategories {
+        switch navigationVM.activeScreen {
+        case .books:
+            .books
+        case .movies:
+            .movies
+        case .series:
+            .series
+        default:
+            .books
+        }
+    }
+    
+    var contentScreenViewModel: ContentScreenViewModel {
+        switch navigationVM.activeScreen {
+        case .movies:
+            contentScreenViewModels.forMovies
+        case .series:
+            contentScreenViewModels.forSeries
+        default:
+            contentScreenViewModels.forBooks
+        }
+    }
+    
     var body: some View {
         Group {
             Header(title: title) {
@@ -36,15 +60,9 @@ struct MainHeader: View {
                     SettingsHeaderButtons
                 case .settings:
                     SettingsHeaderButtons
-                case .books:
-                    ContentScreenHeaderButtons(contentCategory: .books)
-                        .environmentObject(contentScreenViewModels.forBooks)
-                case .movies:
-                    ContentScreenHeaderButtons(contentCategory: .movies)
-                        .environmentObject(contentScreenViewModels.forMovies)
-                case .series:
-                    ContentScreenHeaderButtons(contentCategory: .series)
-                        .environmentObject(contentScreenViewModels.forSeries)
+                default:
+                    ContentScreenHeaderButtons(contentCategory: contentCategory)
+                        .environmentObject(contentScreenViewModel)
                 }
             }
         }
