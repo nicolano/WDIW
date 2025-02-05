@@ -13,7 +13,7 @@ protocol MediaContent {
     var date: Date { get }
     var name: String { get }
     var url: String { get }
-    var imageUrl: String { get }
+    var imageUrl: String { get } // For series, information for seasons is stored here
     var creator: String { get }
     var additionalInfo: String { get }
     var rating: Int { get }

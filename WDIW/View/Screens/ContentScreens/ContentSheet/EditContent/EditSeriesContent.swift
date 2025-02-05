@@ -40,6 +40,8 @@ struct EditSeriesContent: View {
             }
             
             if nonFocused {
+                SeasonsEditor(series: $series, isEditMode: true)
+                
                 RatingEditor(value: $series.rating, title: "Rating")
                 
                 CustomDateField(value: $series.date, title: "Date")

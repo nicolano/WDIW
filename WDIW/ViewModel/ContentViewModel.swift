@@ -215,4 +215,14 @@ class ContentViewModel: ObservableObject {
         
         return numOfDeletions
     }
+    
+    func getPrevWatchedSeasonsFor(_ series: Series) -> [Int] {
+        var prevWatchSeasons: [Int] = []
+        for oldSeries in self.series {
+            if oldSeries.name == series.name {
+                prevWatchSeasons.append(contentsOf: oldSeries.seasons.watchedSeasons)
+            }
+        }
+        return prevWatchSeasons.uniqued().sorted()
+    }
 }

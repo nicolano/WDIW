@@ -22,13 +22,20 @@ struct HeroSeriesContent: View {
             }
             
             Group {
-                if series.additionalInfo.isEmpty {
-                    Text("...")
-                } else {
+                if !series.additionalInfo.isEmpty {
                     Text(series.additionalInfo)
                 }
             }
             
+            Group {
+                if series.seasons.isMiniSeries {
+                    Text(series.seasons.getSeasonsDesc())
+                } else {
+                    SeasonsEditor(series: .constant(series), isEditMode: false)
+                }
+            }
+            .padding(.TopM)
+
             Group {
                 Text("Entered on: ") + Text(series.date, style: .date).font(.headline)
             }

@@ -50,7 +50,10 @@ class BackupManager: ObservableObject {
                 let additionalInfo = $0.additionalInfo
                 let rating = String($0.rating)
                 let url = $0.url
-                let imageUrl = $0.imageUrl
+                var imageUrl = $0.imageUrl
+                if $0 is Series {
+                    imageUrl = ($0 as! Series).seasons.asString()
+                }
                 
                 return "\(category);\(id);\(name);\(date);\(creator);\(additionalInfo);\(rating);\(url);\(imageUrl)"
             }
@@ -195,7 +198,8 @@ class BackupManager: ObservableObject {
                     additionalInfo: from[5].trimmingCharacters(in: [" "]),
                     entryDate: try Date.ISO8601FormatStyle().parse(from[3].trimmingCharacters(in: [" "])),
                     rating: Int(from[6].trimmingCharacters(in: [" "]))!,
-                    url: from[7].trimmingCharacters(in: [" "])
+                    url: from[7].trimmingCharacters(in: [" "]),
+                    seasons: Seasons.fromString(from[8].trimmingCharacters(in: [" "]))
                 )
             default:
                 print("Could not determine category for: \(from)")

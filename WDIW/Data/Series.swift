@@ -23,10 +23,13 @@ import SwiftData
     var additionalInfo: String = ""
     var date: Date = Date.distantPast
     var rating: Int = -1
+    var seasons: Seasons = Seasons()
     var url: String = ""
+    
+    // Not used, seasons are stored here in backup
     var imageUrl: String = ""
 
-    init(id: UUID, name: String, directors: String, additionalInfo: String, entryDate: Date, rating: Int, url: String, imageUrl: String = "") {
+    init(id: UUID, name: String, directors: String, additionalInfo: String, entryDate: Date, rating: Int, url: String, seasons: Seasons = Seasons()) {
         self.id = id
         self.creator = directors
         self.additionalInfo = additionalInfo
@@ -35,9 +38,10 @@ import SwiftData
         self.rating = rating
         self.url = url
         self.imageUrl = imageUrl
+        self.seasons = seasons
     }
     
-    init(name: String, directors: String, additionalInfo: String, entryDate: Date, rating: Int, url: String) {
+    init(name: String, directors: String, additionalInfo: String, entryDate: Date, rating: Int, url: String, seasons: Seasons = Seasons()) {
         self.id = UUID()
         self.creator = directors
         self.additionalInfo = additionalInfo
@@ -45,6 +49,7 @@ import SwiftData
         self.date = entryDate
         self.rating = rating
         self.url = url
+        self.seasons = seasons
     }
     
     static var empty: Series {
@@ -75,10 +80,10 @@ import SwiftData
     }
     
     var asString: String {
-        "\(self.name), \(self.date.ISO8601Format()), \(self.creator), \(self.additionalInfo), \(self.rating), \(self.url)"
+        "\(self.name), \(self.date.ISO8601Format()), \(self.creator), \(self.additionalInfo), \(self.rating), \(self.url), "
     }
     
     func copy() -> any MediaContent {
-        return Series(id: self.id, name: self.name, directors: self.directors, additionalInfo: self.additionalInfo, entryDate: self.date, rating: self.rating, url: self.url, imageUrl: self.imageUrl)
+        return Series(id: self.id, name: self.name, directors: self.directors, additionalInfo: self.additionalInfo, entryDate: self.date, rating: self.rating, url: self.url, seasons: self.seasons)
     }
 }

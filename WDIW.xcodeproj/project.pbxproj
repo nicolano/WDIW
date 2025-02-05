@@ -26,6 +26,9 @@
 		F66F55422B8A074200C29AB0 /* SharedModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66F55412B8A074200C29AB0 /* SharedModelContainer.swift */; };
 		F66F55442B8A1DE400C29AB0 /* BackupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66F55432B8A1DE400C29AB0 /* BackupManager.swift */; };
 		F66F55462B8A36A100C29AB0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66F55452B8A36A100C29AB0 /* Date.swift */; };
+		F671DCE82D53A9AF00ABC808 /* Seasons.swift in Sources */ = {isa = PBXBuildFile; fileRef = F671DCE72D53A9AC00ABC808 /* Seasons.swift */; };
+		F671DCEA2D53AB3F00ABC808 /* SeasonsEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F671DCE92D53AB3A00ABC808 /* SeasonsEditor.swift */; };
+		F671DCED2D53AB5B00ABC808 /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = F671DCEC2D53AB5B00ABC808 /* WrappingHStack */; };
 		F68E4EFD2BF9EF9400B32D63 /* ContentScreenHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E4EFC2BF9EF9400B32D63 /* ContentScreenHeader.swift */; };
 		F68E4EFF2BF9F24D00B32D63 /* YearSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68E4EFE2BF9F24D00B32D63 /* YearSelection.swift */; };
 		F6912F8A2BFDDD0C00504B81 /* ContentHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6912F892BFDDD0C00504B81 /* ContentHero.swift */; };
@@ -116,6 +119,8 @@
 		F66F55412B8A074200C29AB0 /* SharedModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedModelContainer.swift; sourceTree = "<group>"; };
 		F66F55432B8A1DE400C29AB0 /* BackupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupManager.swift; sourceTree = "<group>"; };
 		F66F55452B8A36A100C29AB0 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		F671DCE72D53A9AC00ABC808 /* Seasons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seasons.swift; sourceTree = "<group>"; };
+		F671DCE92D53AB3A00ABC808 /* SeasonsEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonsEditor.swift; sourceTree = "<group>"; };
 		F68E4EFC2BF9EF9400B32D63 /* ContentScreenHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentScreenHeader.swift; sourceTree = "<group>"; };
 		F68E4EFE2BF9F24D00B32D63 /* YearSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearSelection.swift; sourceTree = "<group>"; };
 		F6912F892BFDDD0C00504B81 /* ContentHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentHero.swift; sourceTree = "<group>"; };
@@ -190,6 +195,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F671DCED2D53AB5B00ABC808 /* WrappingHStack in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +209,7 @@
 				F653B1582BEB900B00913973 /* CustomDateField.swift */,
 				F653B15A2BEBA82D00913973 /* IsFavoriteToggle.swift */,
 				F6B693E82BEBCEC20085A1E3 /* RatingEditor.swift */,
+				F671DCE92D53AB3A00ABC808 /* SeasonsEditor.swift */,
 				F6E1B77C2BF8B2D100E6D64B /* SearchFieldViewModifier.swift */,
 			);
 			path = Editor;
@@ -303,6 +310,7 @@
 				F6B2F31D2B84A1F000A981C2 /* Book.swift */,
 				F6B2F31F2B84A40500A981C2 /* Movie.swift */,
 				F6B2F3232B84A61C00A981C2 /* Series.swift */,
+				F671DCE72D53A9AC00ABC808 /* Seasons.swift */,
 				F66F55412B8A074200C29AB0 /* SharedModelContainer.swift */,
 				F66F55432B8A1DE400C29AB0 /* BackupManager.swift */,
 			);
@@ -523,6 +531,7 @@
 			);
 			name = WDIW;
 			packageProductDependencies = (
+				F671DCEC2D53AB5B00ABC808 /* WrappingHStack */,
 			);
 			productName = WDIW;
 			productReference = F6B2F3072B849B9300A981C2 /* WDIW.app */;
@@ -553,6 +562,7 @@
 			);
 			mainGroup = F6B2F2FE2B849B9300A981C2;
 			packageReferences = (
+				F671DCEB2D53AB5B00ABC808 /* XCRemoteSwiftPackageReference "WrappingHStack" */,
 			);
 			productRefGroup = F6B2F3082B849B9300A981C2 /* Products */;
 			projectDirPath = "";
@@ -620,6 +630,7 @@
 				F653B1542BEB875D00913973 /* EditBookContent.swift in Sources */,
 				F6DC1C5B2BF4E72C003D44EC /* ForEachCategory.swift in Sources */,
 				F6E1B77F2BF8DA5D00E6D64B /* View.swift in Sources */,
+				F671DCE82D53A9AF00ABC808 /* Seasons.swift in Sources */,
 				F6912F8C2BFDE48000504B81 /* HeroBookContent.swift in Sources */,
 				F6B693F12BEBF4E20085A1E3 /* MainScrollViewModifier.swift in Sources */,
 				F6E1B77D2BF8B2D100E6D64B /* SearchFieldViewModifier.swift in Sources */,
@@ -653,6 +664,7 @@
 				F6CF87B92D4D35560043520F /* StatisticsViewModel.swift in Sources */,
 				F6B693ED2BEBD5530085A1E3 /* ContentSwitch.swift in Sources */,
 				F6912F902BFDF16900504B81 /* WikipediaContent.swift in Sources */,
+				F671DCEA2D53AB3F00ABC808 /* SeasonsEditor.swift in Sources */,
 				F6B2F32C2B84ABEE00A981C2 /* TabBar.swift in Sources */,
 				F6DCC5A62C2C3BFD00BD2C33 /* ThumbnailContent.swift in Sources */,
 				F6C1A6CD2BECD9B00008F236 /* LoadingDialog.swift in Sources */,
@@ -807,6 +819,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -839,6 +852,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -874,6 +888,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F671DCEB2D53AB5B00ABC808 /* XCRemoteSwiftPackageReference "WrappingHStack" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dkk/WrappingHStack";
+			requirement = {
+				kind = exactVersion;
+				version = 2.2.11;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F671DCEC2D53AB5B00ABC808 /* WrappingHStack */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F671DCEB2D53AB5B00ABC808 /* XCRemoteSwiftPackageReference "WrappingHStack" */;
+			productName = WrappingHStack;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F6B2F2FF2B849B9300A981C2 /* Project object */;
 }
