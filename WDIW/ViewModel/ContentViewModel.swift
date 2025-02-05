@@ -127,7 +127,8 @@ class ContentViewModel: ObservableObject {
         }
         
         await showInfoMessage(infoText)
-        hasImported.toggle()
+        hasImported = true
+        hasImported = false
     }
     
     func addContent(content: MediaContent) {

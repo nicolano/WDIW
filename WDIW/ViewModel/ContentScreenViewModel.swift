@@ -176,9 +176,11 @@ class ContentScreenViewModel: ObservableObject {
     
     private var cancellable6 : AnyCancellable?
     private func observeImports() {
-        cancellable5 = self.contentVM.$hasImported.sink { newValue in
-            self.selectAllYears()
-            self.refresh()
+        cancellable6 = self.contentVM.$hasImported.sink { newValue in
+            if newValue == true {
+                self.selectAllYears()
+                self.refresh()
+            }
         }
     }
     
