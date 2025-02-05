@@ -17,6 +17,8 @@ class ContentViewModel: ObservableObject {
     @Published var books = [Book]()
     @Published var series = [Series]()
     
+    @Published var hasImported: Bool = false
+    
     var mediaContents: [MediaContent] {
         var mediaContents = books.map({$0 as MediaContent})
         mediaContents.append(contentsOf: movies.map({$0 as MediaContent}))
@@ -125,6 +127,7 @@ class ContentViewModel: ObservableObject {
         }
         
         await showInfoMessage(infoText)
+        hasImported.toggle()
     }
     
     func addContent(content: MediaContent) {

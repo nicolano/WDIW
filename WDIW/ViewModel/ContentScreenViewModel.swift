@@ -70,6 +70,7 @@ class ContentScreenViewModel: ObservableObject {
         observeSortBy()
         observeYearsWithEntry()
         observeSelectedYears()
+        observeImports()
         
         selectedYears = storedSelectedYears
     }
@@ -169,6 +170,14 @@ class ContentScreenViewModel: ObservableObject {
     private var cancellable5 : AnyCancellable?
     private func observeSelectedYears() {
         cancellable5 = self.$selectedYears.sink { newValue in
+            self.refresh()
+        }
+    }
+    
+    private var cancellable6 : AnyCancellable?
+    private func observeImports() {
+        cancellable5 = self.contentVM.$hasImported.sink { newValue in
+            self.selectAllYears()
             self.refresh()
         }
     }
