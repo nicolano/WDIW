@@ -25,15 +25,37 @@ struct ContentScreen: View {
                 VerticalScrollView($navigationVM.contentScrollOffset) {
                     LazyVStack(spacing: .Spacing.s) {
                         ForEach(contentScreenVM.displayedContents.indices, id: \.self) { index in
-                            ContentItem(contentScreenVM.displayedContents[index]) {
-                                navigationVM.openSelectedContentHero(content: contentScreenVM.displayedContents[index])
-                            }                
+                            let content = contentScreenVM.displayedContents[index]
+                            let previousContent = index > 0 ? contentScreenVM.displayedContents[index - 1] : content
+                            let nextContent = index < contentScreenVM.displayedContents.count - 1 ? contentScreenVM.displayedContents[index + 1] : content
+                            let previousYearString = String(Calendar.current.dateComponents([.year], from: previousContent.date).year ?? 0)
+                            let nextYearString = String(Calendar.current.dateComponents([.year], from: nextContent.date).year ?? 0)
+                            let yearString = String(Calendar.current.dateComponents([.year], from: content.date).year ?? 0)
+                            
+                            if (previousYearString != yearString || index == 0) && (contentScreenVM.sortBy == .dateForward || contentScreenVM.sortBy == .dateReverse) {
+                                Text(yearString)
+                                    .font(.title3)
+                                    .bold()
+                                    .foregroundStyle(settingsVM.preferredAccentColor)
+                                    .align(.leading)
+                                    .padding(.TopS)
+                            }
+                            
+                            ContentItem(content) {
+                                navigationVM.openSelectedContentHero(content: content)
+                            }
                             .transaction { trans in
                                 trans.animation = .none
                             }
                             
                             if index < contentScreenVM.displayedContents.indices.count - 1 {
-                                Rectangle().fill(Color.Custom.divider).frame(height: 1)
+                                if contentScreenVM.sortBy == .dateForward || contentScreenVM.sortBy == .dateReverse {
+                                    if nextYearString == yearString  {
+                                        Rectangle().fill(Color.Custom.divider).frame(height: 1)
+                                    }
+                                } else {
+                                    Rectangle().fill(Color.Custom.divider).frame(height: 1)
+                                }
                             }
                         }
                     }
