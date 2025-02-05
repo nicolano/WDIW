@@ -18,6 +18,10 @@ struct Seasons: Codable {
     }
     
     mutating func addOrRemoveWatchedSeason(_ season: Int) {
+        if season < 1 {
+            return
+        }
+        
         if watchedSeasons.contains(season) {
             watchedSeasons.removeAll { $0 == season }
             return
@@ -77,6 +81,7 @@ struct Seasons: Codable {
 
         var seasons = Seasons(totalSeasons: Int(elements.removeFirst()) ?? 1)
         for element in elements {
+            if element.isEmpty { continue }
             seasons.addOrRemoveWatchedSeason(Int(element) ?? 0)
         }
         

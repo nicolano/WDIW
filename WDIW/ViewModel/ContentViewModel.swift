@@ -17,7 +17,7 @@ class ContentViewModel: ObservableObject {
     @Published var books = [Book]()
     @Published var series = [Series]()
     
-    @Published var hasImported: Bool = false
+    @Published var hasImportedOrDeleted: Bool = false
     
     var mediaContents: [MediaContent] {
         var mediaContents = books.map({$0 as MediaContent})
@@ -127,8 +127,8 @@ class ContentViewModel: ObservableObject {
         }
         
         await showInfoMessage(infoText)
-        hasImported = true
-        hasImported = false
+        hasImportedOrDeleted = true
+        hasImportedOrDeleted = false
     }
     
     func addContent(content: MediaContent) {
@@ -161,6 +161,9 @@ class ContentViewModel: ObservableObject {
         default:
             print("Content type could not be inferred.")
         }
+        
+        hasImportedOrDeleted = true
+        hasImportedOrDeleted = false
     }
     
     func deleteAllMediaContent() async {
