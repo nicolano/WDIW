@@ -238,9 +238,9 @@ class ContentScreenViewModel: ObservableObject {
         case .nameReverse:
             sortedContent = contentsFiltered.sorted(using: SortDescriptor(\.name, order: .reverse))
         case .authorForward:
-            sortedContent = contentsFiltered.sorted(using: SortDescriptor(\.additionalInfo, order: .forward))
+            sortedContent = contentsFiltered.sorted(using: SortDescriptor(\.creator, order: .forward))
         case .authorReversed:
-            sortedContent = contentsFiltered.sorted(using: SortDescriptor(\.additionalInfo, order: .reverse))
+            sortedContent = contentsFiltered.sorted(using: SortDescriptor(\.creator, order: .reverse))
         case .ratingForward:
             sortedContent = contentsFiltered.sorted(using: SortDescriptor(\.rating, order: .forward))
         case .ratingReversed:
