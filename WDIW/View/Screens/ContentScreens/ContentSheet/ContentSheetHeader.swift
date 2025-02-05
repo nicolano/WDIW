@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentSheetHeader: View {
     let title: String
-    let content: MediaContent
+    let contentEntry: ContentEntry
     let type: ContentSheetType
     let onDismiss: () -> Void
     let onSave: () -> Void
@@ -39,12 +39,12 @@ struct ContentSheetHeader: View {
                             }
                         }
                     } label: {
-                        Text(ContentCategories.getCategoryFor(mediaContent: content).getSingularName())
+                        Text(contentEntry.content?.contentCategory?.getSingularName() ?? "")
                         Image(systemName: "chevron.compact.down")
                             .offset(x: -5)
                     }
                 case .EDIT:
-                    Text(ContentCategories.getCategoryFor(mediaContent: content).getSingularName())
+                    Text(contentEntry.content?.contentCategory?.getSingularName() ?? "")
                 }
             }
             .bold()
@@ -58,7 +58,7 @@ struct ContentSheetHeader: View {
                 Text("Save")
                     .bold()
             }
-            .disabled(!content.isValid)
+            .disabled(!contentEntry.isValid)
         }
         .padding(.Spacing.m)
         .background(Color.Custom.surface)

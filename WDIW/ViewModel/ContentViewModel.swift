@@ -13,16 +13,10 @@ import Combine
 class ContentViewModel: ObservableObject {
     var modelContext: ModelContext
     
-    @Published var movies = [Movie]()
-    @Published var books = [Book]()
-    @Published var series = [Series]()
-    
-    var mediaContents: [MediaContent] {
-        var mediaContents = books.map({$0 as MediaContent})
-        mediaContents.append(contentsOf: movies.map({$0 as MediaContent}))
-        mediaContents.append(contentsOf: series.map({$0 as MediaContent}))
-        return mediaContents
-    }
+    @Published var contentEntries = [ContentEntry]()
+    @Published var movies = [ContentEntry]()
+    @Published var books = [ContentEntry]()
+    @Published var series = [ContentEntry]()
     
     @Published var infoMessage: String? = nil
     private func showInfoMessage(_ text: String) async {
@@ -40,123 +34,144 @@ class ContentViewModel: ObservableObject {
     
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
-        self.fetchData()
     }
     
-    func fetchData() {
-        fetchBooksData()
-        fetchMoviesData()
-        fetchSeriesData()
+    func updateContentEntries() {
+        contentEntries = fetchContentEntries()
+        books = contentEntries.filter({$0.content?.contentCategory == .books})
+        movies = contentEntries.filter({$0.content?.contentCategory == .movies})
+        series = contentEntries.filter({$0.content?.contentCategory == .series})
     }
+    
+    func fetchContents() -> [ContentMedia] {
+        let descriptor = FetchDescriptor<ContentMedia>(
+            sortBy: [SortDescriptor(\.name, order: .reverse)]
+        )
         
-    func fetchMoviesData() {
         do {
-            let descriptor = FetchDescriptor<Movie>(
-                sortBy: [SortDescriptor(\.date, order: .reverse)]
-            )
-            movies = try modelContext.fetch(descriptor)
+            return try modelContext.fetch(descriptor)
         } catch {
-            print("Fetch for movies failed.")
+            print("Fetch for creators failed.")
         }
+        
+        return []
     }
     
-    func fetchBooksData() {
+    func fetchContentEntries() -> [ContentEntry] {
+        let descriptor = FetchDescriptor<ContentEntry>(
+            sortBy: [SortDescriptor(\.date, order: .reverse)]
+        )
+        
         do {
-            let descriptor = FetchDescriptor<Book>(
-                sortBy: [SortDescriptor(\.date, order: .reverse)]
-            )
-            books = try modelContext.fetch(descriptor)
+            return try modelContext.fetch(descriptor)
         } catch {
-            print("Fetch for books failed.")
+            print("Fetch for creators failed.")
         }
+        
+        return []
     }
     
-    func fetchSeriesData() {
+    func fetchCreators() -> [Creator] {
+        let descriptor = FetchDescriptor<Creator>(
+            sortBy: [SortDescriptor(\.name, order: .reverse)]
+        )
+        
         do {
-            let descriptor = FetchDescriptor<Series>(
-                sortBy: [SortDescriptor(\.date, order: .reverse)]
-            )
-            series = try modelContext.fetch(descriptor)
+            return try modelContext.fetch(descriptor)
         } catch {
-            print("Fetch for series failed.")
+            print("Fetch for creators failed.")
         }
+        
+        return []
     }
     
     func importContents(contents: [MediaContent]) async {
-        var counterNewData: Int = 0
-        var counterAlreadyInData: Int = 0
-        for content in contents {
-            if !mediaContents.map({$0.id}).contains(content.id) {
-                addContent(content: content)
-                counterNewData += 1
-            } else {
-                counterAlreadyInData += 1
+//        var counterNewData: Int = 0
+//        var counterAlreadyInData: Int = 0
+//        for content in contents {
+//            if !mediaContents.map({$0.id}).contains(content.id) {
+//                addContent(content: content)
+//                counterNewData += 1
+//            } else {
+//                counterAlreadyInData += 1
+//            }
+//        }
+//        
+//        var infoText = ""
+//        
+//        switch contents.count {
+//        case 0:
+//            await showErrorMessage("We did not find any content in your file.")
+//            return
+//        case 1:
+//            infoText += "We found **\(contents.count)** content in your file.\n\n"
+//        default:
+//            infoText += "We found **\(contents.count)** contents in your file.\n\n"
+//        }
+//                
+//        switch counterAlreadyInData {
+//        case 0:
+//            infoText += "None of them are stored in your app.\n\n"
+//        case 1:
+//            infoText += "**\(counterAlreadyInData)** of these contents is already stored in your app.\n\n"
+//        default:
+//            infoText += "**\(counterAlreadyInData)** of these contents are already stored in your app.\n\n"
+//        }
+//        
+//        switch counterNewData {
+//        case 0:
+//            infoText += "Therefore we did not import any new content to your app."
+//        case 1:
+//            infoText += "Therefore we imported **\(counterNewData)** content to the app."
+//        default:
+//            infoText += "Therefore we imported **\(counterNewData)** contents to the app."
+//        }
+//        
+//        await showInfoMessage(infoText)
+    }
+    
+    func addContentEntry(name: String, creator: String?, category: ContentCategories, contentEntry: ContentEntry) {
+        contentEntry.content = fetchOrCreateContent(name: name, creator: creator, category: category)
+        modelContext.insert(contentEntry)
+    }
+    
+    func fetchOrCreateContent(name: String, creator: String?, category: ContentCategories) -> ContentMedia {
+        let descriptor = FetchDescriptor<ContentMedia>(
+            sortBy: [SortDescriptor(\.name, order: .reverse)]
+        )
+        
+        for item in fetchContents() {
+            if item.contentCategory == category {
+                if item.name == name {
+                    return item
+                }
             }
         }
         
-        var infoText = ""
-        
-        switch contents.count {
-        case 0:
-            await showErrorMessage("We did not find any content in your file.")
-            return
-        case 1:
-            infoText += "We found **\(contents.count)** content in your file.\n\n"
-        default:
-            infoText += "We found **\(contents.count)** contents in your file.\n\n"
-        }
-                
-        switch counterAlreadyInData {
-        case 0:
-            infoText += "None of them are stored in your app.\n\n"
-        case 1:
-            infoText += "**\(counterAlreadyInData)** of these contents is already stored in your app.\n\n"
-        default:
-            infoText += "**\(counterAlreadyInData)** of these contents are already stored in your app.\n\n"
-        }
-        
-        switch counterNewData {
-        case 0:
-            infoText += "Therefore we did not import any new content to your app."
-        case 1:
-            infoText += "Therefore we imported **\(counterNewData)** content to the app."
-        default:
-            infoText += "Therefore we imported **\(counterNewData)** contents to the app."
-        }
-        
-        await showInfoMessage(infoText)
+        let contentMedia = ContentMedia(
+            name: name,
+            contentCategory: category,
+            createdBy: creator == nil ? [] : [fetchOrCreateCreator(for: creator!)]
+        )
+        modelContext.insert(contentMedia)
+        return contentMedia
     }
     
-    func addContent(content: MediaContent) {
-        switch content {
-        case is Book:
-            modelContext.insert(content as! Book)
-            fetchBooksData()
-        case is Movie:
-            modelContext.insert(content as! Movie)
-            fetchMoviesData()
-        case is Series:
-            modelContext.insert(content as! Series)
-            fetchSeriesData()
-        default:
-            print("Content type could not be inferred.")
+    func fetchOrCreateCreator(for name: String) -> Creator {
+        for creator in fetchCreators() {
+            if creator.name == name {
+                return creator
+            }
         }
+        
+        let creator = Creator(name: name)
+        modelContext.insert(creator)
+        return creator
     }
-
-    func deleteContent(content: MediaContent) {
-        switch content {
-        case is Book:
-            modelContext.delete(content as! Book)
-            fetchBooksData()
-        case is Movie:
-            modelContext.delete(content as! Movie)
-            fetchMoviesData()
-        case is Series:
-            modelContext.delete(content as! Series)
-            fetchSeriesData()
-        default:
-            print("Content type could not be inferred.")
-        }
+    
+    
+    func deleteContent(content: ContentEntry) {
+        modelContext.delete(content)
     }
     
     func deleteAllMediaContent() async {
@@ -180,19 +195,22 @@ class ContentViewModel: ObservableObject {
         var numOfDeletions = 0
         switch contentCategory {
         case .books:
+            let books = fetchContentEntries().filter({$0.content?.contentCategory == .books})
             numOfDeletions = books.count
             for book in books {
                 deleteContent(content: book)
             }
         case .movies:
-            numOfDeletions = movies.count
-            for movie in movies {
-                deleteContent(content: movie)
+            let books = fetchContentEntries().filter({$0.content?.contentCategory == .movies})
+            numOfDeletions = books.count
+            for book in books {
+                deleteContent(content: book)
             }
         case .series:
-            numOfDeletions = series.count
-            for serie in series {
-                deleteContent(content: serie)
+            let books = fetchContentEntries().filter({$0.content?.contentCategory == .series})
+            numOfDeletions = books.count
+            for book in books {
+                deleteContent(content: book)
             }
         }
         

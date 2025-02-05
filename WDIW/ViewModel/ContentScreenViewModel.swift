@@ -80,7 +80,7 @@ class ContentScreenViewModel: ObservableObject {
     @Published var showSearch: Bool = false
     @Published var searchQuery: String = ""
     @Published var sortBy: SortBy = .dateReverse
-    @Published var displayedContents: [MediaContent] = []
+    @Published var displayedContents: [ContentEntry] = []
     
     @Published var yearsWithEntry: [String] = []
     @AppStorage("selectedYears") var storedSelectedYears: [String] = []
@@ -91,7 +91,7 @@ class ContentScreenViewModel: ObservableObject {
 
     @Published var isSearchFieldFocused: Bool = false
     
-    var contents: [MediaContent] {
+    var contents: [ContentEntry] {
         switch contentCategory {
         case .books:
             return contentVM.books
@@ -102,9 +102,9 @@ class ContentScreenViewModel: ObservableObject {
         }
     }
     
-    private var contentsFiltered: [MediaContent] {
+    private var contentsFiltered: [ContentEntry] {
         let contetsFilteredForYear = contents.filter {
-            let components = Calendar.current.dateComponents([Calendar.Component.year], from: $0.date)
+            let components = Calendar.current.dateComponents([Calendar.Component.year], from: $0.date ?? Date())
             let year = components.year?.description ?? ""
             
             return self.selectedYears.contains(year)
@@ -113,10 +113,10 @@ class ContentScreenViewModel: ObservableObject {
         if searchQuery.isEmpty {
             return contetsFilteredForYear
         } else {
-            return contetsFilteredForYear.filter { content in
-                content.name.localizedCaseInsensitiveContains(searchQuery) ||
-                content.creator.localizedCaseInsensitiveContains(searchQuery) ||
-                content.additionalInfo.localizedCaseInsensitiveContains(searchQuery)
+            return contetsFilteredForYear.filter { contentEntry in
+                (contentEntry.content?.name ?? "").localizedCaseInsensitiveContains(searchQuery) ||
+                (contentEntry.content?.createdBy?.first?.name ?? "").localizedCaseInsensitiveContains(searchQuery) ||
+                (contentEntry.userNotes ?? "").localizedCaseInsensitiveContains(searchQuery)
             }
         }
     }
@@ -173,10 +173,10 @@ class ContentScreenViewModel: ObservableObject {
         }
     }
     
-    private func getYearsFromContents(contents: [MediaContent]) -> [String] {
+    private func getYearsFromContents(contents: [ContentEntry]) -> [String] {
         var years: [String] = []
         for content in contents {
-            let components = Calendar.current.dateComponents([Calendar.Component.year], from: content.date)
+            let components = Calendar.current.dateComponents([Calendar.Component.year], from: content.date ?? Date.distantPast)
             let year = components.year?.description ?? ""
             
             if !years.contains(year) {
@@ -216,29 +216,29 @@ class ContentScreenViewModel: ObservableObject {
     }
         
     private func sortContent(sortBy: SortBy) {
-        var sortedContent: [MediaContent] = []
+        var sortedContent: [ContentEntry] = []
         switch sortBy {
         case .dateForward:
             sortedContent = contentsFiltered.sorted(using: SortDescriptor(\.date, order: .forward))
         case .dateReverse:
             sortedContent = contentsFiltered.sorted(using: SortDescriptor(\.date, order: .reverse))
         case .nameForward:
-            sortedContent = contentsFiltered.sorted(using: SortDescriptor(\.name, order: .forward))
+            sortedContent = contentsFiltered.sorted(using: SortDescriptor(\.content?.name, order: .forward))
         case .nameReverse:
-            sortedContent = contentsFiltered.sorted(using: SortDescriptor(\.name, order: .reverse))
+            sortedContent = contentsFiltered.sorted(using: SortDescriptor(\.content?.name, order: .reverse))
         case .authorForward:
-            sortedContent = contentsFiltered.sorted(using: SortDescriptor(\.additionalInfo, order: .forward))
+            sortedContent = contentsFiltered.sorted(using: SortDescriptor(\.userNotes, order: .forward))
         case .authorReversed:
-            sortedContent = contentsFiltered.sorted(using: SortDescriptor(\.additionalInfo, order: .reverse))
+            sortedContent = contentsFiltered.sorted(using: SortDescriptor(\.userNotes, order: .reverse))
         case .ratingForward:
-            sortedContent = contentsFiltered.sorted(using: SortDescriptor(\.rating, order: .forward))
+            sortedContent = contentsFiltered.sorted(using: SortDescriptor(\.userRating, order: .forward))
         case .ratingReversed:
-            sortedContent = contentsFiltered.sorted(using: SortDescriptor(\.rating, order: .reverse))
+            sortedContent = contentsFiltered.sorted(using: SortDescriptor(\.userRating, order: .reverse))
         }
         fillDisplayedContens(contents: sortedContent)
     }
     
-    private func fillDisplayedContens(contents: [MediaContent]) {
+    private func fillDisplayedContens(contents: [ContentEntry]) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
              self.displayedContents = contents
         }
@@ -270,12 +270,16 @@ class ContentScreenViewModel: ObservableObject {
         }
     }
     
-    func addContent(content: MediaContent) {
-        contentVM.addContent(content: content)
+    func addContent(contentEntry: ContentEntry) {
+        contentVM.addContentEntry(
+            name: contentEntry.content?.name ?? "",
+            creator: contentEntry.content?.createdBy?.first?.name ?? "",
+            category: contentCategory, contentEntry: contentEntry
+        )
         refresh()
     }
     
-    func deleteContent(content: MediaContent) {
+    func deleteContent(content: ContentEntry) {
         contentVM.deleteContent(content: content)
         refresh()
     }

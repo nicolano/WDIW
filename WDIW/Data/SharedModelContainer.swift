@@ -10,7 +10,7 @@ import SwiftData
 
 class SharedModelContainer {
     let schema = Schema([
-        Book.self, Movie.self, Series.self
+        ContentMedia.self, Creator.self, ContentEntry.self, SeasonWatched.self
     ])
     
     let modelConfiguration: ModelConfiguration

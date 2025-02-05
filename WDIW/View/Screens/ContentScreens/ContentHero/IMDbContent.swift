@@ -7,14 +7,6 @@
 
 import SwiftUI
 
-fileprivate let omdbApiKey = "&apikey=16fd7e05"
-fileprivate let omdbUrl = "https://www.omdbapi.com/"
-fileprivate let imdbUrl = "https://www.imdb.com/title/"
-
-fileprivate func buildOmdbUrl(parameter: String) -> String {
-    return omdbUrl + "?" + parameter + omdbApiKey
-}
-
 struct IMDbContent: View {
     let contentFor: String
     
@@ -24,6 +16,8 @@ struct IMDbContent: View {
     @State private var searchResult: OmdbSearchResult? = nil
     @State private var dataResult: OmdbIdResult? = nil
 
+    let omdbFetcher = OmdbFetcher()
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack.spacingS(alignment: .bottom) {
@@ -61,7 +55,7 @@ struct IMDbContent: View {
 
             if let searchResult, isOpen {
                 Button {
-                    if let url = URL(string: "\(imdbUrl)\(searchResult.imdbID ?? "")") {
+                    if let url = URL(string: omdbFetcher.getImdbUrl(forSearchResult: searchResult)) {
                         UIApplication.shared.open(url)
                     }
                 } label: {
@@ -82,95 +76,13 @@ struct IMDbContent: View {
             }
         }
         .task {
-            await searchTitle(contentFor)
+            await searchResult = omdbFetcher.searchTitle(contentFor)
             
             if let imdbID = searchResult?.imdbID {
-                await loadDataForTitle(imdbId: imdbID)
+                await dataResult = omdbFetcher.loadDataForTitle(imdbId: imdbID)
             }
             
             contentIsLoading = false
         }
     }
-}
-
-extension IMDbContent {
-    private func searchTitle(_ forContent: String) async {
-        guard let url = URL(string: buildOmdbUrl(parameter: "s=\(forContent)")) else {
-            print("Invalid URL")
-            return
-        }
-        
-        do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            if let decodedResponse = try? JSONDecoder().decode(OmdbSearchResponse.self, from: data) {
-                searchResult = decodedResponse.Search.first
-            }
-        } catch {
-            print("Error Decoding data:" + String(describing: error))
-        }
-    }
-    
-    private func loadDataForTitle(imdbId: String) async {
-        print(buildOmdbUrl(parameter: "i=\(imdbId)"))
-        guard let url = URL(string: buildOmdbUrl(parameter: "i=\(imdbId)")) else {
-            print("Invalid URL")
-            return
-        }
-        
-        do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            if let decodedResponse = try? JSONDecoder().decode(OmdbIdResult.self, from: data) {
-                dataResult = decodedResponse
-            }
-        } catch {
-            print("Error Decoding data:" + String(describing: error))
-        }
-    }
-}
-
-struct OmdbSearchResponse: Decodable {
-    let Search: [OmdbSearchResult]
-    let totalResults: String?
-    let Response: String?
-}
-
-struct OmdbSearchResult: Decodable {
-    let Title: String?
-    let Year: String?
-    let imdbID: String?
-    let `Type`: String?
-    let Poster: String?
-}
-
-struct OmdbIdResult: Decodable {
-    let Title: String?
-    let Year: String?
-    let Rated: String?
-    let Released: String?
-    let Runtime: String?
-    let Genre: String?
-    let Director: String?
-    let Writer: String?
-    let Actors: String?
-    let Plot: String?
-    let Language: String?
-    let Country: String?
-    let Awards: String?
-    let Poster: String?
-    let Ratings: [ImdbRatings]
-    let Metascore: String?
-    let imdbRating: String?
-    let imdbVotes: String?
-    let imdbID: String?
-    let `Type`: String?
-    let DVD: String?
-    let BoxOffice: String?
-    let Production: String?
-    let Website: String?
-    let Response: String?
-}
-
-struct ImdbRatings: Decodable {
-    let Source: String?
-    let Value: String?
 }

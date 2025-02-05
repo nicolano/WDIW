@@ -45,17 +45,6 @@ extension ContentCategories {
         }
     }
     
-    var getEmptyContent: MediaContent {
-        switch self {
-        case .books:
-            return Book.empty
-        case .movies:
-            return Movie.empty
-        case .series:
-            return Series.empty
-        }
-    }
-    
     static func getCategoryFor(mediaContent: MediaContent) -> ContentCategories {
         if mediaContent is Book {
             return .books

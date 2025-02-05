@@ -38,9 +38,9 @@ class NavigationViewModel: ObservableObject {
     
     @Published var activeScreen: Screens = .books
     private var lastActiveContentScreen: Screens = .books
-    @Published var selectedContent: MediaContent? = nil
+    @Published var selectedContent: ContentEntry? = nil
     @Published var activeAddContentSheet: ContentCategories? = nil
-    @Published var activeEditContentSheet: MediaContent? = nil
+    @Published var activeEditContentSheet: ContentEntry? = nil
     @Published var showCSVInfoSheet: Bool = false
     @Published var contentScrollOffset: CGFloat = 0
 
@@ -62,11 +62,11 @@ class NavigationViewModel: ObservableObject {
         activeAddContentSheet = contentCategory
     }
     
-    func openEditContentSheet(content: MediaContent) {
+    func openEditContentSheet(content: ContentEntry) {
         activeEditContentSheet = content
     }
     
-    func openSelectedContentHero(content: MediaContent) {
+    func openSelectedContentHero(content: ContentEntry) {
         withAnimation(.spring) {
             selectedContent = content
         }

@@ -30,7 +30,3 @@ struct NoContentSection: View {
         .align(.vCenter)
     }
 }
-
-#Preview {
-    NoContentSection(contentCategory: .books)
-}

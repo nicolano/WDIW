@@ -16,7 +16,7 @@ import SwiftData
 ///   - additionalInfo: For books, this is usually the author (can be accessed via `author` parameter). 
 ///   - rating: The rating of the book, if greater than zero, the book counts as a favourite, accessible under `isFavourite`.
 ///   - url: ??
-@Model class Book: MediaContent {
+class Book: MediaContent {
     var id: UUID = UUID()
     var name: String = ""
     var creator: String = ""
@@ -25,15 +25,15 @@ import SwiftData
     var rating: Int = -1
     var url: String = ""
     var imageUrl: String = ""
-
-    init(id: UUID, name: String, entryDate: Date, author: String, additionalInfo: String, isFavorite: Bool, url: String) {
-        self.id = id
-        self.name = name
-        self.date = entryDate
-        self.creator = author
-        self.additionalInfo = additionalInfo
-        self.rating = isFavorite ? 1 : 0
-        self.url = url
+    
+    init(_ contentEntry: ContentEntry) {
+        self.name = contentEntry.content?.name ?? ""
+        self.date = contentEntry.date ?? Date.distantPast
+        for creator in contentEntry.content?.createdBy ?? [] {
+            self.creator += "\(creator.name ?? "") "
+        }
+        self.additionalInfo = contentEntry.userNotes ?? ""
+        self.rating = (contentEntry.userRating ?? 0) > 0 ? 1 : 0
     }
     
     init(name: String, entryDate: Date, author: String, additionalInfo: String, isFavorite: Bool, url: String) {
@@ -85,9 +85,5 @@ import SwiftData
 
     var asString: String {
         "\(self.name), \(self.date.ISO8601Format()), \(self.author), \(self.additionalInfo), \(self.isFavorite), \(self.url)"
-    }
-    
-    func copy() -> any MediaContent {
-        return Book(id: self.id, name: self.name, entryDate: self.date, author: self.author, additionalInfo: self.additionalInfo, isFavorite: self.isFavorite, url: self.url)
     }
 }

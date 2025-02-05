@@ -21,6 +21,4 @@ protocol MediaContent {
     // Computed properties
     var isValid: Bool { get }
     var asString: String { get }
-    
-    func copy() -> MediaContent
 }

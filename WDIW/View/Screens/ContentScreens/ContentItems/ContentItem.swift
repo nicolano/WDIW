@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ContentItem: View {
-    internal init(_ content: MediaContent, onTap: @escaping () -> Void) {
+    internal init(_ content: ContentEntry, onTap: @escaping () -> Void) {
         self.content = content
         self.onTap = onTap
     }
     
-    private let content: MediaContent
+    private let content: ContentEntry
     private let onTap: () -> Void
     
     var body: some View {

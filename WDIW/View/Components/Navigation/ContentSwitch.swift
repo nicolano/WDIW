@@ -9,47 +9,47 @@ import SwiftUI
 
 struct ContentSwitch<BookContent: View, MovieContent: View, SeriesContent: View>: View {
     internal init(
-        content: Binding<MediaContent>,
-        @ViewBuilder bookContent: @escaping (Binding<Book>) -> BookContent,
-        @ViewBuilder movieContent: @escaping (Binding<Movie>) -> MovieContent,
-        @ViewBuilder seriesContent: @escaping (Binding<Series>) -> SeriesContent
+        content: Binding<ContentEntry>,
+        @ViewBuilder bookContent: @escaping (Binding<ContentEntry>) -> BookContent,
+        @ViewBuilder movieContent: @escaping (Binding<ContentEntry>) -> MovieContent,
+        @ViewBuilder seriesContent: @escaping (Binding<ContentEntry>) -> SeriesContent
     ) {
-        self._content = content
+        self._contentEntry = content
         self.bookContent = bookContent
         self.movieContent = movieContent
         self.seriesContent = seriesContent
     }
     
-    @Binding var content: MediaContent
+    @Binding var contentEntry: ContentEntry
     
-    var bookContent: (Binding<Book>) -> BookContent
-    var movieContent: (Binding<Movie>) -> MovieContent
-    var seriesContent: (Binding<Series>) -> SeriesContent
+    var bookContent: (Binding<ContentEntry>) -> BookContent
+    var movieContent: (Binding<ContentEntry>) -> MovieContent
+    var seriesContent: (Binding<ContentEntry>) -> SeriesContent
     
     var body: some View {
-        switch content {
-        case is Book:
+        switch contentEntry.content?.contentCategory {
+        case .books:
             bookContent(
                 Binding(get: {
-                    content as! Book
+                    contentEntry
                 }, set: { newContent in
-                    content = newContent
+                    contentEntry = newContent
                 })
             )
-        case is Movie:
+        case .movies:
             movieContent(
                 Binding(get: {
-                    content as! Movie
+                    contentEntry
                 }, set: { newContent in
-                    content = newContent
+                    contentEntry = newContent
                 })
             )
-        case is Series:
+        case .series:
             seriesContent(
                 Binding(get: {
-                    content as! Series
+                    contentEntry
                 }, set: { newContent in
-                    content = newContent
+                    contentEntry = newContent
                 })
             )
         default: EmptyView()

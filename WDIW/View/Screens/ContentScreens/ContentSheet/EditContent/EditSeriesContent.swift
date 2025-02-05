@@ -13,18 +13,29 @@ fileprivate enum FocusedField {
 
 struct EditSeriesContent: View {
     @EnvironmentObject private var contentVM: ContentViewModel
-
-    @Binding var series: Series
+    @EnvironmentObject private var settingsVM: SettingsViewModel
+    
+    @Binding var series: ContentEntry
     @FocusState private var focusedField: FocusedField?
     @State var predictions: [String] = []
-    
+
     var nonFocused: Bool { return self.focusedField == nil }
+    
+    let omdbFetcher = OmdbFetcher()
+    
+    var linkedWithImdb: Bool { !series.url.isEmpty }
     
     var body: some View {
         VStack.spacingM {
             if focusedField == .name || nonFocused {
-                CustomTextField(value: $series.name, title: "Name")
+                CustomTextField(value: $series.name, title: "Name", autoFocus: series.name.isEmpty)
                     .focused($focusedField, equals: .name)
+            }
+            
+            
+            
+            if nonFocused {
+                SeasonsEditor(totalSeasons: 12, prevWatchedSeasons: [1,2])
             }
             
             if focusedField == .additionalInfo || nonFocused {

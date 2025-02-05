@@ -16,7 +16,7 @@ import SwiftData
 ///   - additionalInfo: For series, this can for example specify which seasons where watched.
 ///   - rating: The rating of the series, which should be in a range from 1 to 10.
 ///   - url: The Imdb id.
-@Model class Series: MediaContent {
+class Series: MediaContent {
     var id: UUID = UUID()
     var name: String = ""
     var creator: String = ""
@@ -26,15 +26,14 @@ import SwiftData
     var url: String = ""
     var imageUrl: String = ""
 
-    init(id: UUID, name: String, directors: String, additionalInfo: String, entryDate: Date, rating: Int, url: String, imageUrl: String = "") {
-        self.id = id
-        self.creator = directors
-        self.additionalInfo = additionalInfo
-        self.name = name
-        self.date = entryDate
-        self.rating = rating
-        self.url = url
-        self.imageUrl = imageUrl
+    init(_ contentEntry: ContentEntry) {
+        self.name = contentEntry.content?.name ?? ""
+        self.date = contentEntry.date ?? Date.distantPast
+        for creator in contentEntry.content?.createdBy ?? [] {
+            self.creator += "\(creator.name ?? "") "
+        }
+        self.additionalInfo = contentEntry.userNotes ?? ""
+        self.rating = (contentEntry.userRating ?? 0)
     }
     
     init(name: String, directors: String, additionalInfo: String, entryDate: Date, rating: Int, url: String) {
@@ -76,9 +75,5 @@ import SwiftData
     
     var asString: String {
         "\(self.name), \(self.date.ISO8601Format()), \(self.creator), \(self.additionalInfo), \(self.rating), \(self.url)"
-    }
-    
-    func copy() -> any MediaContent {
-        return Series(id: self.id, name: self.name, directors: self.directors, additionalInfo: self.additionalInfo, entryDate: self.date, rating: self.rating, url: self.url, imageUrl: self.imageUrl)
     }
 }

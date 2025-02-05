@@ -14,7 +14,7 @@ fileprivate enum FocusedField {
 struct EditMovieContent: View {
     @EnvironmentObject private var contentVM: ContentViewModel
     
-    @Binding var movie: Movie
+    @Binding var movie: ContentEntry
 
     @FocusState private var focusedField: FocusedField?
     

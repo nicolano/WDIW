@@ -14,7 +14,11 @@ fileprivate enum FocusedField {
 struct EditBookContent: View {
     @EnvironmentObject private var contentVM: ContentViewModel
     
-    @Binding var book: Book
+    @Binding var name: String
+    @Binding var author: String
+    @Binding var userNotes: String
+    @Binding var date: Date
+    @Binding var isFavorite: Bool
 
     @FocusState private var focusedField: FocusedField?
     
@@ -25,29 +29,29 @@ struct EditBookContent: View {
     var body: some View {
         VStack.spacingM {
             if focusedField == .name || nonFocused {
-                CustomTextField(value: $book.name, title: "Name")
+                CustomTextField(value: $name, title: "Name")
                     .focused($focusedField, equals: .name)
             }
 
             if focusedField == .author || nonFocused {
-                CustomTextField(value: $book.author, title: "Author")
+                CustomTextField(value: $author, title: "Author")
                     .focused($focusedField, equals: .author)
             }
             
             if focusedField == .additionalInfo || nonFocused {
-                CustomTextField(value: $book.additionalInfo, title: "Additional Informations", lineLimit: 5)
+                CustomTextField(value: $userNotes, title: "Additional Informations", lineLimit: 5)
                     .focused($focusedField, equals: .additionalInfo)
             }
 
             if nonFocused {
-                CustomDateField(value: $book.date, title: "Date")
+                CustomDateField(value: $date, title: "Date")
                 
-                IsFavoriteToggle(value: $book.isFavorite, title: "Favorite")
+                IsFavoriteToggle(value: $isFavorite, title: "Favorite")
             }
             
             if focusedField == .author {
                 PredictionsLists(predictions: predictions) { index in
-                    book.author = predictions[index]
+                    author = predictions[index]
                     focusedField = nil
                 }
             }
@@ -56,11 +60,11 @@ struct EditBookContent: View {
         }
         .padding(.AllM)
         .animation(.smooth, value: focusedField)
-        .onChange(of: book.author) { _, newValue in
+        .onChange(of: author) { _, newValue in
             predictions = contentVM.books
-                .map({$0.author})
+                .map({$0.content?.createdBy?.first?.name ?? ""})
                 .filter { authors in
-                    authors.localizedCaseInsensitiveContains(book.author)
+                    authors.localizedCaseInsensitiveContains(author)
                 }
                 .uniqued()
         }

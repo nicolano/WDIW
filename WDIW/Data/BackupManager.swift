@@ -149,7 +149,6 @@ class BackupManager: ObservableObject {
             switch category {
             case ContentCategories.books.getName():
                 content = Book(
-                    id: UUID(uuidString: from[1].trimmingCharacters(in: [" "])) ?? UUID(),
                     name: from[2].trimmingCharacters(in: [" "]),
                     entryDate: try Date.ISO8601FormatStyle().parse(from[3].trimmingCharacters(in: [" "])),
                     author: from[4].trimmingCharacters(in: [" "]),
@@ -159,7 +158,6 @@ class BackupManager: ObservableObject {
                 )
             case ContentCategories.books.getSingularName():
                 content = Book(
-                    id: UUID(uuidString: from[1].trimmingCharacters(in: [" "])) ?? UUID(),
                     name: from[2].trimmingCharacters(in: [" "]),
                     entryDate: try Date.ISO8601FormatStyle().parse(from[3].trimmingCharacters(in: [" "])),
                     author: from[4].trimmingCharacters(in: [" "]),
@@ -169,7 +167,6 @@ class BackupManager: ObservableObject {
                 )
             case ContentCategories.movies.getName():
                 content = Movie(
-                    id: UUID(uuidString: from[1].trimmingCharacters(in: [" "])) ?? UUID(),
                     name: from[2].trimmingCharacters(in: [" "]),
                     director: from[4].trimmingCharacters(in: [" "]),
                     additionalInfo: from[5].trimmingCharacters(in: [" "]),
@@ -179,7 +176,6 @@ class BackupManager: ObservableObject {
                 )
             case ContentCategories.movies.getSingularName():
                 content = Movie(
-                    id: UUID(uuidString: from[1].trimmingCharacters(in: [" "])) ?? UUID(),
                     name: from[2].trimmingCharacters(in: [" "]),
                     director: from[4].trimmingCharacters(in: [" "]),
                     additionalInfo: from[5].trimmingCharacters(in: [" "]),
@@ -189,7 +185,6 @@ class BackupManager: ObservableObject {
                 )
             case ContentCategories.series.getName():
                 content = Series(
-                    id: UUID(uuidString: from[1].trimmingCharacters(in: [" "])) ?? UUID(),
                     name: from[2].trimmingCharacters(in: [" "]),
                     directors: from[4].trimmingCharacters(in: [" "]),
                     additionalInfo: from[5].trimmingCharacters(in: [" "]),

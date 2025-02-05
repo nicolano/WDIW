@@ -18,16 +18,18 @@ struct ContentSheet: View {
     
     internal init(contentCategory: ContentCategories) {
         self.type = .ADD
-        self.content = contentCategory.getEmptyContent
+        self.contentEntry = ContentEntry.getEmptyFor(category: contentCategory)
     }
     
-    internal init(content: MediaContent) {
+    internal init(contentEntry: ContentEntry) {
         self.type = .EDIT
-        self.content = content
+        self.contentEntry = contentEntry
     }
     
     let type: ContentSheetType
-    @State var content: MediaContent
+    @State var contentEntry: ContentEntry
+    @State var name: String = ""
+    @State var creator: String = ""
     @State var showDeleteContentAlert: Bool = false
     
     var title: String {
@@ -40,45 +42,45 @@ struct ContentSheet: View {
     }
     
     func onSave() {
-        switch content {
-        case is Book:
-            contentScreenVMs.forBooks.addContent(content: content)
-        case is Movie:
-            contentScreenVMs.forMovies.addContent(content: content)
-        case is Series:
-            contentScreenVMs.forSeries.addContent(content: content)
-        default:
+        switch contentEntry.content?.contentCategory {
+        case .books:
+            contentScreenVMs.forBooks.addContent(contentEntry: contentEntry)
+        case .movies:
+            contentScreenVMs.forMovies.addContent(contentEntry: contentEntry)
+        case .series:
+            contentScreenVMs.forSeries.addContent(contentEntry: contentEntry)
+        case nil:
             return
         }
     }
     
     func onDelete() {
-        switch content {
-        case is Book:
-            contentScreenVMs.forBooks.deleteContent(content: content)
-        case is Movie:
-            contentScreenVMs.forMovies.deleteContent(content: content)
-        case is Series:
-            contentScreenVMs.forSeries.deleteContent(content: content)
-        default:
+        switch contentEntry.content?.contentCategory {
+        case .books:
+            contentScreenVMs.forBooks.deleteContent(content: contentEntry)
+        case .movies:
+            contentScreenVMs.forMovies.deleteContent(content: contentEntry)
+        case .series:
+            contentScreenVMs.forSeries.deleteContent(content: contentEntry)
+        case nil:
             return
         }
     }
     
     var body: some View {
         VStack(spacing: 0) {
-            ContentSheetHeader(title: title, content: content, type: type) {
+            ContentSheetHeader(title: title, contentEntry: contentEntry, type: type) {
                 dismiss()
             } onSave: {
                 onSave()
-                navigationVM.navigateToContentCategory(category: ContentCategories.getCategoryFor(mediaContent: content))
+                navigationVM.navigateToContentCategory(category: contentEntry.content?.contentCategory ?? .books)
                 dismiss()
             } onCategoryChange: { category in
-                self.content = category.getEmptyContent
+                self.contentEntry = ContentEntry.getEmptyFor(category: category)
             }
             
-            ContentSwitch(content: $content) { book in
-                EditBookContent(book: book)
+            ContentSwitch(content: $contentEntry) { book in
+                EditBookContent(name: <#T##Binding<String>#>, author: <#T##Binding<String>#>, userNotes: <#T##Binding<String>#>, date: <#T##Binding<Date>#>, isFavorite: <#T##Binding<Bool>#>)
             } movieContent: { movie in
                 EditMovieContent(movie: movie)
             } seriesContent: { series in
@@ -94,7 +96,7 @@ struct ContentSheet: View {
                 .padding(.VerticalS)
                 .padding(.HorizontalM)
                 .alert(
-                    "Are you sure you want to delete \"\(content.name)\"?",
+                    "Are you sure you want to delete \"\(contentEntry.content?.name ?? "")\"?",
                     isPresented: $showDeleteContentAlert
                 ) {
                     Button("No", role: .cancel) {
@@ -104,7 +106,7 @@ struct ContentSheet: View {
                     Button("Yes", role: .destructive) {
                         onDelete()
                         navigationVM.closeSelectedContentHero()
-                        navigationVM.navigateToContentCategory(category: ContentCategories.getCategoryFor(mediaContent: content))
+                        navigationVM.navigateToContentCategory(category: contentEntry.content?.contentCategory ?? .books)
                         dismiss()
                     }
                 }
@@ -147,7 +149,7 @@ struct ContentSheetViewModifier: ViewModifier {
                         }
                     case .EDIT:
                         if let it = navigationVM.activeEditContentSheet {
-                            ContentSheet(content: it)
+                            ContentSheet(contentEntry: it)
                         }
                     }
                 }
