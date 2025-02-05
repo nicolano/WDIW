@@ -28,7 +28,6 @@ struct ContentItem: View {
                 SeriesItem(series.wrappedValue) { onTap() }
             }
         }
-        .contentShape(Rectangle())
         .buttonStyle(ContentItemButtonStyle())
     }
 }
@@ -37,5 +36,6 @@ struct ContentItemButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding(.VerticalXS)
+            .contentShape(Rectangle())
     }
 }
