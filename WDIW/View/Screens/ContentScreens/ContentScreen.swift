@@ -20,7 +20,7 @@ struct ContentScreen: View {
     var body: some View {
         VStack.zeroSpacing(alignment: .leading) {
             if contentScreenVM.contents.isEmpty {
-                NoContentSection(contentCategory: .movies)
+                NoContentSection(contentCategory: contentCategory)
             } else {
                 VerticalScrollView($navigationVM.contentScrollOffset) {
                     LazyVStack(spacing: .Spacing.s) {
