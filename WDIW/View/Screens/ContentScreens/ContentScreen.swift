@@ -12,6 +12,7 @@ struct ContentScreen: View {
     @EnvironmentObject private var contentVM: ContentViewModel
     @EnvironmentObject private var settingsVM: SettingsViewModel
     @EnvironmentObject private var contentScreenVM: ContentScreenViewModel
+    @Environment(\.keyboardShowing) var keyboardShowing
 
     let contentCategory: ContentCategories
     
@@ -61,7 +62,7 @@ struct ContentScreen: View {
                     }
                     .padding(.TopS)
                     .padding(.HorizontalM)
-                    .safeAreaPadding(.bottom, 100)
+                    .safeAreaPadding(.bottom, keyboardShowing ? 400 : 100)
                 }
                 .searchField()
             }

@@ -26,7 +26,8 @@ struct ContentHero: View {
         .safeAreaInset(edge: .top, content: { header })
         .background {
             RoundedRectangle(cornerRadius: .CornerRadius.dialog)
-                .fill(Color.Custom.surface)
+                .fill(Color.clear)
+                .glassEffect(.regular, in: .rect(cornerRadius: .CornerRadius.dialog))
         }
         .clipShape(RoundedRectangle(cornerRadius: .CornerRadius.dialog))
         .padding(.HorizontalM)
@@ -40,8 +41,10 @@ extension ContentHero {
             Button {
                 navigationVM.closeSelectedContentHero()
             } label: {
-                Image(systemName: "x.circle.fill")
+                Image(systemName: "xmark")
+                    .padding(.AllM)
             }
+            .glassEffect(.regular)
             
             Spacer()
             
@@ -49,11 +52,12 @@ extension ContentHero {
                 navigationVM.openEditContentSheet(content: content)
             } label: {
                 Label("Edit", systemImage: "pencil")
+                    .padding(.AllM)
             }
+            .glassEffect(.regular)
         }
         .bold()
         .padding(.AllM)
-        .background(Material.ultraThin)
     }
 }
 

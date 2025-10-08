@@ -18,7 +18,8 @@ struct EditMovieContent: View {
 
     @FocusState private var focusedField: FocusedField?
     
-    @State var predictions: [String] = []
+    @State var directorPredictions: [String] = []
+    @State var moviePredictions: [Movie] = []
     
     var nonFocused: Bool { return self.focusedField == nil }
     
@@ -39,9 +40,21 @@ struct EditMovieContent: View {
                     .focused($focusedField, equals: .additionalInfo)
             }
             
+            if focusedField == .name {
+                PredictionsLists(predictions: moviePredictions.map({$0.name})) { index in
+                    let predictedMovie = moviePredictions[index]
+                    movie.name = predictedMovie.name
+                    movie.director = predictedMovie.director
+                    movie.rating = predictedMovie.rating
+                    movie.additionalInfo = predictedMovie.additionalInfo
+                    
+                    focusedField = nil
+                }
+            }
+            
             if focusedField == .director {
-                PredictionsLists(predictions: predictions) { index in
-                    movie.director = predictions[index]
+                PredictionsLists(predictions: directorPredictions) { index in
+                    movie.director = directorPredictions[index]
                     focusedField = nil
                 }
             }
@@ -56,10 +69,17 @@ struct EditMovieContent: View {
         .padding(.AllM)        
         .animation(.smooth, value: focusedField)
         .onChange(of: movie.director) { _, newValue in
-            predictions = contentVM.movies
+            directorPredictions = contentVM.movies
                 .map({$0.director})
                 .filter { names in
                     names.localizedCaseInsensitiveContains(movie.director)
+                }
+                .uniqued()
+        }
+        .onChange(of: movie.name) { _, newValue in
+            moviePredictions = contentVM.movies
+                .filter { movies in
+                    movies.name.localizedCaseInsensitiveContains(movie.name)
                 }
                 .uniqued()
         }

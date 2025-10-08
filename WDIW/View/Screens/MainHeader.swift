@@ -70,7 +70,13 @@ struct MainHeader: View {
             if navigationVM.activeScreen == .statistics
                 || navigationVM.activeScreen == .settings
                 || navigationVM.contentScrollOffset > -115 {
-                Rectangle().fill(Color.Custom.surface)
+                Rectangle()
+                    .fill(.clear)
+                    .glassEffect(.clear, in: .rect(cornerRadii:
+                                            RectangleCornerRadii(topLeading: 0,
+                                                                 bottomLeading: .CornerRadius.dialog,
+                                                                 bottomTrailing: .CornerRadius.dialog,
+                                                                 topTrailing: 0)))
             }
         }
     }

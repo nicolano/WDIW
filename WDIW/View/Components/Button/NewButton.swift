@@ -21,7 +21,7 @@ struct NewButton: View {
                 .foregroundStyle(Color.Custom.onPrimary)
                 .padding(.Spacing.s)
         }
-        .buttonStyle(NewButtonStyle(backgroundColor: backgroundColor))
+        .glassEffect(.regular.tint(backgroundColor).interactive())
     }
 }
 

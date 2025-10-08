@@ -31,11 +31,12 @@ struct ContentScreenMenu: View {
                 Label("Settings", systemImage: "gear")
             }
         } label: {
-            Image(systemName: "ellipsis.circle.fill")
+            Image(systemName: "ellipsis")
                 .font(.title2)
-                .padding(.LeadingS)
-                .contentShape(Rectangle())
+                .frame(width: 30, height: 30, alignment: .center)
+                .padding(.Spacing.s)
         }
+        .glassEffect(.regular.interactive())
     }
 }
 

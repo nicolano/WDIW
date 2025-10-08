@@ -20,6 +20,7 @@ struct TabBar: View {
                 navigationVM.openAddContentSheet(contentCategory: activeCategory)
             }
             .padding(.TrailingXS)
+            .zIndex(1)
                                     
             GridRow {
                 if settingsVM.displayedCategories.contains(.books) {
@@ -34,11 +35,11 @@ struct TabBar: View {
                     seriesButton
                 }
             }
+            .zIndex(0)
         }
         .padding(.Spacing.xs)
         .background(background)
         .opacity(keyboardShowing ? 0 : 1)
-        .blur(radius: keyboardShowing ? 5 : 0)
         .animation(.smooth, value: keyboardShowing)
         .ignoresSafeArea(.keyboard)
         .onReceive(navigationVM.$activeScreen) { value in
@@ -59,11 +60,9 @@ struct TabBar: View {
 extension TabBar {
     private var background: some View {
         Rectangle()
-            .fill(Color.Custom.surface)
-            .background {
-                Color.gray.opacity(0.3)
-            }
+            .fill(.clear)
             .clipShape(Capsule())
+            .glassEffect()
     }
     
     private var booksButton: some View {

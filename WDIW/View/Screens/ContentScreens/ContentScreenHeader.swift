@@ -14,18 +14,23 @@ struct ContentScreenHeaderButtons: View {
     let contentCategory: ContentCategories
     
     var body: some View {
-        HStack.spacingM {
-            Button {
-                withAnimation {
-                    contentScreenVM.toggleSearchField()
+        GlassEffectContainer(spacing: .Spacing.xs) {
+            HStack.spacingXS {
+                Button {
+                    withAnimation {
+                        contentScreenVM.toggleSearchField()
+                    }
+                } label: {
+                    Image(systemName: contentScreenVM.showSearch ? "xmark" : "magnifyingglass")
+                        .font(.title2)
+                        .frame(width: 30, height: 30, alignment: .center)
+                        .padding(.Spacing.s)
+                        .transaction { $0.animation = nil }
                 }
-            } label: {
-                Image(systemName: contentScreenVM.showSearch ? "x.circle.fill" : "magnifyingglass")
-                    .bold()
-                    .font(.title2)
+                .glassEffect(.regular.interactive())
+
+                ContentScreenMenu(contentCategory: contentCategory)
             }
-            
-            ContentScreenMenu(contentCategory: contentCategory)
         }
     }
 }

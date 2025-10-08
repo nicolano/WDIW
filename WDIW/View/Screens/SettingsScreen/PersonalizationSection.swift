@@ -34,6 +34,7 @@ struct PersonalizationSection: View {
                     Text(settingsVM.selectedCategoriesToDisplayString())
                 }
             }
+            .padding(.BottomS)
         }
         .headerProminence(.increased)
     }

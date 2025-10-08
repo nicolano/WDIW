@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 
 extension HStack {
-    static func spacingXS(
-        alignment: VerticalAlignment = .center,
-        @ViewBuilder content: () -> Content
-    ) -> HStack {
+static func spacingXS(
+    alignment: VerticalAlignment = .center,
+    @ViewBuilder content: () -> Content
+) -> HStack {
         HStack(alignment: alignment, spacing: .Spacing.xs, content: content)
     }
     

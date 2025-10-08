@@ -20,11 +20,15 @@ struct TabBarButton: View {
         } label: {
             VStack(spacing: 0) {    
                 Image(systemName: contentCategory.getIconName(isActive: isActive))
+                    .animation(.none)
                 Text(contentCategory.getName())
             }
             .font(.caption)
             .align(.hCenter)
+            .padding(.horizontal)
+            .padding(.vertical, .Spacing.s)
         }
+        .contentShape(Rectangle())
         .buttonStyle(
             TabBarButtonstyle(
                 isActive: isActive,
@@ -41,17 +45,11 @@ struct TabBarButtonstyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         if configuration.isPressed || isActive {
             configuration.label
-                .padding(.horizontal)                
-                .padding(.vertical, .Spacing.s)
-                .background(.ultraThickMaterial)
                 .foregroundStyle(foregroundColor)
-                .clipShape(Capsule())
+                .glassEffect()
         } else {
             configuration.label
-                .padding(.horizontal)
-                .padding(.vertical, .Spacing.s)
                 .foregroundStyle(foregroundColor)
-                .clipShape(Capsule())
         }
     }
 }

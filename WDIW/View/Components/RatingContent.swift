@@ -12,11 +12,13 @@ struct RatingContent: View {
     
     var body: some View {
         VStack {
-            Group {
-                Text("\(rating)")
-                    .foregroundStyle(Color.yellow)
-                + Text("/10")
-            }
+            Text({
+                var a = AttributedString("\(rating)/10")
+                if let range = a.range(of: String(rating)) {
+                    a[range].foregroundColor = .yellow
+                }
+                return a
+            }())
             .bold()
             .padding(.AllXS)
             .background(Color.Custom.surface)

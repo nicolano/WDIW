@@ -75,9 +75,8 @@ struct CustomTextField<LeadingContent: View, TrailingContent: View>: View {
             .padding(.AllS)
             .background {
                 if withShadow {
-                    RoundedRectangle(cornerRadius: .CornerRadius.textField)
-                        .fill(Material.ultraThin)
-                        .shadow(color: .black.opacity(0.2), radius: 4)
+                    RoundedRectangle(cornerRadius: .CornerRadius.textField).fill(.clear)
+                        .glassEffect()
                 } else {
                     RoundedRectangle(cornerRadius: .CornerRadius.textField)
                         .fill(Material.ultraThin)
